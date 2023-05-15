@@ -1,0 +1,30 @@
+{
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "icons": [
+    {
+      "sizes": "64x64 24x24 16x16",
+      "src": "favicon.ico",
+      "type": "image/x-icon"
+    },
+    {
+      "sizes": "32x32",
+      "src": "favicon-32x32.ico",
+      "type": "image/png"
+    },
+    {
+      "sizes": "192x192",
+      "src": "android-chrome-192x192.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "512x512",
+      "src": "android-chrome-512x512.png",
+      "type": "image/png"
+    }
+  ],
+  "name": "XYO 2.0 Explore",
+  "short_name": "XYO 2.0",
+  "start_url": ".",
+  "theme_color": "#ffffff"
+}

@@ -1,0 +1,15 @@
+node_modules
+build
+.DS_Store
+*.log
+**/.eslintcache
+.idea
+.docusaurus
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

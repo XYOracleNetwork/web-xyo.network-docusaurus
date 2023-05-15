@@ -1,0 +1,83 @@
+{
+  "files.exclude": {
+    "**/node_modules": true,
+  },
+  "editor.quickSuggestions": {
+    "comments": "on",
+    "strings": "on",
+    "other": "on"
+  },
+  "editor.tabSize": 2,
+  "editor.suggestSelection": "first",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.formatOnPaste": false, // required 
+  "editor.formatOnType": false, // required
+  "editor.formatOnSave": true, // optional 
+  "editor.formatOnSaveMode": "file", // required to format on save
+  "files.autoSave": "onFocusChange",
+  "cSpell.words": [
+    "appbar",
+    "Boop",
+    "Booped",
+    "boundwitness",
+    "bowser",
+    "changefreq",
+    "codacy",
+    "cryptomarket",
+    "Etherchain",
+    "filepond",
+    "flexbox",
+    "Foreventory",
+    "Forevintory",
+    "Geomine",
+    "Geominers",
+    "Geotokens",
+    "Gtag",
+    "HURI",
+    "jakejarvis",
+    "Lifehash",
+    "mapbox",
+    "muratiger",
+    "npmjs",
+    "npmrc",
+    "pako",
+    "playbar",
+    "Roadmap",
+    "rollbar",
+    "Snyk",
+    "stickynode",
+    "swiper",
+    "systeminfo",
+    "Tiktok",
+    "webp",
+    "wistia",
+    "xylabs",
+    "yarnpkg"
+  ] // optional but recommended
+}
