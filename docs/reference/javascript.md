@@ -2,6 +2,6 @@
 sidebar_position: 1
 ---
 
-# Javascript
+# Javascript/Typescript SDK
 
 
