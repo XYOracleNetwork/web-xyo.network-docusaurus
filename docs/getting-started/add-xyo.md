@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Host your own XYO Node
+# Add XYO to an existing project
 
 Let's discover **XYO Platform in less than 5 minutes**.
 

@@ -2,7 +2,16 @@
 sidebar_position: 1
 ---
 
-# Getting Started
+# Overview
+[TODO] Add more concrete information to answer the "what is XYO"
+XYO is an open-source platform for creating and enhancing any project in the world through **sovereignty**, **provenance**, and **permanence**.
+## Examples of XYO
+[TODO] Add more concrete information to answer the "what is XYO"
+## Advantages of XYO
+[TODO] Add more concrete information to answer the "what is XYO"
+
+## Introduction
+XYO is an open-source platform designed to improve any project through added sovereignty, provenance, and permanence technologies.
 
 Let's discover **XYO Platform in less than 5 minutes**.
 
