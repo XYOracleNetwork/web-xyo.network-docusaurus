@@ -62,8 +62,9 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          {to: 'docs/category/guides', label: 'Guides', position: 'left'},
-          {to: 'docs/category/reference', label: 'Reference', position: 'left'},
+          {to: 'docs/category/overview', label: 'Guides', position: 'left'},
+          {to: 'docs/category/getting-started', label: 'Getting Started', position: 'left'},
+          {to: 'docs/category/sdks', label: 'SDKs', position: 'left'},
           {
             href: 'https://github.com/XYOracleNetwork',
             label: 'GitHub',

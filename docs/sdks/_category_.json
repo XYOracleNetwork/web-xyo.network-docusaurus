@@ -1,8 +1,8 @@
 {
-  "label": "Reference",
+  "label": "SDKs",
   "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "Developer Reference"
+    "description": "Developer SDKs"
   }
 }
