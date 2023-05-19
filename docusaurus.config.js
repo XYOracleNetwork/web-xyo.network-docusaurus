@@ -62,9 +62,8 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          {to: 'docs/category/overview', label: 'Guides', position: 'left'},
-          {to: 'docs/category/getting-started', label: 'Getting Started', position: 'left'},
-          {to: 'docs/category/sdks', label: 'SDKs', position: 'left'},
+          {to: 'docs/getting-started/start', label: 'Getting Started', position: 'left'},
+          {to: 'docs/sdks/javascript', label: 'SDKs', position: 'left'},
           {
             href: 'https://github.com/XYOracleNetwork',
             label: 'GitHub',
@@ -79,12 +78,12 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Guides',
-                to: '/docs/category/guides',
+                label: 'Getting Started',
+                to: '/docs/getting-started/start',
               },
               {
-                label: 'Reference',
-                to: '/docs/category/reference',
+                label: 'SDKs',
+                to: '/docs/sdks/javascript',
               },
             ],
           },

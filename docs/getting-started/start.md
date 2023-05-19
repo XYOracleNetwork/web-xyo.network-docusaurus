@@ -27,4 +27,4 @@ We've created a few more [exercises](https://xyo.network/dapp) to teach you more
 Explore our demos on [xyo.network](https://xyo.network/dapp) or on our GitHub.
 
 ## Glossary
-Need a quick reminder on what's what? The [Glossary](/docs/getting-started/glossary) can help you out!
+Need a quick reminder on what's what? The [Glossary](/docs/glossary) can help you out!

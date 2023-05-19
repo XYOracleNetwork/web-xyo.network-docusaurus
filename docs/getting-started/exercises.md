@@ -6,7 +6,7 @@ sidebar_position: 2
 Taking your first steps with XYO? Here's a few resources and demos to get you started on the right track.
 
 ## Resolve a Module
-The interactive CodeSandbox demo below allows you to select an [XYO Module](/glossary) from a dropdown, and resolve it to see information about it.
+The interactive CodeSandbox demo below allows you to select an [XYO Module](/docs/glossary) from a dropdown, and resolve it to see information about it.
 
 Module: 
 <iframe
@@ -23,4 +23,4 @@ We've created a few more [exercises](https://xyo.network/dapp) to teach you more
 Explore our demos on [xyo.network](https://xyo.network/dapp) or on our GitHub.
 
 ## Glossary
-Need a quick reminder on what's what? The [Glossary](/docs/getting-started/glossary) can help you out!
+Need a quick reminder on what's what? The [Glossary](/docs/glossary) can help you out!
