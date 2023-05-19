@@ -11,7 +11,7 @@ Looking for a quick reminder on definitions or usages for XYO technology? You're
 <!-- [Maryann] — Add any words here you've seen questions about (or have a question about yourself!) -->
 
 ## Node
-A container that house Sentinels, Bridges, Archivists, and Diviners. 
+A container that house Sentinels, Bridges, Archivists, and Diviners. It is a Module which also contains Modules. Nodes act as a Module Namespace ensuring uniqueness within a subset of the XYO Network.
 
 ## Sentinel
 A digital or physical device that collects data of some sort. Sentinels structure the data they collect into a series of Bound Witness Blocks.  This is called a Proof of Origin Chain. Some examples of Sentinels might be:
@@ -35,6 +35,7 @@ A Diviner is used to view data and information that is stored in one or more Arc
 
 
 ## Module
+A Module is an account or wallet with autonomous functionality and can be thought of as somewhat analogous to smart contracts.  Modules encapsulate the components of the XYO Network (Archivists, Diviners, Bridges, etc.) while providing a standardized way to enable discoverability, communication, and security.  Modules have a defined set of query payloads that they take action on and provide a cryptographically signed response.
 
 ## Bound Witness Blocks
 A series of blocks that contain the data collected by a Sentinel.
