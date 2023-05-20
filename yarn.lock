@@ -1706,20 +1706,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docsearch/css@npm:3.3.4":
-  version: 3.3.4
-  resolution: "@docsearch/css@npm:3.3.4"
-  checksum: 56e3ae677423fa4cf508ffb964d0616862a4af22affad308f47edf5c1ad097a2b21187c53d240f83463c4e7add3cd60e3630022a68e2089bb3066bfbaded64a0
+"@docsearch/css@npm:3.3.5":
+  version: 3.3.5
+  resolution: "@docsearch/css@npm:3.3.5"
+  checksum: 4ed57fe5014d80d516095c5d1d2aa6cf809c3b0ea730a905651d45cd1492dcc8703b2d18ca013e45eb60b1b05676b857117fa579e784e678f11026bbee6aad3d
   languageName: node
   linkType: hard
 
 "@docsearch/react@npm:^3.1.1":
-  version: 3.3.4
-  resolution: "@docsearch/react@npm:3.3.4"
+  version: 3.3.5
+  resolution: "@docsearch/react@npm:3.3.5"
   dependencies:
     "@algolia/autocomplete-core": 1.8.2
     "@algolia/autocomplete-preset-algolia": 1.8.2
-    "@docsearch/css": 3.3.4
+    "@docsearch/css": 3.3.5
     algoliasearch: ^4.0.0
   peerDependencies:
     "@types/react": ">= 16.8.0 < 19.0.0"
@@ -1732,7 +1732,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 50f122f08c543711fffe8ba3b507311a01defef6db5d47401bd2b5c7759512357fa26d2a88a68b50916b9084fd922f7340ad03e479b4d60ac2e22b4a198dc06d
+  checksum: 9786fa969a273c5d427b79b8470fd565bcb78b90c9bd6d7ddb42ccdd0f2244790f8d51d56b7f4ff6fc0f41ce67fadd99925272eb5bb4f5bca3b55960398bd956
   languageName: node
   linkType: hard
 
@@ -3578,9 +3578,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 20.1.4
-  resolution: "@types/node@npm:20.1.4"
-  checksum: bffa6a6e92831cc805b13658c55be8e04abe3202d5e57ddd7fee4cfbe269656a1f475909a9f9514e1aff50310d0d90c516ac2c649cb6f1c77d4b1079c2fd1e88
+  version: 20.2.1
+  resolution: "@types/node@npm:20.2.1"
+  checksum: ed774afa6e9b4ad7868ed0182a8ca40ad0dd54815a70d3051b23fa850f3bca6bea4d0cb55e1fc769666786ac2cc4c1b37aeade313cb4c4634133f18ebcded496
   languageName: node
   linkType: hard
 
@@ -5591,9 +5591,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001449, caniuse-lite@npm:^1.0.30001464":
-  version: 1.0.30001487
-  resolution: "caniuse-lite@npm:1.0.30001487"
-  checksum: b5a9e72ec165765fb3e07913cc389685ce8a30ac48967f99baec773a4353d2037fb534241e87b3c95d40a5081079be2263710b784883183bb2998b73f7202233
+  version: 1.0.30001488
+  resolution: "caniuse-lite@npm:1.0.30001488"
+  checksum: ef0caf2914f9fca700b75d22921f500241f4e988ded9985e62737136031787052185d8136a65a3a6d6d12b559cf75ab99f5488931f8bd060f1b7810a2c1ee1d1
   languageName: node
   linkType: hard
 
@@ -6403,20 +6403,20 @@ __metadata:
   linkType: hard
 
 "css-loader@npm:^6.7.1":
-  version: 6.7.3
-  resolution: "css-loader@npm:6.7.3"
+  version: 6.7.4
+  resolution: "css-loader@npm:6.7.4"
   dependencies:
     icss-utils: ^5.1.0
-    postcss: ^8.4.19
+    postcss: ^8.4.21
     postcss-modules-extract-imports: ^3.0.0
-    postcss-modules-local-by-default: ^4.0.0
+    postcss-modules-local-by-default: ^4.0.1
     postcss-modules-scope: ^3.0.0
     postcss-modules-values: ^4.0.0
     postcss-value-parser: ^4.2.0
     semver: ^7.3.8
   peerDependencies:
     webpack: ^5.0.0
-  checksum: 473cc32b6c837c2848e2051ad1ba331c1457449f47442e75a8c480d9891451434ada241f7e3de2347e57de17fcd84610b3bcfc4a9da41102cdaedd1e17902d31
+  checksum: 6021fa9e375d767b9675e295c1513f2ee4ae04f76d9de69a75b8446e05f6e02b2170407ea72939925b788dcd5aa308527f6b41be3870dc1f4b0bfff8d2532c6e
   languageName: node
   linkType: hard
 
@@ -7233,9 +7233,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.284":
-  version: 1.4.395
-  resolution: "electron-to-chromium@npm:1.4.395"
-  checksum: 9aa88ce28aa77ece5f839c02453292924680f4c647719871c72efd3faf139ac58784750a590f022efed62f3b8b5ca7969a1e89d8776806669ad75df8580bef5b
+  version: 1.4.400
+  resolution: "electron-to-chromium@npm:1.4.400"
+  checksum: d0f5ee3c08ef12daf67328852fed8654020dd003e08060acd09500981998c5da46da60ad10aaa8483475d740a4871e1f9c4052648d993619cd621c734f81d1db
   languageName: node
   linkType: hard
 
@@ -7909,9 +7909,9 @@ __metadata:
   linkType: hard
 
 "eta@npm:^2.0.0":
-  version: 2.1.2
-  resolution: "eta@npm:2.1.2"
-  checksum: c4bbe39e4c44099859055500a1d847f223e28d109362ef6109b1deab21d56f7d27c58f99629f7782f872473b4a8464f3cefae3edce8028d0238ddebd1132e590
+  version: 2.2.0
+  resolution: "eta@npm:2.2.0"
+  checksum: 6a09631481d4f26a9662a1eb736a65cc1cbc48e24935e6ff5d83a83b0cb509ea56d588d66d7c087d590601dc59bdabdac2356936b1b789d020eb0cf2d8304d54
   languageName: node
   linkType: hard
 
@@ -10052,7 +10052,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-core-module@npm:^2.11.0, is-core-module@npm:^2.4.0, is-core-module@npm:^2.5.0, is-core-module@npm:^2.8.1":
+"is-core-module@npm:^2.11.0, is-core-module@npm:^2.12.0, is-core-module@npm:^2.4.0, is-core-module@npm:^2.5.0, is-core-module@npm:^2.8.1":
   version: 2.12.1
   resolution: "is-core-module@npm:2.12.1"
   dependencies:
@@ -14171,16 +14171,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-modules-local-by-default@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "postcss-modules-local-by-default@npm:4.0.0"
+"postcss-modules-local-by-default@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "postcss-modules-local-by-default@npm:4.0.1"
   dependencies:
     icss-utils: ^5.0.0
     postcss-selector-parser: ^6.0.2
     postcss-value-parser: ^4.1.0
   peerDependencies:
     postcss: ^8.1.0
-  checksum: 6cf570badc7bc26c265e073f3ff9596b69bb954bc6ac9c5c1b8cba2995b80834226b60e0a3cbb87d5f399dbb52e6466bba8aa1d244f6218f99d834aec431a69d
+  checksum: 1a95eb8bc54a363a77dbd77a0a88f500e7937ecbed5903becef9362eace28de406e6fdf62640126c22964678370e87eb10481eea2703702772935b4515603bfd
   languageName: node
   linkType: hard
 
@@ -14411,7 +14411,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.1.10, postcss@npm:^8.3.11, postcss@npm:^8.4.14, postcss@npm:^8.4.17, postcss@npm:^8.4.19":
+"postcss@npm:^8.1.10, postcss@npm:^8.3.11, postcss@npm:^8.4.14, postcss@npm:^8.4.17, postcss@npm:^8.4.21":
   version: 8.4.23
   resolution: "postcss@npm:8.4.23"
   dependencies:
@@ -14863,9 +14863,9 @@ __metadata:
   linkType: hard
 
 "react-fast-compare@npm:^3.2.0":
-  version: 3.2.1
-  resolution: "react-fast-compare@npm:3.2.1"
-  checksum: 209b4dc3a9cc79c074a26ec020459efd8be279accaca612db2edb8ada2a28849ea51cf3d246fc0fafb344949b93a63a43798b6c1787559b0a128571883fe6859
+  version: 3.2.2
+  resolution: "react-fast-compare@npm:3.2.2"
+  checksum: 2071415b4f76a3e6b55c84611c4d24dcb12ffc85811a2840b5a3f1ff2d1a99be1020d9437ee7c6e024c9f4cbb84ceb35e48cf84f28fcb00265ad2dfdd3947704
   languageName: node
   linkType: hard
 
@@ -16812,28 +16812,28 @@ __metadata:
   linkType: hard
 
 "resolve@npm:^1.1.6, resolve@npm:^1.10.0, resolve@npm:^1.14.2, resolve@npm:^1.18.1, resolve@npm:^1.20.0, resolve@npm:^1.22.1, resolve@npm:^1.3.2":
-  version: 1.22.2
-  resolution: "resolve@npm:1.22.2"
+  version: 1.22.3
+  resolution: "resolve@npm:1.22.3"
   dependencies:
-    is-core-module: ^2.11.0
+    is-core-module: ^2.12.0
     path-parse: ^1.0.7
     supports-preserve-symlinks-flag: ^1.0.0
   bin:
     resolve: bin/resolve
-  checksum: 7e5df75796ebd429445d102d5824482ee7e567f0070b2b45897b29bb4f613dcbc262e0257b8aeedb3089330ccaea0d6a0464df1a77b2992cf331dcda0f4cb549
+  checksum: fb834b81348428cb545ff1b828a72ea28feb5a97c026a1cf40aa1008352c72811ff4d4e71f2035273dc536dcfcae20c13604ba6283c612d70fa0b6e44519c374
   languageName: node
   linkType: hard
 
 "resolve@patch:resolve@^1.1.6#~builtin<compat/resolve>, resolve@patch:resolve@^1.10.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.18.1#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.1#~builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#~builtin<compat/resolve>":
-  version: 1.22.2
-  resolution: "resolve@patch:resolve@npm%3A1.22.2#~builtin<compat/resolve>::version=1.22.2&hash=c3c19d"
+  version: 1.22.3
+  resolution: "resolve@patch:resolve@npm%3A1.22.3#~builtin<compat/resolve>::version=1.22.3&hash=c3c19d"
   dependencies:
-    is-core-module: ^2.11.0
+    is-core-module: ^2.12.0
     path-parse: ^1.0.7
     supports-preserve-symlinks-flag: ^1.0.0
   bin:
     resolve: bin/resolve
-  checksum: 66cc788f13b8398de18eb4abb3aed90435c84bb8935953feafcf7231ba4cd191b2c10b4a87b1e9681afc34fb138c705f91f7330ff90bfa36f457e5584076a2b8
+  checksum: ad59734723b596d0891321c951592ed9015a77ce84907f89c9d9307dd0c06e11a67906a3e628c4cae143d3e44898603478af0ddeb2bba3f229a9373efe342665
   languageName: node
   linkType: hard
 
@@ -18293,8 +18293,8 @@ __metadata:
   linkType: hard
 
 "terser-webpack-plugin@npm:^5.3.3, terser-webpack-plugin@npm:^5.3.7":
-  version: 5.3.8
-  resolution: "terser-webpack-plugin@npm:5.3.8"
+  version: 5.3.9
+  resolution: "terser-webpack-plugin@npm:5.3.9"
   dependencies:
     "@jridgewell/trace-mapping": ^0.3.17
     jest-worker: ^27.4.5
@@ -18310,13 +18310,13 @@ __metadata:
       optional: true
     uglify-js:
       optional: true
-  checksum: 0ffc2a1949b1fd60ef9c815c4629b9817656db612bb58c5db96e3b04204c86afd142b115392e48733364edc7bf95131f54c10174c05f046ba8f2adead6b06c3c
+  checksum: 41705713d6f9cb83287936b21e27c658891c78c4392159f5148b5623f0e8c48559869779619b058382a4c9758e7820ea034695e57dc7c474b4962b79f553bc5f
   languageName: node
   linkType: hard
 
 "terser@npm:^5.10.0, terser@npm:^5.16.8":
-  version: 5.17.3
-  resolution: "terser@npm:5.17.3"
+  version: 5.17.4
+  resolution: "terser@npm:5.17.4"
   dependencies:
     "@jridgewell/source-map": ^0.3.2
     acorn: ^8.5.0
@@ -18324,7 +18324,7 @@ __metadata:
     source-map-support: ~0.5.20
   bin:
     terser: bin/terser
-  checksum: 6b5a859bf9707f34be6e4c567437bc4e47e9364eec37a48b0ae3bff46bb510ef43caf543a23a89b8f43eca47c90a6759105add171fdb0d768dd639deb4545ac9
+  checksum: 4bb4bbee170bee4cf897545b602999e0b74d2cd035387514c6859fae6a71d623f8d1319de47bcf6a157358355cc7afaa62a5d5661bfc72968d13b35113022486
   languageName: node
   linkType: hard
 
@@ -19829,8 +19829,8 @@ __metadata:
   linkType: hard
 
 "webpack@npm:^5.73.0":
-  version: 5.82.1
-  resolution: "webpack@npm:5.82.1"
+  version: 5.83.1
+  resolution: "webpack@npm:5.83.1"
   dependencies:
     "@types/eslint-scope": ^3.7.3
     "@types/estree": ^1.0.0
@@ -19861,7 +19861,7 @@ __metadata:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: 747ee7ebd238c15249c2652060e3c6ca6d62cc66dcf7e4e2824ecd4875b7ea5e01fce8f4179080a3e84dfdb3c8d0992700444c7c5a05ef47b38c0623d3ac76de
+  checksum: 219d5ef50380bc0fd3702ed17feddf13819d8173b78f7a5b857dc74ac177e63d1f79c050792754411cc088bbc02e0971b989efddadbb8e393cf27d64c0ad9ff8
   languageName: node
   linkType: hard
 

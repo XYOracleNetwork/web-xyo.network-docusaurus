@@ -41,7 +41,7 @@ Here's some quick links:
 ### Demo dApps
 The XYO Team has created a few demo dApps with real-world data to show you ways to utilize XYO Platform components. Use them to get your wheels turning on your own custom project, or just to browse!
 
-- [In-Depth Explanations](/demo-dapps)
+- [In-Depth Explanations](/docs/category/demo-dapps)
 - [Browse on xyo.network](https://xyo.network/dapp)
 
 Explore our demos on [xyo.network](https://xyo.network/dapp) or on our GitHub.
