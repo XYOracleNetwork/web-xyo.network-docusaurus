@@ -7,7 +7,7 @@ sidebar_position: 1
 
 There are plenty of ways to track the price of your favorite token. But each of these tools utilizes a variety of methods to create a singular "price" from numerous exchanges. So how do you know the price of the asset you hold?
 
-[TODO][Insert dApp Viewer Here]
+[TODO - ARIE][Insert dApp Viewer Here]
 
 ## Breaking it down
 
