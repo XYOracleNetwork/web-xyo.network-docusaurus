@@ -40,9 +40,9 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js')
         },
-        blog: {
+        /*blog: {
           showReadingTime: true
-        },
+        },*/
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
