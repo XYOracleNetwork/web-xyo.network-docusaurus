@@ -1,13 +1,13 @@
 ---
-sidebar_position: 1
+sidebar_position: 10
 ---
 
-# Start
-Taking your first steps with XYO? Here's a few resources and demos to get you started on the right track.
+# Learn
+These resources can help you learn more about XYO.
 
 ## Your first node
 
-The following CodeSandbox demonstrates a simple component that allows you to view an XYO Node.
+The following CodeSandbox demonstrates an XYO Node.
 
 A Node is a container that house Sentinels, Bridges, Archivists, and Diviners. (More on those, next!) 
 

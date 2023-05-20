@@ -62,7 +62,7 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          {to: 'docs/getting-started/start', label: 'Getting Started', position: 'left'},
+          {to: 'docs/getting-started/intro', label: 'Getting Started', position: 'left'},
           {to: 'docs/sdks/javascript', label: 'SDKs', position: 'left'},
           {
             href: 'https://github.com/XYOracleNetwork',
@@ -79,7 +79,7 @@ const config = {
             items: [
               {
                 label: 'Getting Started',
-                to: '/docs/getting-started/start',
+                to: '/docs/getting-started/intro',
               },
               {
                 label: 'SDKs',
