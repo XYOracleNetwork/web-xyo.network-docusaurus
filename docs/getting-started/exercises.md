@@ -9,22 +9,22 @@ These demos will expand your understanding of the XYO Platform, and introduce yo
 ## Resolve a Module
 The interactive CodeSandbox demo below allows you to select an [XYO Module](/docs/glossary) from a dropdown, and resolve it to see information about it.
 
-<iframe
-  src="https://codesandbox.io/p/sandbox/memory-node-with-modules-tlvunq?file=%2Fsrc%2FApp.tsx%3A23%2C32&codemirror=1&hidenavigation=1"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-  className="code-sandbox-div"
-></iframe>
+<iframe src="https://codesandbox.io/embed/witness-data-zzyddd?file=/src/App.tsx?codemirror=1&fontsize=14&hidenavigation=1&theme=dark&hidedevtools=1"
+className="code-sandbox-div"
+     title="Exercise 1 XYO Documentation"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
 
 ## Query a Node
 Next, you can query an XYO Node.
 
-<iframe
-  src="https://codesandbox.io/p/sandbox/witness-data-8wbw6t?file=%2Fsrc%2FApp.tsx%3A45%2C21&codemirror=1&hidenavigation=1"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-  className="code-sandbox-div"
-></iframe>
+<iframe src="https://codesandbox.io/embed/witness-data-zzyddd?file=/src/App.tsx?codemirror=1&fontsize=14&hidenavigation=1&theme=dark&hidedevtools=1"
+className="code-sandbox-div"
+     title="Exercise 1 XYO Documentation"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
 
 ## Learn More
 Explore public Archivists, browse demo dApps, or take a peek at the Glossary to learn more!
