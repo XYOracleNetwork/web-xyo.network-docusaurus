@@ -1,0 +1,40 @@
+{
+  "root": true,
+  "ignorePatterns": ["config-overrides.js", "scripts-custom", "public", ".yarn", "node_modules", "build"],
+  "extends": [
+    "@xylabs/react"
+  ],
+  "rules": {
+    "react/prop-types": ["off"],
+    "react/react-in-jsx-scope": ["off"],
+    "import/no-internal-modules": [
+      "warn", {
+        "allow": [
+          "**/*.jpg",
+          "**/*.png",
+          "**/*.svg",
+          "**/*.gif",
+          "**/*.webp",
+          "react-icons/*",
+          "@xylabs/sdk-coin-js/*",
+          "@xylabs/sdk-coin-react/*",
+          "firebase/*",
+          "react-share/**/*",
+          "lodash/*",
+          "@mui/**/*",
+          "react-player/*",
+          "filepond/**/*",
+          "filepond-plugin-image-preview/**/*"
+        ]
+      }
+    ]
+  },
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

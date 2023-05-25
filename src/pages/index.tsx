@@ -1,11 +1,8 @@
-import React from 'react';
-
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-
-import {Redirect} from '@docusaurus/router';
-
+import { Redirect } from '@docusaurus/router'
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import React from 'react'
 
 export default function Home(): JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
-  return <Redirect to="/docs"/>
+  const { siteConfig } = useDocusaurusContext()
+  return <Redirect to="/docs" />
 }

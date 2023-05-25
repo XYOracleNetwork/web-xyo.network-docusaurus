@@ -1,6 +1,6 @@
 {
   "files.exclude": {
-    "**/node_modules": true,
+    "**/node_modules": false,
   },
   "editor.quickSuggestions": {
     "comments": "on",
@@ -48,6 +48,7 @@
     "boundwitness",
     "bowser",
     "changefreq",
+    "clsx",
     "codacy",
     "cryptomarket",
     "Etherchain",
@@ -68,10 +69,13 @@
     "npmrc",
     "pako",
     "playbar",
+    "prefixer",
+    "prismjs",
     "Roadmap",
     "rollbar",
     "Snyk",
     "stickynode",
+    "stylis",
     "swiper",
     "systeminfo",
     "Tiktok",

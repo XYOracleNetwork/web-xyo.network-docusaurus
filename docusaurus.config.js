@@ -1,28 +1,16 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer/themes/github')
+const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'XYO Platform',
-  tagline: 'Sovereignty, Provenance and Permanence using Blockchain',
-  favicon: 'favicon.ico',
-
-  // Set the production url of your site here
-  url: 'https://xyo.network',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  // organizationName: 'XYOracleNetwork', // Usually your GitHub org/user name.
-  // projectName: 'sdk-xyo-client-js', // Usually your repo name.
-
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  favicon: 'favicon.ico',
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -32,13 +20,21 @@ const config = {
     locales: ['en'],
   },
 
+  // GitHub pages deployment config.
+  // If you aren't using GitHub pages, you don't need these.
+  // organizationName: 'XYOracleNetwork', // Usually your GitHub org/user name.
+  // projectName: 'sdk-xyo-client-js', // Usually your repo name.
+  onBrokenLinks: 'throw',
+
+  onBrokenMarkdownLinks: 'warn',
+
   presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js')
+          sidebarPath: require.resolve('./sidebars.js'),
         },
         /*blog: {
           showReadingTime: true
@@ -50,32 +46,15 @@ const config = {
     ],
   ],
 
+  tagline: 'Sovereignty, Provenance and Permanence using Blockchain',
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
-      image: 'img/social-card.jpg',
-      navbar: {
-        title: 'XYO Platform',
-        logo: {
-          alt: 'XYO Logo',
-          src: 'img/logo.svg',
-        },
-        items: [
-          {to: 'docs/getting-started/intro', label: 'Getting Started', position: 'left'},
-          {to: 'docs/sdks/javascript', label: 'SDKs', position: 'left'},
-          {
-            href: 'https://github.com/XYOracleNetwork',
-            label: 'GitHub',
-            position: 'right',
-          },
-        ],
-      },
       footer: {
-        style: 'dark',
+        copyright: `Copyright © ${new Date().getFullYear()} XY Labs, Inc.`,
         links: [
           {
-            title: 'Docs',
             items: [
               {
                 label: 'Getting Started',
@@ -86,45 +65,70 @@ const config = {
                 to: '/docs/sdks/javascript',
               },
             ],
+            title: 'Docs',
           },
           {
-            title: 'Community',
             items: [
               /*{
                 label: 'Stack Overflow',
                 href: 'https://stackoverflow.com/questions/tagged/xyo',
               },*/
               {
-                label: 'Discord',
                 href: 'https://discord.gg/officialxyo',
+                label: 'Discord',
               },
               {
-                label: 'Twitter',
                 href: 'https://twitter.com/OfficialXYO',
+                label: 'Twitter',
               },
             ],
+            title: 'Community',
           },
           {
-            title: 'More',
             items: [
               {
-                label: 'GitHub',
                 href: 'https://github.com/XYOracleNetwork',
+                label: 'GitHub',
               },
             ],
+            title: 'More',
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} XY Labs, Inc.`,
+        style: 'dark',
+      },
+
+      glossary: {
+        sentinel:
+          'An Archivist is where Bound Witness and Payload data is stored. A shared, hosted, or self-hosted archivist can be used. It is even possible to run an archivist on the same device as the Sentinel and Bridge.',
+      },
+      // Replace with your project's social card
+      image: 'img/social-card.jpg',
+      navbar: {
+        items: [
+          { label: 'Getting Started', position: 'left', to: 'docs/getting-started/intro' },
+          { label: 'SDKs', position: 'left', to: 'docs/sdks/javascript' },
+          {
+            href: 'https://github.com/XYOracleNetwork',
+            label: 'GitHub',
+            position: 'right',
+          },
+        ],
+        logo: {
+          alt: 'XYO Logo',
+          src: 'img/logo.svg',
+        },
+        title: 'XYO Platform',
       },
       prism: {
-        theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-      },
-      glossary: {
-        sentinel: "An Archivist is where Bound Witness and Payload data is stored. A shared, hosted, or self-hosted archivist can be used. It is even possible to run an archivist on the same device as the Sentinel and Bridge.",
+        theme: lightCodeTheme,
       },
     }),
-};
 
+  title: 'XYO Platform',
 
-module.exports = config;
+  // Set the production url of your site here
+  url: 'https://xyo.network',
+}
+
+module.exports = config

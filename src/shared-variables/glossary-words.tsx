@@ -1,3 +1,3 @@
-const sentinelDefinition = ""
+const sentinelDefinition = ''
 
-export {sentinelDefinition}
+export { sentinelDefinition }
