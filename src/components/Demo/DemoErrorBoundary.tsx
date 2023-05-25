@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
-import PropTypes from 'prop-types'
+import { WithChildren } from '@xylabs/react-shared'
 import * as React from 'react'
 
 /**
@@ -21,7 +21,12 @@ function newGitHubIssueUrl(options) {
   return `${url}?${query}`
 }
 
-export default class DemoErrorBoundary extends React.Component {
+export type DemoErrorBoundaryProps = WithChildren<{
+  name: string
+  onResetDemoClick: () => void
+}>
+
+export class DemoErrorBoundary extends React.Component<DemoErrorBoundaryProps> {
   state = {
     error: null,
   }
@@ -31,7 +36,7 @@ export default class DemoErrorBoundary extends React.Component {
   }
 
   render() {
-    const { children, name, onResetDemoClick, t } = this.props
+    const { children, name, onResetDemoClick } = this.props
     const { error } = this.state
 
     if (error) {
@@ -72,7 +77,7 @@ export default class DemoErrorBoundary extends React.Component {
           </Typography>
           <pre style={{ whiteSpace: 'pre-wrap' }}>{error.toString()}</pre>
           <Button color="secondary" onClick={onResetDemoClick} variant="text">
-            {t('resetDemo')}
+            Reset Demo
           </Button>
         </div>
       )
@@ -80,14 +85,4 @@ export default class DemoErrorBoundary extends React.Component {
 
     return children
   }
-}
-
-DemoErrorBoundary.propTypes = {
-  children: PropTypes.node,
-  name: PropTypes.string.isRequired,
-  onResetDemoClick: PropTypes.func.isRequired,
-  /**
-   * translate function from redux store
-   */
-  t: PropTypes.func.isRequired,
 }

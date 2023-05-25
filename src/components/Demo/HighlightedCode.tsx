@@ -3,7 +3,7 @@ import * as React from 'react'
 
 import { CodeCopyButton } from './CodeCopyButton'
 import MarkdownElement from './MarkdownElement'
-import { highlight } from './prism'
+import { prismHighlight } from './prism'
 import { useCodeCopy } from './utils'
 
 interface HighlightedCodeProps extends React.HTMLProps<'div'> {
@@ -18,7 +18,7 @@ export const HighlightedCode = React.forwardRef<HTMLDivElement, HighlightedCodeP
   const { copyButtonHidden = false, copyButtonProps, code, language, MarkdownComponent = MarkdownElement } = props
   console.log(`Language: ${language}`)
   const renderedCode = React.useMemo(() => {
-    return highlight(code.trim(), language)
+    return prismHighlight(code.trim(), language)
   }, [code, language])
   const { onBlur, onFocus, onMouseEnter, onMouseLeave } = useCodeCopy()
 

@@ -2,22 +2,24 @@ import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import { styled, useTheme } from '@mui/material/styles'
 import { jssPreset, StylesProvider } from '@mui/styles'
+import { WithChildren } from '@xylabs/react-shared'
 import { create } from 'jss'
 import rtl from 'jss-rtl'
 import * as React from 'react'
-import { JSXElementConstructor, ReactElement } from 'react'
 import * as ReactDOM from 'react-dom'
 import { StyleSheetManager } from 'styled-components'
 import { prefixer } from 'stylis'
 import rtlPlugin from 'stylis-plugin-rtl'
 import rtlPluginSc from 'stylis-plugin-rtl-sc'
 
-import DemoErrorBoundary from './DemoErrorBoundary'
+import { DemoErrorBoundary } from './DemoErrorBoundary'
 
-export interface FramedDemoProps extends React.DetailedHTMLProps<React.IframeHTMLAttributes<HTMLIFrameElement>, HTMLIFrameElement> {
-  children: ReactElement
-  document: Document
-}
+export type FramedDemoProps = WithChildren<
+  React.DetailedHTMLProps<React.IframeHTMLAttributes<HTMLIFrameElement>, HTMLIFrameElement>,
+  {
+    document: Document
+  }
+>
 
 const FramedDemo: React.FC<FramedDemoProps> = (props) => {
   const { children, document } = props
@@ -54,9 +56,11 @@ const FramedDemo: React.FC<FramedDemoProps> = (props) => {
     <StylesProvider jss={jss} sheetsManager={sheetsManager}>
       <StyleSheetManager target={document.head} stylisPlugins={theme.direction === 'rtl' ? [rtlPluginSc] : []}>
         <CacheProvider value={cache}>
-          {React.cloneElement(children, {
-            window: getWindow,
-          })}
+          {children
+            ? React.cloneElement(children, {
+                window: getWindow,
+              })
+            : null}
         </CacheProvider>
       </StyleSheetManager>
     </StylesProvider>
@@ -72,7 +76,6 @@ const Iframe = styled('iframe')(({ theme }) => ({
 }))
 
 export interface DemoIframeProps extends React.DetailedHTMLProps<React.IframeHTMLAttributes<HTMLIFrameElement>, HTMLIFrameElement> {
-  children: ReactElement
   name: string
 }
 
@@ -111,7 +114,6 @@ const DemoIframe: React.FC<DemoIframeProps> = (props) => {
 }
 
 export interface DemoSandboxProps extends React.HTMLProps<'div'> {
-  children: ReactElement
   iframe?: boolean
   name: string
   onResetDemoClick: () => void

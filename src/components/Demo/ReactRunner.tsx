@@ -1,17 +1,19 @@
 import * as React from 'react'
 import { useRunner } from 'react-runner'
 
-interface ReactRunnerProps {
+export interface ReactRunnerScope {
+  import: Record<string, string>
+  process: Record<string, string>
+}
+
+export interface ReactRunnerProps {
   code: string
-  scope: {
-    process: {}
-    import: {}
-  }
-  onError: (error: string | null) => {}
+  onError: (error: string | null) => void
+  scope: ReactRunnerScope
 }
 
 // The docs https://github.com/nihgwu/react-runner
-export default function ReactRunner(props: ReactRunnerProps) {
+export function ReactRunner(props: ReactRunnerProps) {
   const { code, scope: scopeProp, onError } = props
 
   let scope = scopeProp

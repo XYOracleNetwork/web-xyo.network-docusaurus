@@ -7,7 +7,7 @@ import SimpleCodeEditor from 'react-simple-code-editor'
 import { blue, blueDark } from './brandingTheme'
 import { CodeCopyButton } from './CodeCopyButton'
 import MarkdownElement from './MarkdownElement'
-import { highlight } from './prism'
+import { prismHighlight } from './prism'
 import { useCodeCopy } from './utils'
 
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
@@ -54,7 +54,7 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   minWidth: '100%',
 }))
 
-interface DemoEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface DemoEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   children: React.ReactNode
   copyButtonProps: any
   id: string
@@ -70,10 +70,9 @@ export const DemoEditor = (props: DemoEditorProps) => {
   const enterRef = React.useRef<HTMLElement | null>(null)
   const { onBlur, onFocus, onMouseEnter, onMouseLeave } = useCodeCopy()
 
-  console.log(`Language2: ${language}`)
-
   React.useEffect(() => {
-    wrapperRef.current!.querySelector('textarea')!.tabIndex = -1
+    const element = wrapperRef.current?.querySelector('textarea')
+    element.tabIndex = -1
   }, [])
 
   return (
@@ -85,16 +84,16 @@ export const DemoEditor = (props: DemoEditorProps) => {
         }
 
         if (event.key === 'Escape') {
-          enterRef.current!.focus()
+          enterRef.current?.focus()
           return
         }
 
         if (event.key === 'Enter') {
-          const textarea = wrapperRef.current!.querySelector('textarea')
+          const textarea = wrapperRef.current.querySelector('textarea')
           if (textarea !== document.activeElement) {
             event.preventDefault()
             event.stopPropagation()
-            textarea!.focus()
+            textarea?.focus()
           }
         }
       }}
@@ -110,7 +109,10 @@ export const DemoEditor = (props: DemoEditorProps) => {
         <div className="scrollContainer">
           <StyledSimpleCodeEditor
             padding={contextTheme.spacing(2)}
-            highlight={(code: any) => `<code class="language-${language}">${highlight(code, language)}</code>`}
+            highlight={(code: string) => {
+              const highlightedCode = prismHighlight(code, language)
+              return `<code class="language-${language}">${highlightedCode}</code>`
+            }}
             id={id}
             value={value}
             onValueChange={onChange}

@@ -1,5 +1,6 @@
+/* eslint-disable import/no-named-as-default-member */
 /* eslint-disable simple-import-sort/imports */
-import prism from 'prismjs'
+import Prism, { Grammar } from 'prismjs'
 
 /* eslint-disable import/no-internal-modules */
 import 'prismjs/components/prism-css'
@@ -9,29 +10,32 @@ import 'prismjs/components/prism-json'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-markup'
 import 'prismjs/components/prism-tsx'
+import 'prismjs/components/prism-typescript'
 
-export const highlight = (code, language) => {
-  let prismLanguage
+import 'prismjs/themes/prism-okaidia.css'
+
+export const prismHighlight = (code: string, language: string) => {
+  let prismLanguage: Grammar
   switch (language) {
     case 'ts':
-      prismLanguage = prism.languages.tsx
+      prismLanguage = Prism.languages.typescript
+      break
+
+    case 'tsx':
+      prismLanguage = Prism.languages.tsx
       break
 
     case 'js':
     case 'sh':
-      prismLanguage = prism.languages.jsx
+      prismLanguage = Prism.languages.javascript
       break
 
-    case 'diff':
-      prismLanguage = { ...prism.languages.diff }
-      // original `/^[-<].*$/m` matches lines starting with `<` which matches
-      // <SomeComponent />
-      // we will only use `-` as the deleted marker
-      prismLanguage.deleted = /^[-].*$/m
+    case 'jsx':
+      prismLanguage = Prism.languages.jsx
       break
 
     default:
-      prismLanguage = prism.languages[language]
+      prismLanguage = Prism.languages[language]
       break
   }
 
@@ -39,9 +43,11 @@ export const highlight = (code, language) => {
     if (language) {
       throw new Error(`unsupported language: "${language}", "${code}"`)
     } else {
-      prismLanguage = prism.languages.jsx
+      prismLanguage = Prism.languages.jsx
     }
   }
 
-  return prism.highlight(code, prismLanguage)
+  const highlighted = Prism.highlight(code, prismLanguage, language)
+
+  return highlighted
 }

@@ -1,7 +1,7 @@
 import Alert, { AlertProps } from '@mui/material/Alert'
 import * as React from 'react'
 
-export default function DemoEditorError(props: AlertProps) {
+export const DemoEditorError = (props: AlertProps) => {
   if (!props.children) {
     return null
   }

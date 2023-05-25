@@ -20,7 +20,7 @@ function useFirstRender() {
   return firstRenderRef.current
 }
 
-export function CodeVariantProvider(props) {
+export const CodeVariantProvider = (props) => {
   const { children } = props
 
   const [codeVariant, setCodeVariant] = React.useState(CODE_VARIANTS.TS)

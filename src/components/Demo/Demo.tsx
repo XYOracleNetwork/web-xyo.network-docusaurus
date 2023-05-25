@@ -1,4 +1,3 @@
-/* eslint-disable import/no-named-as-default-member */
 /* eslint-disable complexity */
 /* eslint-disable max-statements */
 import NoSsr from '@mui/base/NoSsr'
@@ -11,20 +10,12 @@ import * as React from 'react'
 
 import { CODE_VARIANTS } from './constants'
 import { DemoEditor } from './DemoEditor'
-import DemoEditorError from './DemoEditorError'
+import { DemoEditorError } from './DemoEditorError'
 import { DemoSandbox } from './DemoSandbox'
 import { DemoToolbar } from './DemoToolbar'
 import { HighlightedCode } from './HighlightedCode'
-import ReactRunner from './ReactRunner'
+import { ReactRunner, ReactRunnerScope } from './ReactRunner'
 import { useCodeVariant } from './utils'
-
-export interface Demo {
-  gaLabel?: string
-  jsx?: React.Component
-  rawJS?: string
-  rawTS?: string
-  tsx?: React.Component
-}
 
 export interface DemoOptions {
   bg?: string | boolean
@@ -60,14 +51,27 @@ export function DemoToolbarFallback() {
   return <DemoToolbarFallbackRoot aria-busy aria-label={'demo source'} role="toolbar" />
 }
 
-function getDemoName(location) {
+function getDemoName(location: string) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
 }
 
-function useDemoData(codeVariant, demo, githubLocation) {
+export interface DemoConfig {
+  gaLabel?: string
+  githubLocation?: string
+  jsx?: React.FC
+  jsxPreview: string
+  raw: string
+  rawJS?: string
+  rawTS?: string
+  scope?: ReactRunnerScope
+  sourceLanguage?: string
+  tsx?: React.FC
+}
+
+function useDemoData(codeVariant: string, demo: DemoConfig, githubLocation: string): DemoConfig {
   const userLanguage = 'en'
 
-  return React.useMemo(() => {
+  return React.useMemo<DemoConfig>(() => {
     let product
     const name = 'XYO Network'
 
@@ -76,18 +80,18 @@ function useDemoData(codeVariant, demo, githubLocation) {
       scope: demo.scope,
       ...(codeVariant === CODE_VARIANTS.TS && demo.rawTS
         ? {
-            Component: demo.tsx,
             codeVariant: CODE_VARIANTS.TS,
-            githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+            githubLocation: githubLocation?.replace(/\.js$/, '.tsx'),
             raw: demo.rawTS,
-            sourceLanguage: 'ts',
+            sourceLanguage: demo.sourceLanguage ?? 'typescript',
+            tsx: Demo,
           }
         : {
-            Component: demo.js,
             codeVariant: CODE_VARIANTS.JS,
             githubLocation,
-            raw: demo.raw,
-            sourceLanguage: 'js',
+            jsx: Demo,
+            raw: demo.rawJS,
+            sourceLanguage: demo.sourceLanguage ?? 'javascript',
           }),
       language: userLanguage,
       product,
@@ -96,7 +100,23 @@ function useDemoData(codeVariant, demo, githubLocation) {
   }, [codeVariant, demo, githubLocation, userLanguage])
 }
 
-function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActive }) {
+interface EditorCode {
+  initialEditorCode: string
+  isPreview?: boolean
+  value: string
+}
+
+function useDemoElement({
+  demoData,
+  editorCode,
+  setDebouncedError,
+  liveDemoActive,
+}: {
+  demoData: DemoConfig
+  editorCode: EditorCode
+  liveDemoActive: boolean
+  setDebouncedError: React.Dispatch<any>
+}) {
   const debouncedSetError = React.useMemo(() => debounce(setDebouncedError, 300), [setDebouncedError])
 
   React.useEffect(() => {
@@ -107,14 +127,19 @@ function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActiv
 
   // Memoize to avoid rendering the demo more than it needs to be.
   // For example, avoid a render when the demo is hovered.
-  const BundledComponent = React.useMemo(() => <demoData.Component />, [demoData])
+  const BundledComponent = React.useMemo(
+    () => <Demo demo={demoData} demoOptions={{ demo: 'demo.js' }} githubLocation={demoData.githubLocation} />,
+    [demoData],
+  )
   const LiveComponent = React.useMemo(
     () => (
       <ReactRunner
         scope={demoData.scope}
         onError={debouncedSetError}
         code={
-          editorCode.isPreview ? trimLeadingSpaces(demoData.raw).replace(trimLeadingSpaces(demoData.jsxPreview), editorCode.value) : editorCode.value
+          editorCode.isPreview
+            ? trimLeadingSpaces(demoData.rawJS).replace(trimLeadingSpaces(demoData.jsxPreview), editorCode.value)
+            : editorCode.value
         }
       />
     ),
@@ -162,7 +187,7 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
 }))
 
 export interface DemoProps {
-  demo: Demo
+  demo: DemoConfig
   demoOptions: DemoOptions
   githubLocation: string
 }
@@ -176,7 +201,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
         `The following demos use TS directly: ${demoOptions.demo}.`,
         '',
         'Please run "yarn docs:typescript:formatted" to generate a JS version and reference it:',
-        `{{"demo": "${demoOptions.demo.replace(/\.(.*)$/, '.js')}", …}}.`,
+        `{{"demo": "${demoOptions.demo?.replace(/\.(.*)$/, '.js')}", …}}.`,
         '',
         "Otherwise, if it's not a code demo hide the toolbar:",
         `{{"demo": "${demoOptions.demo}", "hideToolbar": true, …}}.`,
@@ -232,9 +257,9 @@ export const Demo: React.FC<DemoProps> = (props) => {
     ? demoData.jsxPreview
     : // Prettier remove all the leading lines except for the last one, remove it as we don't
       // need it in the live edit view.
-      demoData.raw.replace(/\n$/, '')
+      demoData.raw?.replace(/\n$/, '')
 
-  const [editorCode, setEditorCode] = React.useState({
+  const [editorCode, setEditorCode] = React.useState<EditorCode>({
     initialEditorCode,
     isPreview,
     value: initialEditorCode,
