@@ -34,7 +34,7 @@ const muiNProgressPulse = keyframes`
  * Elegant and ready-to-use wrapper on top of https://github.com/rstacruz/nprogress/.
  * The implementation is highly inspired by the YouTube one.
  */
-function NProgressBar(props) {
+export function NProgressBar(props) {
   return (
     <NoSsr>
       {props.children}
@@ -91,9 +91,3 @@ function NProgressBar(props) {
 NProgressBar.propTypes = {
   children: PropTypes.node,
 }
-
-if (process.env.NODE_ENV !== 'production') {
-  NProgressBar.propTypes = exactProp(NProgressBar.propTypes)
-}
-
-export default NProgressBar

@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import { CODE_VARIANTS } from '../constants'
+import { CODE_VARIANT } from '../constants'
 import { getCookie } from './getCookie'
 
-const CodeVariantContext = React.createContext({
-  codeVariant: CODE_VARIANTS.TS,
+interface CodeVariantContextProps {
+  codeVariant: 'TS' | 'JS'
+  noSsrCodeVariant?: string
+  setCodeVariant: React.Dispatch<CODE_VARIANT>
+}
+
+const CodeVariantContext = React.createContext<CodeVariantContextProps>({
+  codeVariant: 'TS',
   setCodeVariant: () => {
     return
   },
@@ -20,10 +26,10 @@ function useFirstRender() {
   return firstRenderRef.current
 }
 
-export const CodeVariantProvider = (props) => {
+export const CodeVariantProvider = (props: React.ProviderProps<object>) => {
   const { children } = props
 
-  const [codeVariant, setCodeVariant] = React.useState(CODE_VARIANTS.TS)
+  const [codeVariant, setCodeVariant] = React.useState<CODE_VARIANT>('TS')
 
   const navigatedCodeVariant = React.useMemo(() => {
     const navigatedCodeVariantMatch = typeof window !== 'undefined' ? window.location.hash.match(/\.(js|tsx)$/) : null
@@ -32,14 +38,14 @@ export const CodeVariantProvider = (props) => {
       return undefined
     }
 
-    return navigatedCodeVariantMatch[1] === 'tsx' ? CODE_VARIANTS.TS : CODE_VARIANTS.JS
+    return navigatedCodeVariantMatch[1] === 'tsx' ? 'TS' : 'JS'
   }, [])
 
   const persistedCodeVariant = React.useMemo(() => {
     if (typeof window === 'undefined') {
       return undefined
     }
-    return getCookie('codeVariant')
+    return getCookie('codeVariant') as CODE_VARIANT
   }, [])
   const isFirstRender = useFirstRender()
 

@@ -8,7 +8,7 @@ import { debounce } from '@mui/material/utils'
 import { unstable_useId as useId } from '@mui/utils'
 import * as React from 'react'
 
-import { CODE_VARIANTS } from './constants'
+import { CODE_VARIANT } from './constants'
 import { DemoEditor } from './DemoEditor'
 import { DemoEditorError } from './DemoEditorError'
 import { DemoSandbox } from './DemoSandbox'
@@ -22,6 +22,7 @@ export interface DemoOptions {
   defaultCodeOpen?: boolean
   demo: string
   disableLiveEdit?: boolean
+  hideEditButton?: boolean
   hideToolbar?: boolean
   iframe?: boolean
 }
@@ -56,19 +57,26 @@ function getDemoName(location: string) {
 }
 
 export interface DemoConfig {
+  codeVariant: 'JS' | 'TS'
   gaLabel?: string
-  githubLocation?: string
+  githubLocation: string
   jsx?: React.FC
   jsxPreview: string
+  language: string
   raw: string
   rawJS?: string
   rawTS?: string
   scope?: ReactRunnerScope
   sourceLanguage?: string
+  title: string
   tsx?: React.FC
 }
 
-function useDemoData(codeVariant: string, demo: DemoConfig, githubLocation: string): DemoConfig {
+function useDemoData(
+  codeVariant: 'TS' | 'JS',
+  demo: Omit<DemoConfig, 'codeVariant'> & { codeVariant?: CODE_VARIANT },
+  githubLocation: string,
+): DemoConfig {
   const userLanguage = 'en'
 
   return React.useMemo<DemoConfig>(() => {
@@ -78,16 +86,16 @@ function useDemoData(codeVariant: string, demo: DemoConfig, githubLocation: stri
     return {
       jsxPreview: demo.jsxPreview,
       scope: demo.scope,
-      ...(codeVariant === CODE_VARIANTS.TS && demo.rawTS
+      ...(codeVariant === 'TS' && demo.rawTS
         ? {
-            codeVariant: CODE_VARIANTS.TS,
+            codeVariant: 'TS',
             githubLocation: githubLocation?.replace(/\.js$/, '.tsx'),
             raw: demo.rawTS,
             sourceLanguage: demo.sourceLanguage ?? 'typescript',
             tsx: Demo,
           }
         : {
-            codeVariant: CODE_VARIANTS.JS,
+            codeVariant: 'JS',
             githubLocation,
             jsx: Demo,
             raw: demo.rawJS,
@@ -187,7 +195,7 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
 }))
 
 export interface DemoProps {
-  demo: DemoConfig
+  demo: Omit<DemoConfig, 'codeVariant'> & { codeVariant?: CODE_VARIANT }
   demoOptions: DemoOptions
   githubLocation: string
 }
@@ -316,7 +324,6 @@ export const Demo: React.FC<DemoProps> = (props) => {
             <React.Suspense fallback={<DemoToolbarFallback />}>
               <DemoToolbar
                 codeOpen={codeOpen}
-                codeVariant={codeVariant}
                 demo={demo}
                 demoData={demoData}
                 demoHovered={demoHovered}

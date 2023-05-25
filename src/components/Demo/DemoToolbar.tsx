@@ -13,17 +13,16 @@ import { styled, useTheme } from '@mui/material/styles'
 import SvgIcon from '@mui/material/SvgIcon'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
-import Tooltip from '@mui/material/Tooltip'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import Tooltip, { TooltipProps } from '@mui/material/Tooltip'
 import copy from 'clipboard-copy'
-import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import { CODE_VARIANTS } from './constants'
+import { CODE_VARIANT } from './constants'
+import { DemoConfig, DemoOptions } from './Demo'
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from './mui-docs'
 import codeSandbox from './sandbox/CodeSandbox'
 import stackBlitz from './sandbox/StackBlitz'
-import { getCookie } from './utils'
+import { getCookie, useCodeVariant } from './utils'
 import { useSetCodeVariant } from './utils/codeVariant'
 
 const Root = styled('div')(({ theme }) => [
@@ -54,7 +53,7 @@ const Root = styled('div')(({ theme }) => [
   }),*/
 ])
 
-function DemoTooltip(props) {
+const DemoTooltip: React.FC<TooltipProps> = (props) => {
   return (
     <Tooltip
       componentsProps={{
@@ -69,17 +68,17 @@ function DemoTooltip(props) {
   )
 }
 
-function ToggleCodeTooltip(props) {
-  const { showSourceHint, ...other } = props
+interface ToggleCodeTooltipProps extends TooltipProps {
+  showSourceHint?: boolean
+}
+
+const ToggleCodeTooltip: React.FC<ToggleCodeTooltipProps> = ({ showSourceHint, ...props }) => {
   const atLeastSmallViewport = true //useMediaQuery((theme) => true /*theme.breakpoints.up('sm')*/)
   const [open, setOpen] = React.useState(false)
 
   return (
-    <DemoTooltip {...other} onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={showSourceHint && atLeastSmallViewport ? true : open} />
+    <DemoTooltip {...props} onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={showSourceHint && atLeastSmallViewport ? true : open} />
   )
-}
-ToggleCodeTooltip.propTypes = {
-  showSourceHint: PropTypes.bool,
 }
 
 export function DemoToolbarFallback() {
@@ -94,14 +93,21 @@ const alwaysTrue = () => true
  * @param {(index: number) => boolean} [options.isFocusableControl] In case certain controls become unfocusable
  * @param {number} [options.defaultActiveIndex]
  */
-function useToolbar(controlRefs, options = {}) {
+
+interface ToolbarOptions {
+  controlRefs?: React.Ref<any>[]
+  defaultActiveIndex?: number
+  isFocusableControl?: (index: number) => boolean
+}
+
+function useToolbar(controlRefs, options: ToolbarOptions = {}) {
   const { defaultActiveIndex = 0, isFocusableControl = alwaysTrue } = options
   const [activeControlIndex, setActiveControlIndex] = React.useState(defaultActiveIndex)
 
   // TODO: do we need to do this during layout practically? It's technically
   // a bit too late since we allow user interaction between layout and passive effects
   React.useEffect(() => {
-    setActiveControlIndex((currentActiveControlIndex) => {
+    setActiveControlIndex((currentActiveControlIndex: number) => {
       if (!isFocusableControl(currentActiveControlIndex)) {
         return defaultActiveIndex
       }
@@ -193,10 +199,25 @@ function useToolbar(controlRefs, options = {}) {
   }
 }
 
-export const DemoToolbar = (props) => {
+export interface DemoToolbarProps {
+  codeOpen: boolean
+  demo: Omit<DemoConfig, 'codeVariant'> & { codeVariant?: CODE_VARIANT }
+  demoData: DemoConfig
+  demoHovered: boolean
+  demoId?: string
+  demoName?: string
+  demoOptions: DemoOptions
+  demoSourceId?: string
+  initialFocusRef: React.RefObject<any>
+  onCodeOpenChange: () => void
+  onResetDemoClick: () => void
+  openDemoSource?: boolean
+  showPreview?: boolean
+}
+
+export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
   const {
     codeOpen,
-    codeVariant,
     demo,
     demoData,
     demoId,
@@ -212,16 +233,17 @@ export const DemoToolbar = (props) => {
   } = props
 
   const setCodeVariant = useSetCodeVariant()
+  const codeVariant = useCodeVariant()
 
   const hasTSVariant = demo.rawTS
-  const renderedCodeVariant = () => {
-    if (codeVariant === CODE_VARIANTS.TS && hasTSVariant) {
-      return CODE_VARIANTS.TS
+  const renderedCodeVariant = (): CODE_VARIANT => {
+    if (codeVariant === 'TS' && hasTSVariant) {
+      return 'TS'
     }
-    return CODE_VARIANTS.JS
+    return 'JS'
   }
 
-  const handleCodeLanguageClick = (event, clickedCodeVariant) => {
+  const handleCodeLanguageClick = (event, clickedCodeVariant: CODE_VARIANT) => {
     if (clickedCodeVariant !== null && codeVariant !== clickedCodeVariant) {
       setCodeVariant(clickedCodeVariant)
     }
@@ -263,7 +285,7 @@ export const DemoToolbar = (props) => {
 
   const [sourceHintSeen, setSourceHintSeen] = React.useState(false)
   React.useEffect(() => {
-    setSourceHintSeen(getCookie('sourceHintSeen'))
+    setSourceHintSeen(!!getCookie('sourceHintSeen'))
   }, [])
   const handleCodeOpenClick = () => {
     document.cookie = 'sourceHintSeen=true;path=/;max-age=31536000'
@@ -318,7 +340,7 @@ export const DemoToolbar = (props) => {
                   borderColor: 'primaryDark.700',
                 }),*/
               })}
-              value={CODE_VARIANTS.JS}
+              value={'JS'}
               aria-label={'Show JavaScript source'}
               data-ga-event-category="demo"
               data-ga-event-action="source-js"
@@ -339,7 +361,7 @@ export const DemoToolbar = (props) => {
                   borderColor: 'primaryDark.700',
                 }),*/
               })}
-              value={CODE_VARIANTS.TS}
+              value={'TS'}
               disabled={!hasTSVariant}
               aria-label={'Show TypeScript source'}
               data-ga-event-category="demo"
@@ -494,21 +516,4 @@ export const DemoToolbar = (props) => {
       <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleSnackbarClose} message={snackbarMessage} />
     </React.Fragment>
   )
-}
-
-DemoToolbar.propTypes = {
-  codeOpen: PropTypes.bool.isRequired,
-  codeVariant: PropTypes.string.isRequired,
-  demo: PropTypes.object.isRequired,
-  demoData: PropTypes.object.isRequired,
-  demoHovered: PropTypes.bool.isRequired,
-  demoId: PropTypes.string,
-  demoName: PropTypes.string.isRequired,
-  demoOptions: PropTypes.object.isRequired,
-  demoSourceId: PropTypes.string,
-  initialFocusRef: PropTypes.shape({ current: PropTypes.object }).isRequired,
-  onCodeOpenChange: PropTypes.func.isRequired,
-  onResetDemoClick: PropTypes.func.isRequired,
-  openDemoSource: PropTypes.bool.isRequired,
-  showPreview: PropTypes.bool.isRequired,
 }
