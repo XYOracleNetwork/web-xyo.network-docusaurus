@@ -1,9 +1,9 @@
+import { Demo } from '@site/src/components/Demo'
 import { CodeVariantProvider } from '@site/src/components/Demo/utils'
 import React from 'react'
 
-import { Demo } from '../../components'
-
 const DemoCodeBlock = ({ className, children }) => {
+  console.log('CodeBlock')
   return (
     <CodeVariantProvider value={{ codeVariant: 'TS' }}>
       <Demo

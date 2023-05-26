@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles'
 import { debounce } from '@mui/material/utils'
 import { unstable_useId as useId } from '@mui/utils'
+import { WithChildren } from '@xylabs/react-shared'
 import * as React from 'react'
 
 import { CODE_VARIANT } from './constants'
@@ -15,7 +16,7 @@ import { DemoSandbox } from './DemoSandbox'
 import { DemoToolbar } from './DemoToolbar'
 import { HighlightedCode } from './HighlightedCode'
 import { ReactRunner, ReactRunnerScope } from './ReactRunner'
-import { useCodeVariant } from './utils'
+import { CodeVariantProvider, useCodeVariant } from './utils'
 
 export interface DemoOptions {
   bg?: string | boolean
@@ -384,5 +385,32 @@ export const Demo: React.FC<DemoProps> = (props) => {
         </Collapse>
       </Wrapper>
     </Root>
+  )
+}
+
+export type DemoWrapperProps = WithChildren<{
+  jsx?: string
+  preview?: string
+  tsx?: string
+}>
+
+export const DemoWrapper: React.FC<DemoWrapperProps> = ({ tsx, jsx, preview, children }) => {
+  return (
+    <CodeVariantProvider value={{ codeVariant: 'TS' }}>
+      <Demo
+        demo={{
+          githubLocation: 'https://github.com/XYOracleNetwork',
+          jsxPreview: preview,
+          language: 'en',
+          raw: jsx ?? children ?? '',
+          rawJS: jsx ?? children ?? '',
+          rawTS: tsx ?? children ?? '',
+          sourceLanguage: 'tsx',
+          title: 'title',
+        }}
+        demoOptions={{ defaultCodeOpen: true, demo: 'test.js' }}
+        githubLocation="yo1"
+      />
+    </CodeVariantProvider>
   )
 }
