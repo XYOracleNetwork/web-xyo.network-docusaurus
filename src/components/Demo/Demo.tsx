@@ -17,7 +17,7 @@ import { DemoSandbox } from './DemoSandbox'
 import { DemoToolbar } from './DemoToolbar'
 import { HighlightedCode } from './HighlightedCode'
 import { ReactRunner, ReactRunnerScope } from './ReactRunner'
-import { CodeVariantProvider, useCodeVariant } from './utils'
+import { useCodeVariant } from './utils'
 
 export interface DemoOptions {
   bg?: string | boolean
