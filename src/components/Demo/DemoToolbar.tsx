@@ -21,6 +21,7 @@ import { CODE_VARIANT } from './constants'
 import { DemoConfig, DemoOptions } from './Demo'
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from './mui-docs'
 import { createCodeSandboxReactApp, createStackBlitzReactApp } from './sandbox'
+import { DependenciesSet } from './sandbox/getDependencies'
 import { getCookie, useCodeVariant, useSetCodeVariant } from './utils'
 
 const Root = styled('div')(({ theme }) => [
@@ -206,6 +207,7 @@ export interface DemoToolbarProps {
   demoName?: string
   demoOptions: DemoOptions
   demoSourceId?: string
+  deps?: DependenciesSet[]
   initialFocusRef: React.RefObject<any>
   onCodeOpenChange: () => void
   onResetDemoClick: () => void
@@ -223,6 +225,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
     demoName,
     demoOptions,
     demoSourceId,
+    deps = [],
     initialFocusRef,
     onCodeOpenChange,
     onResetDemoClick,
@@ -232,6 +235,8 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
 
   const setCodeVariant = useSetCodeVariant()
   const codeVariant = useCodeVariant()
+
+  console.log(`deps3: ${JSON.stringify(deps)}`)
 
   const hasTSVariant = demo.rawTS
   const renderedCodeVariant = (): CODE_VARIANT => {
@@ -394,7 +399,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
-                  onClick={() => createCodeSandboxReactApp(demoData).openSandbox('/demo')}
+                  onClick={() => createCodeSandboxReactApp(demoData, deps).openSandbox('/demo')}
                   {...getControlProps(3)}
                 >
                   <SvgIcon viewBox="0 0 1024 1024">
@@ -408,7 +413,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
-                  onClick={() => createStackBlitzReactApp(demoData).openSandbox('demo')}
+                  onClick={() => createStackBlitzReactApp(demoData, deps).openSandbox('demo')}
                   {...getControlProps(4)}
                 >
                   <SvgIcon viewBox="0 0 19 28">

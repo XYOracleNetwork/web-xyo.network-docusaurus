@@ -17,6 +17,7 @@ import { DemoSandbox } from './DemoSandbox'
 import { DemoToolbar } from './DemoToolbar'
 import { HighlightedCode } from './HighlightedCode'
 import { ReactRunner, ReactRunnerScope } from './ReactRunner'
+import { DependenciesSet } from './sandbox/getDependencies'
 import { useCodeVariant } from './utils'
 
 export interface DemoOptions {
@@ -199,11 +200,12 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
 export interface DemoProps {
   demo: Omit<DemoConfig, 'codeVariant'> & { codeVariant?: CODE_VARIANT }
   demoOptions: DemoOptions
+  deps?: DependenciesSet[]
   githubLocation: string
 }
 
 export const Demo: React.FC<DemoProps> = (props) => {
-  const { demo, demoOptions, githubLocation } = props
+  const { demo, demoOptions, deps = [], githubLocation } = props
 
   if (!demoOptions.demo.endsWith('.js') && demoOptions.hideToolbar !== true) {
     throw new Error(
@@ -340,6 +342,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
                 onResetDemoClick={resetDemo}
                 openDemoSource={openDemoSource}
                 showPreview={showPreview}
+                deps={deps}
               />
             </React.Suspense>
           </NoSsr>

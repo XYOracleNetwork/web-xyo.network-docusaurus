@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-var-requires, import/no-internal-modules */
 import { Demo } from '@site/src/components/Demo'
 import { CodeVariantProvider } from '@site/src/components/Demo/utils'
 import React, { ReactNode } from 'react'
@@ -7,12 +7,14 @@ interface DemoCodeBlockProps {
   children: ReactNode
   className: string
   code: string
+  deps: string
   title: string
 }
 
 const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
-  const { code, className = '', children, title, ...otherProps } = props
-  console.log(`DemoCodeBlock: ${JSON.stringify(otherProps)}`)
+  const { code, deps: rawDeps = '[]', className = '', children, title, ...otherProps } = props
+
+  const deps = JSON.parse(rawDeps)
 
   const sourceLanguage = className
     .split(' ')
@@ -58,6 +60,7 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
         }}
         demoOptions={{ defaultCodeOpen: true, demo: 'test.js' }}
         githubLocation={`https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/tree/main/docs/${code}.${ext}`}
+        deps={deps}
       />
     </CodeVariantProvider>
   )

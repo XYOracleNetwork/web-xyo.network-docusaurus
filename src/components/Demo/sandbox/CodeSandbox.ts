@@ -1,18 +1,27 @@
 import { compressToBase64 } from 'lz-string'
 
+import { CODE_VARIANT } from '../constants'
 import { addHiddenInput } from '../utils'
 import * as CRA from './CreateReactApp'
 import { getFileExtension } from './FileExtension'
-import { getDependencies } from './getDependencies'
+import { DependenciesSet, getDependencies } from './getDependencies'
 
-function compress(object: any) {
+function compress(object: unknown) {
   return compressToBase64(JSON.stringify(object))
     .replace(/\+/g, '-') // Convert '+' to '-'
     .replace(/\//g, '_') // Convert '/' to '_'
     .replace(/=+$/, '') // Remove ending '='
 }
 
-function openSandbox({ files, codeVariant, initialFile = '/App' }: any) {
+function openSandbox({
+  files,
+  codeVariant,
+  initialFile = '/App',
+}: {
+  codeVariant: CODE_VARIANT
+  files: Record<string, object>
+  initialFile: string
+}) {
   const extension = codeVariant === 'TS' ? '.tsx' : '.js'
   const parameters = compress({ files })
 
@@ -28,14 +37,17 @@ function openSandbox({ files, codeVariant, initialFile = '/App' }: any) {
   document.body.removeChild(form)
 }
 
-export const createCodeSandboxReactApp = (demo: {
-  codeVariant: 'TS' | 'JS'
-  githubLocation: string
-  language: string
-  product?: 'joy-ui' | 'base'
-  raw: string
-  title: string
-}) => {
+export const createCodeSandboxReactApp = (
+  demo: {
+    codeVariant: 'TS' | 'JS'
+    githubLocation: string
+    language: string
+    product?: 'joy-ui' | 'base'
+    raw: string
+    title: string
+  },
+  deps?: DependenciesSet[],
+) => {
   const ext = getFileExtension(demo.codeVariant)
   const { title, githubLocation: description } = demo
 
@@ -56,7 +68,7 @@ export const createCodeSandboxReactApp = (demo: {
     }),
   }
 
-  const { dependencies, devDependencies } = getDependencies(demo.codeVariant === 'TS')
+  const { dependencies, devDependencies } = getDependencies(demo.codeVariant === 'TS' ? [...deps, 'typescript'] : [...deps])
 
   files['package.json'] = {
     content: {

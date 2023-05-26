@@ -3,14 +3,17 @@ import * as CRA from './CreateReactApp'
 import { getFileExtension } from './FileExtension'
 import { getDependencies } from './getDependencies'
 
-export const createStackBlitzReactApp = (demo: {
-  codeVariant: 'TS' | 'JS'
-  githubLocation: string
-  language: string
-  product?: 'joy-ui' | 'base'
-  raw: string
-  title: string
-}) => {
+export const createStackBlitzReactApp = (
+  demo: {
+    codeVariant: 'TS' | 'JS'
+    githubLocation: string
+    language: string
+    product?: 'joy-ui' | 'base'
+    raw: string
+    title: string
+  },
+  deps,
+) => {
   const ext = getFileExtension(demo.codeVariant)
   const { title, githubLocation: description } = demo
 
@@ -23,7 +26,7 @@ export const createStackBlitzReactApp = (demo: {
     }),
   }
 
-  const { dependencies, devDependencies } = getDependencies()
+  const { dependencies, devDependencies } = getDependencies(deps)
 
   return {
     dependencies,
