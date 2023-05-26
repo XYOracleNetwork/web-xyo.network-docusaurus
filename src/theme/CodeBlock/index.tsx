@@ -3,24 +3,24 @@ import { Demo } from '@site/src/components/Demo'
 import { CodeVariantProvider } from '@site/src/components/Demo/utils'
 import React from 'react'
 
-const DemoCodeBlock = ({ code, children }) => {
+const DemoCodeBlock = ({ code, children, title }) => {
   let tsxCode = ''
   let jsxCode = ''
   let previewCode = ''
   try {
-    tsxCode = require(`!!raw-loader!../../../docs/${code}.tsx`).default ?? children ?? ''
+    tsxCode = require(`!!raw-loader!@site/docs/${code}.tsx`).default ?? children ?? ''
   } catch (_ex) {
-    return
+    null
   }
   try {
-    jsxCode = require(`!!raw-loader!../../../docs/${code}.jsx`).default ?? children ?? ''
+    jsxCode = require(`!!raw-loader!@site/docs/${code}.jsx`).default ?? children ?? ''
   } catch (_ex) {
-    return
+    null
   }
   try {
-    previewCode = require(`!!raw-loader!../../../docs/${code}.tsx.preview`).default ?? children ?? ''
+    previewCode = require(`!!raw-loader!@site/docs/${code}.tsx.preview`).default ?? children ?? ''
   } catch (_ex) {
-    return
+    null
   }
 
   return (
@@ -34,7 +34,7 @@ const DemoCodeBlock = ({ code, children }) => {
           rawJS: jsxCode,
           rawTS: tsxCode,
           sourceLanguage: 'tsx',
-          title: 'title',
+          title,
         }}
         demoOptions={{ defaultCodeOpen: true, demo: 'test.js' }}
         githubLocation="yo1"

@@ -347,7 +347,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
               data-ga-event-label={demo.gaLabel}
               {...getControlProps(0)}
             >
-              <JavaScriptIcon sx={{ fontSize: 20 }} />
+              <JavaScriptIcon sx={{ color: '#3A750A !important', fontSize: 20 }} />
             </ToggleButton>
             <ToggleButton
               sx={(theme) => ({
@@ -369,7 +369,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
               data-ga-event-label={demo.gaLabel}
               {...getControlProps(1)}
             >
-              <TypeScriptIcon sx={{ fontSize: 20 }} />
+              <TypeScriptIcon sx={{ color: '#2D79C7 !important', fontSize: 20 }} />
             </ToggleButton>
           </ToggleButtonGroup>
         </Fade>
