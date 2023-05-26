@@ -2,11 +2,6 @@
 sidebar_position: 3
 ---
 
-import { DemoWrapper } from '@site/src/components/Demo'
-import tsxCode from '!!raw-loader!./Demo1.tsx';
-import jsxCode from '!!raw-loader!./Demo1.jsx';
-import previewCode from '!!raw-loader!./Demo1.tsx.preview';
-
 # Sample dApps
 Learn more about sample dApps created by the XYO team
 
@@ -15,4 +10,6 @@ The [XYO dApp Library](https://xyo.network/dapp) is designed to showcase XYO Tec
 
 Each dApp aggregates data from multiple sources, creates Bound Witnesses with XYO Technology and secures that information in an Archivist.
 
-<DemoWrapper tsx={tsxCode} jsx={jsxCode} preview={previewCode}></DemoWrapper>
+```tsx title="Test" code=getting-started/Demo1
+
+```

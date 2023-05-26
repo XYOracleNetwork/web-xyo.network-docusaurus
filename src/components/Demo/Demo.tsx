@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable complexity */
 /* eslint-disable max-statements */
 import NoSsr from '@mui/base/NoSsr'
@@ -389,28 +390,8 @@ export const Demo: React.FC<DemoProps> = (props) => {
 }
 
 export type DemoWrapperProps = WithChildren<{
-  jsx?: string
-  preview?: string
-  tsx?: string
+  code?: string
+  rawJsx?: string
+  rawPreview?: string
+  rawTsx?: string
 }>
-
-export const DemoWrapper: React.FC<DemoWrapperProps> = ({ tsx, jsx, preview, children }) => {
-  return (
-    <CodeVariantProvider value={{ codeVariant: 'TS' }}>
-      <Demo
-        demo={{
-          githubLocation: 'https://github.com/XYOracleNetwork',
-          jsxPreview: preview,
-          language: 'en',
-          raw: jsx ?? children ?? '',
-          rawJS: jsx ?? children ?? '',
-          rawTS: tsx ?? children ?? '',
-          sourceLanguage: 'tsx',
-          title: 'title',
-        }}
-        demoOptions={{ defaultCodeOpen: true, demo: 'test.js' }}
-        githubLocation="yo1"
-      />
-    </CodeVariantProvider>
-  )
-}

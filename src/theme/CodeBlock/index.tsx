@@ -1,20 +1,39 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Demo } from '@site/src/components/Demo'
 import { CodeVariantProvider } from '@site/src/components/Demo/utils'
 import React from 'react'
 
-const DemoCodeBlock = ({ className, children }) => {
-  console.log('CodeBlock')
+const DemoCodeBlock = ({ code, children }) => {
+  let tsxCode = ''
+  let jsxCode = ''
+  let previewCode = ''
+  try {
+    tsxCode = require(`!!raw-loader!../../../docs/${code}.tsx`).default ?? children ?? ''
+  } catch (_ex) {
+    return
+  }
+  try {
+    jsxCode = require(`!!raw-loader!../../../docs/${code}.jsx`).default ?? children ?? ''
+  } catch (_ex) {
+    return
+  }
+  try {
+    previewCode = require(`!!raw-loader!../../../docs/${code}.tsx.preview`).default ?? children ?? ''
+  } catch (_ex) {
+    return
+  }
+
   return (
     <CodeVariantProvider value={{ codeVariant: 'TS' }}>
       <Demo
         demo={{
           githubLocation: 'https://github.com/XYOracleNetwork',
-          jsxPreview: children as string,
+          jsxPreview: previewCode,
           language: 'en',
-          raw: children as string,
-          rawJS: children as string,
-          rawTS: children as string,
-          sourceLanguage: className.split('-').pop(),
+          raw: jsxCode,
+          rawJS: jsxCode,
+          rawTS: tsxCode,
+          sourceLanguage: 'tsx',
           title: 'title',
         }}
         demoOptions={{ defaultCodeOpen: true, demo: 'test.js' }}
