@@ -29,6 +29,8 @@
     "@mui/styles": "^5.13.2",
     "@mui/utils": "^5.13.1",
     "@xylabs/react-shared": "^2.17.3",
+    "@xyo-network/react-embed": "^2.49.13",
+    "@xyo-network/react-plugins": "^2.49.13",
     "clipboard-copy": "^4.0.1",
     "clsx": "^1.2.1",
     "core-js": "^2.6.12",
