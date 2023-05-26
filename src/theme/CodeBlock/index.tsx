@@ -11,7 +11,7 @@ interface DemoCodeBlockProps {
 }
 
 const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
-  const { code, className, children, title, ...otherProps } = props
+  const { code, className = '', children, title, ...otherProps } = props
   console.log(`DemoCodeBlock: ${JSON.stringify(otherProps)}`)
 
   const sourceLanguage = className
@@ -25,19 +25,19 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
   let previewCode = ''
   let ext = 'jsx'
   try {
-    tsxCode = require(`!!raw-loader!@site/docs/${code}.tsx`).default ?? children ?? ''
+    tsxCode = require(`!!raw-loader!@site/docs/${code}/demo.tsx`).default ?? children ?? ''
     ext = 'tsx'
   } catch (_ex) {
     null
   }
   try {
-    jsxCode = require(`!!raw-loader!@site/docs/${code}.jsx`).default ?? children ?? ''
+    jsxCode = require(`!!raw-loader!@site/docs/${code}/demo.jsx`).default ?? children ?? ''
     ext = 'jsx'
   } catch (_ex) {
     null
   }
   try {
-    previewCode = require(`!!raw-loader!@site/docs/${code}.tsx.preview`).default ?? children ?? ''
+    previewCode = require(`!!raw-loader!@site/docs/${code}/demo.tsx.preview`).default ?? children ?? ''
     ext = 'tsx.preview'
   } catch (_ex) {
     null

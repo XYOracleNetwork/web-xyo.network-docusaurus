@@ -1,16 +1,15 @@
-import { CODE_VARIANTS } from '../constants'
 import { addHiddenInput } from '../utils'
 import * as CRA from './CreateReactApp'
-import SandboxDependencies from './Dependencies'
-import getFileExtension from './FileExtension'
+import { getFileExtension } from './FileExtension'
+import { getDependencies } from './getDependencies'
 
-const createReactApp = (demo: {
-  title: string
-  language: string
-  raw: string
+export const createStackBlitzReactApp = (demo: {
   codeVariant: 'TS' | 'JS'
   githubLocation: string
+  language: string
   product?: 'joy-ui' | 'base'
+  raw: string
+  title: string
 }) => {
   const ext = getFileExtension(demo.codeVariant)
   const { title, githubLocation: description } = demo
@@ -24,10 +23,7 @@ const createReactApp = (demo: {
     }),
   }
 
-  const { dependencies, devDependencies } = SandboxDependencies(demo, {
-    // Waiting for https://github.com/stackblitz/core/issues/437
-    // commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
-  })
+  const { dependencies, devDependencies } = getDependencies()
 
   return {
     dependencies,
@@ -35,7 +31,7 @@ const createReactApp = (demo: {
     devDependencies,
     files,
     openSandbox: (initialFile = 'App') => {
-      const extension = demo.codeVariant === CODE_VARIANTS.TS ? '.tsx' : '.js'
+      const extension = demo.codeVariant === 'TS' ? '.tsx' : '.js'
       // ref: https://developer.stackblitz.com/docs/platform/post-api/
       const form = document.createElement('form')
       form.method = 'POST'
@@ -56,8 +52,4 @@ const createReactApp = (demo: {
     },
     title,
   }
-}
-
-export default {
-  createReactApp,
 }

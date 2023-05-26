@@ -1,7 +1,10 @@
 {
   
   "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
     "baseUrl": ".",
+    "jsx": "react-jsx",
     "lib": [
       "DOM",
       "DOM.Iterable",
@@ -9,5 +12,5 @@
     ]
   },
   // This file is not used in compilation. It is here just for a nice editor experience.
-"extends": "@tsconfig/docusaurus/tsconfig.json"
+  "extends": "@tsconfig/docusaurus/tsconfig.json"
 }

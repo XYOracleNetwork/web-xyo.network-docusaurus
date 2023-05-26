@@ -10,6 +10,6 @@ The [XYO dApp Library](https://xyo.network/dapp) is designed to showcase XYO Tec
 
 Each dApp aggregates data from multiple sources, creates Bound Witnesses with XYO Technology and secures that information in an Archivist.
 
-```tsx code=getting-started/Demo1
+```tsx code=getting-started/button-demo
 
 ```

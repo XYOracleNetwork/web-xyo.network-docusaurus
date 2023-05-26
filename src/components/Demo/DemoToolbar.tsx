@@ -20,10 +20,8 @@ import * as React from 'react'
 import { CODE_VARIANT } from './constants'
 import { DemoConfig, DemoOptions } from './Demo'
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from './mui-docs'
-import codeSandbox from './sandbox/CodeSandbox'
-import stackBlitz from './sandbox/StackBlitz'
-import { getCookie, useCodeVariant } from './utils'
-import { useSetCodeVariant } from './utils/codeVariant'
+import { createCodeSandboxReactApp, createStackBlitzReactApp } from './sandbox'
+import { getCookie, useCodeVariant, useSetCodeVariant } from './utils'
 
 const Root = styled('div')(({ theme }) => [
   {
@@ -396,7 +394,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
-                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox('/demo')}
+                  onClick={() => createCodeSandboxReactApp(demoData).openSandbox('/demo')}
                   {...getControlProps(3)}
                 >
                   <SvgIcon viewBox="0 0 1024 1024">
@@ -410,7 +408,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
-                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox('demo')}
+                  onClick={() => createStackBlitzReactApp(demoData).openSandbox('demo')}
                   {...getControlProps(4)}
                 >
                   <SvgIcon viewBox="0 0 19 28">

@@ -1,12 +1,12 @@
-import LZString from 'lz-string'
+import { compressToBase64 } from 'lz-string'
 
 import { addHiddenInput } from '../utils'
 import * as CRA from './CreateReactApp'
-import SandboxDependencies from './Dependencies'
-import getFileExtension from './FileExtension'
+import { getFileExtension } from './FileExtension'
+import { getDependencies } from './getDependencies'
 
 function compress(object: any) {
-  return LZString.compressToBase64(JSON.stringify(object))
+  return compressToBase64(JSON.stringify(object))
     .replace(/\+/g, '-') // Convert '+' to '-'
     .replace(/\//g, '_') // Convert '/' to '_'
     .replace(/=+$/, '') // Remove ending '='
@@ -28,13 +28,13 @@ function openSandbox({ files, codeVariant, initialFile = '/App' }: any) {
   document.body.removeChild(form)
 }
 
-const createReactApp = (demo: {
-  title: string
-  language: string
-  raw: string
+export const createCodeSandboxReactApp = (demo: {
   codeVariant: 'TS' | 'JS'
   githubLocation: string
+  language: string
   product?: 'joy-ui' | 'base'
+  raw: string
+  title: string
 }) => {
   const ext = getFileExtension(demo.codeVariant)
   const { title, githubLocation: description } = demo
@@ -56,9 +56,7 @@ const createReactApp = (demo: {
     }),
   }
 
-  const { dependencies, devDependencies } = SandboxDependencies(demo, {
-    commitRef: /*process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF :*/ undefined,
-  })
+  const { dependencies, devDependencies } = getDependencies(demo.codeVariant === 'TS')
 
   files['package.json'] = {
     content: {
@@ -88,81 +86,4 @@ const createReactApp = (demo: {
 
     title,
   }
-}
-
-const createJoyTemplate = (demo: { title: string; files: Record<string, string>; githubLocation: string; codeVariant: 'TS' | 'JS' }) => {
-  const ext = getFileExtension(demo.codeVariant)
-  const { title, githubLocation: description } = demo
-
-  const files: Record<string, object> = {
-    'public/index.html': {
-      content: CRA.getHtml({ language: 'en', title: demo.title }),
-    },
-    [`index.${ext}`]: {
-      content: `import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
-import { StyledEngineProvider } from '@mui/joy/styles';
-import App from './App';
-
-ReactDOM.createRoot(document.querySelector("#root")).render(
-  <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <App />
-    </StyledEngineProvider>
-  </React.StrictMode>
-);`,
-    },
-    ...Object.entries(demo.files).reduce(
-      (prev, curr) => ({
-        ...prev,
-        [curr[0]]: {
-          content: curr[1],
-        },
-      }),
-      {},
-    ),
-    ...(demo.codeVariant === 'TS' && {
-      'tsconfig.json': {
-        content: CRA.getTsconfig(),
-      },
-    }),
-  }
-
-  const { dependencies, devDependencies } = SandboxDependencies(
-    {
-      codeVariant: demo.codeVariant,
-      product: 'joy-ui',
-      raw: Object.entries(demo.files).reduce((prev, curr) => `${prev}\n${curr}`, ''),
-    },
-    {
-      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
-    },
-  )
-
-  files['package.json'] = {
-    content: {
-      dependencies,
-      description,
-      devDependencies,
-      ...(demo.codeVariant === 'TS' && {
-        main: 'index.tsx',
-        scripts: {
-          start: 'react-scripts start',
-        },
-      }),
-    },
-  }
-
-  return {
-    dependencies,
-    devDependencies,
-    files,
-    openSandbox: (initialFile?: string) => openSandbox({ codeVariant: demo.codeVariant, files, initialFile }),
-    title,
-  }
-}
-
-export default {
-  createJoyTemplate,
-  createReactApp,
 }
