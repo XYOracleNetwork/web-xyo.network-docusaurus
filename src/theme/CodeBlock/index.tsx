@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-internal-modules */
+import { Paper } from '@mui/material'
+import * as mui from '@mui/material'
 import { Demo } from '@site/src/components/Demo'
+import { ReactRunner } from '@site/src/components/Demo/ReactRunner'
 import { CodeVariantProvider } from '@site/src/components/Demo/utils'
+import { FlexRow } from '@xylabs/react-flexbox'
 import React, { ReactNode } from 'react'
 
 interface DemoCodeBlockProps {
@@ -45,21 +49,35 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
     null
   }
 
+  const previewCodeOrChildren = (children as string) ?? previewCode
+
   return (
     <CodeVariantProvider value={{ codeVariant: 'TS' }}>
+      <Paper>
+        <FlexRow padding={2}>
+          <ReactRunner
+            scope={{ import: { '@mui/material': mui, react: React }, process: {} }}
+            onError={(error) => console.error(JSON.stringify(error, null, 2))}
+            code={jsxCode}
+          />
+        </FlexRow>
+      </Paper>
+
       <Demo
         demo={{
           githubLocation: 'https://github.com/XYOracleNetwork',
-          jsxPreview: previewCode,
+          jsx: Paper,
+          jsxPreview: previewCodeOrChildren,
           language: 'en',
           raw: jsxCode,
           rawJS: jsxCode,
           rawTS: tsxCode,
           sourceLanguage: sourceLanguage,
           title,
+          tsx: Paper,
         }}
-        demoOptions={{ defaultCodeOpen: true, demo: 'test.js' }}
-        githubLocation={`https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/tree/main/docs/${code}.${ext}`}
+        demoOptions={{ defaultCodeOpen: true, demo: 'demo.js' }}
+        githubLocation={`https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/tree/main/docs/${code}/demo.${ext}`}
         deps={deps}
       />
     </CodeVariantProvider>

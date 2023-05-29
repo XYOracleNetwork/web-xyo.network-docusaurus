@@ -91,13 +91,14 @@ function useDemoData(
       scope: demo.scope,
       ...(codeVariant === 'TS' && demo.rawTS
         ? {
+            Component: demo.tsx,
             codeVariant: 'TS',
             githubLocation: githubLocation?.replace(/\.js$/, '.tsx'),
             raw: demo.rawTS,
             sourceLanguage: demo.sourceLanguage ?? 'typescript',
-            tsx: Demo,
           }
         : {
+            Component: demo.jsx,
             codeVariant: 'JS',
             githubLocation,
             jsx: Demo,
@@ -117,17 +118,7 @@ interface EditorCode {
   value: string
 }
 
-function useDemoElement({
-  demoData,
-  editorCode,
-  setDebouncedError,
-  liveDemoActive,
-}: {
-  demoData: DemoConfig
-  editorCode: EditorCode
-  liveDemoActive: boolean
-  setDebouncedError: React.Dispatch<any>
-}) {
+function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActive }) {
   const debouncedSetError = React.useMemo(() => debounce(setDebouncedError, 300), [setDebouncedError])
 
   React.useEffect(() => {
@@ -136,21 +127,18 @@ function useDemoElement({
     }
   }, [debouncedSetError])
 
+  console.log(`demoData.scope: ${demoData.scope}`)
+
   // Memoize to avoid rendering the demo more than it needs to be.
   // For example, avoid a render when the demo is hovered.
-  const BundledComponent = React.useMemo(
-    () => <Demo demo={demoData} demoOptions={{ demo: 'demo.js' }} githubLocation={demoData.githubLocation} />,
-    [demoData],
-  )
+  const BundledComponent = React.useMemo(() => <demoData.Component />, [demoData])
   const LiveComponent = React.useMemo(
     () => (
       <ReactRunner
         scope={demoData.scope}
         onError={debouncedSetError}
         code={
-          editorCode.isPreview
-            ? trimLeadingSpaces(demoData.rawJS).replace(trimLeadingSpaces(demoData.jsxPreview), editorCode.value)
-            : editorCode.value
+          editorCode.isPreview ? trimLeadingSpaces(demoData.raw).replace(trimLeadingSpaces(demoData.jsxPreview), editorCode.value) : editorCode.value
         }
       />
     ),
@@ -304,6 +292,8 @@ export const Demo: React.FC<DemoProps> = (props) => {
     liveDemoActive,
     setDebouncedError,
   })
+
+  console.log(`demoElement: ${JSON.stringify(demoElement.props, null, 2)}`)
 
   return (
     <Root>

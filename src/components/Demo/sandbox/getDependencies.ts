@@ -1,13 +1,19 @@
 const standardDependencies: Record<string, string> = {}
+
 const typescriptDependencies: Record<string, string> = {}
+
 const xyoDependencies: Record<string, string> = {
   '@xylabs/sdk-js': 'latest',
   '@xyo-network/sdk-xyo-client-js': 'latest',
 }
 const reactDevDependencies: Record<string, string> = {}
+
 const xyoDevDependencies: Record<string, string> = {}
+
 const muiDevDependencies: Record<string, string> = {}
+
 const standardDevDependencies: Record<string, string> = {}
+
 const typescriptDevDependencies: Record<string, string> = {
   typescript: 'latest',
 }

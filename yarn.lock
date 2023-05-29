@@ -25213,6 +25213,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.59.7
     "@xylabs/eslint-config": ^2.17.13
     "@xylabs/eslint-config-react": ^2.17.13
+    "@xylabs/react-flexbox": ^2.17.3
     "@xylabs/react-shared": ^2.17.3
     "@xylabs/ts-scripts-react-yarn3": ^2.17.13
     "@xylabs/tsconfig-react": ^2.17.13
