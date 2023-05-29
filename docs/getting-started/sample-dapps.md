@@ -11,7 +11,7 @@ The [XYO dApp Library](https://xyo.network/dapp) is designed to showcase XYO Tec
 Each dApp aggregates data from multiple sources, creates Bound Witnesses with XYO Technology and secures that information in an Archivist.
 
 ```tsx code=getting-started/button-demo deps=["mui","react"]
-<Button variant="text">Text</Button>
+<Button variant="text">Text3</Button>
 <Button variant="contained">Contained</Button>
 <Button variant="outlined">Outlined</Button>
 ```
