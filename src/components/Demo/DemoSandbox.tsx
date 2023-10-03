@@ -2,7 +2,6 @@ import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import { styled, useTheme } from '@mui/material/styles'
 import { jssPreset, StylesProvider } from '@mui/styles'
-import { WithChildren } from '@xylabs/react-shared'
 import { create } from 'jss'
 import rtl from 'jss-rtl'
 import * as React from 'react'
@@ -10,16 +9,13 @@ import * as ReactDOM from 'react-dom'
 import { StyleSheetManager } from 'styled-components'
 import { prefixer } from 'stylis'
 import rtlPlugin from 'stylis-plugin-rtl'
-import rtlPluginSc from 'stylis-plugin-rtl-sc'
 
 import { DemoErrorBoundary } from './DemoErrorBoundary'
 
-export type FramedDemoProps = WithChildren<
-  React.DetailedHTMLProps<React.IframeHTMLAttributes<HTMLIFrameElement>, HTMLIFrameElement>,
-  {
-    document: Document
-  }
->
+export type FramedDemoProps = React.DetailedHTMLProps<React.IframeHTMLAttributes<HTMLIFrameElement>, HTMLIFrameElement> & {
+  children: React.ReactNode
+  document: Document
+}
 
 const FramedDemo: React.FC<FramedDemoProps> = (props) => {
   const { children, document } = props
@@ -54,13 +50,15 @@ const FramedDemo: React.FC<FramedDemoProps> = (props) => {
 
   return (
     <StylesProvider jss={jss} sheetsManager={sheetsManager}>
-      <StyleSheetManager target={document.head} stylisPlugins={theme.direction === 'rtl' ? [rtlPluginSc] : []}>
+      <StyleSheetManager target={document.head} stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}>
         <CacheProvider value={cache}>
-          {children
-            ? React.cloneElement(children, {
-                window: getWindow,
-              })
-            : null}
+          {Array.isArray(children)
+            ? children.map((child) =>
+                React.cloneElement(child, {
+                  window: getWindow,
+                }),
+              )
+            : children}
         </CacheProvider>
       </StyleSheetManager>
     </StylesProvider>
@@ -132,9 +130,7 @@ export const DemoSandbox: React.FC<DemoSandboxProps> = (props) => {
     <DemoIframe name={name} {...sandboxProps}>
       {childrenProp}
     </DemoIframe>
-  ) : (
-    React.Fragment
-  )
+  ) : null
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick}>

@@ -1,6 +1,7 @@
-import MarkdownElement from 'docs/src/modules/components/MarkdownElementV2'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+
+import MarkdownElement from './MarkdownElement'
 
 export default function DemosDocs(props) {
   const { WrapperComponent: Wrapper, wrapperProps, rendered = [], ...rest } = props

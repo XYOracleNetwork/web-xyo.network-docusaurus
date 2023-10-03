@@ -1,4 +1,4 @@
-import NoSsr from '@mui/base/NoSsr'
+import { NoSsr } from '@mui/base'
 import Box from '@mui/material/Box'
 import { styled, useTheme } from '@mui/material/styles'
 import * as React from 'react'
@@ -34,6 +34,7 @@ const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
       maxWidth: 'initial',
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ]) as any
 
 const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
@@ -47,6 +48,7 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
   },
   WebkitFontSmoothing: 'subpixel-antialiased',
   color: '#f8f8f2',
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   direction: 'ltr /*! @noflip */' as any,
   float: 'left',
   fontSize: theme.typography.pxToRem(13),
@@ -56,6 +58,7 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
 
 export interface DemoEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   children: React.ReactNode
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   copyButtonProps: any
   id: string
   language: string
@@ -104,6 +107,7 @@ export const DemoEditor = (props: DemoEditorProps) => {
         onBlur={onBlur}
         onMouseLeave={onMouseLeave}
         onMouseEnter={onMouseEnter}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onFocus={(event) => onFocus(event as any)}
       >
         <div className="scrollContainer">

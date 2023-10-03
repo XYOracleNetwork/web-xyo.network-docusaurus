@@ -1,4 +1,4 @@
-import NoSsr from '@mui/base/NoSsr'
+import { NoSsr } from '@mui/base'
 import * as React from 'react'
 
 import { CodeCopyButton } from './CodeCopyButton'
@@ -10,6 +10,7 @@ interface HighlightedCodeProps extends React.HTMLProps<'div'> {
   MarkdownComponent?: React.ElementType
   code: string
   copyButtonHidden?: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   copyButtonProps: any
   language: string
 }
@@ -27,6 +28,7 @@ export const HighlightedCode = React.forwardRef<HTMLDivElement, HighlightedCodeP
       <div
         className="MuiCode-root"
         onBlur={onBlur}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onFocus={(event) => onFocus(event as any)}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}

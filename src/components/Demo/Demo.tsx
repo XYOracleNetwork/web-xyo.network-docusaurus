@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable complexity */
 /* eslint-disable max-statements */
-import NoSsr from '@mui/base/NoSsr'
+import { NoSsr } from '@mui/base'
 import { Collapse, Paper } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles'

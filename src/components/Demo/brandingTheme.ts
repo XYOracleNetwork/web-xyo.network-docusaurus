@@ -354,9 +354,10 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         lineHeight: 24 / 18,
       },
     },
-  } as ThemeOptions)
+  }) as ThemeOptions
 
 export function getThemedComponents(): ThemeOptions {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const theme: any = {
     components: {
       MuiButton: {

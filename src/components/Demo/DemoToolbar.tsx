@@ -94,6 +94,7 @@ const alwaysTrue = () => true
  */
 
 interface ToolbarOptions {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   controlRefs?: React.Ref<any>[]
   defaultActiveIndex?: number
   isFocusableControl?: (index: number) => boolean
@@ -208,6 +209,7 @@ export interface DemoToolbarProps {
   demoOptions: DemoOptions
   demoSourceId?: string
   deps?: DependenciesSet[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initialFocusRef: React.RefObject<any>
   onCodeOpenChange: () => void
   onResetDemoClick: () => void
