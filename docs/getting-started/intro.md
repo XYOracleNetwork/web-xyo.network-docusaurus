@@ -36,14 +36,14 @@ Next, try uncommenting the following lines of code:
 2. `Witness` — [TODO]
 3. `Bridge` — [TODO] -->
 
-Need a quick reminder on what's what? The [Glossary](/docs/glossary) can help you out!
+Need a quick reminder on what's what? The [Glossary](/glossary) can help you out!
 
 
 ## Exercises
-We've created a few more [exercises](/docs/getting-started/exercises) to teach you more about ways you can implement XYO.
+We've created a few more [exercises](/getting-started/exercises) to teach you more about ways you can implement XYO.
 
 ## Demos
 Explore our demos on [xyo.network](https://xyo.network/dapp) or on our GitHub.
 
 ## Glossary
-Need a quick reminder on what's what? The [Glossary](/docs/glossary) can help you out!
+Need a quick reminder on what's what? The [Glossary](/glossary) can help you out!
