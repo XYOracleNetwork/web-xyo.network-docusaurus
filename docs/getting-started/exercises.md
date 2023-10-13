@@ -7,7 +7,7 @@ Now that you've learned a little more about the components of the XYO Network an
 
 These demos will expand your understanding of the XYO Platform, and introduce you to some new concepts.
 ## Resolve a Module
-The interactive CodeSandbox demo below allows you to select an [XYO Module](/docs/glossary) from a dropdown, and resolve it to see information about it.
+The interactive CodeSandbox demo below allows you to select an [XYO Module](/glossary) from a dropdown, and resolve it to see information about it.
 
 <iframe src="https://codesandbox.io/embed/witness-data-zzyddd?file=/src/App.tsx?codemirror=1&fontsize=14&hidenavigation=1&theme=dark&hidedevtools=1"
 className="code-sandbox-div"
@@ -41,10 +41,10 @@ Here's some quick links:
 ### Demo dApps
 The XYO Team has created a few demo dApps with real-world data to show you ways to utilize XYO Platform components. Use them to get your wheels turning on your own custom project, or just to browse!
 
-- [In-Depth Explanations](/docs/category/demo-dapps)
+- [In-Depth Explanations](/category/demo-dapps)
 - [Browse on xyo.network](https://xyo.network/dapp)
 
 Explore our demos on [xyo.network](https://xyo.network/dapp) or on our GitHub.
 
 ### Glossary
-Need a quick reminder on what's what? The [Glossary](/docs/glossary) can help you out!
+Need a quick reminder on what's what? The [Glossary](/glossary) can help you out!

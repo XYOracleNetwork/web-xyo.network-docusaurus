@@ -35,6 +35,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: '/', // Serve the docs at the site's root
         },
         /*blog: {
           showReadingTime: true
@@ -58,11 +59,11 @@ const config = {
             items: [
               {
                 label: 'Getting Started',
-                to: '/docs/getting-started/intro',
+                to: '/getting-started/intro',
               },
               {
                 label: 'SDKs',
-                to: '/docs/sdks/javascript',
+                to: '/sdks/javascript',
               },
             ],
             title: 'Docs',
@@ -105,8 +106,8 @@ const config = {
       image: 'img/social-card.jpg',
       navbar: {
         items: [
-          { label: 'Getting Started', position: 'left', to: 'docs/getting-started/intro' },
-          { label: 'SDKs', position: 'left', to: 'docs/sdks/javascript' },
+          { label: 'Getting Started', position: 'left', to: 'getting-started/intro' },
+          { label: 'SDKs', position: 'left', to: 'sdks/javascript' },
           {
             href: 'https://github.com/XYOracleNetwork',
             label: 'GitHub',
@@ -128,7 +129,7 @@ const config = {
   title: 'XYO Platform',
 
   // Set the production url of your site here
-  url: 'https://xyo.network',
+  url: 'https://docs.xyo.network',
 }
 
 module.exports = config
