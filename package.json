@@ -44,7 +44,7 @@
     "react-runner": "^1.0.3",
     "react-simple-code-editor": "^0.13.1",
     "stream-browserify": "^3.0.0",
-    "styled-components": "^6.0.8",
+    "styled-components": "^6.0.9",
     "stylis-plugin-rtl": "^2.1.1",
     "stylis-plugin-rtl-sc": "npm:stylis-plugin-rtl@^1.1.0"
   },
@@ -58,11 +58,11 @@
     "@xylabs/eslint-config-react": "^3.1.9",
     "@xylabs/ts-scripts-react-yarn3": "^3.1.9",
     "@xylabs/tsconfig-react": "^3.1.9",
-    "eslint": "^8.50.0",
+    "eslint": "^8.51.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-deprecation": "^2.0.0",
     "eslint-plugin-import": "^2.28.1",
-    "typescript": "^4.9.5"
+    "typescript": "^5.2.2"
   },
   "resolutions": {
     "typescript": "^4.9.5"
