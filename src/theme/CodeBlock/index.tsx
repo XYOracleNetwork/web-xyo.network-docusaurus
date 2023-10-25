@@ -49,8 +49,6 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
     null
   }
 
-  console.log(`ext: ${ext}`)
-
   const previewCodeOrChildren = (children as string) ?? previewCode
 
   return (

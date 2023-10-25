@@ -17,7 +17,7 @@ interface HighlightedCodeProps extends React.HTMLProps<'div'> {
 
 export const HighlightedCode = React.forwardRef<HTMLDivElement, HighlightedCodeProps>((props, ref) => {
   const { copyButtonHidden = false, copyButtonProps, code, language, MarkdownComponent = MarkdownElement } = props
-  console.log(`Language: ${language}`)
+
   const renderedCode = React.useMemo(() => {
     return prismHighlight(code.trim(), language)
   }, [code, language])

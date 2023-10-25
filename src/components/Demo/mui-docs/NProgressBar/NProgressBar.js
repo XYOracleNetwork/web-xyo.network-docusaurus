@@ -1,7 +1,6 @@
-import NoSsr from '@mui/base/NoSsr'
+import * as NoSsr from '@mui/base/NoSsr'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import { keyframes } from '@mui/material/styles'
-import { exactProp } from '@mui/utils'
 import NProgress from 'nprogress'
 import PropTypes from 'prop-types'
 import * as React from 'react'
