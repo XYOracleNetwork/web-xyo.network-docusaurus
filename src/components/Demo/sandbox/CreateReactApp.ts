@@ -1,4 +1,4 @@
-export const getHtml = ({ title, language }: { title: string; language: string }) => {
+export const getHtml = ({ title, language }: { language: string; title: string }) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
   <head>
@@ -17,8 +17,8 @@ export const getHtml = ({ title, language }: { title: string; language: string }
   <body>
     <div id="root"></div>
   </body>
-</html>`;
-};
+</html>`
+}
 
 export const getRootIndex = (product?: 'joy-ui' | 'base') => {
   if (product === 'joy-ui') {
@@ -35,7 +35,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
       </CssVarsProvider>
     </StyledEngineProvider>
   </React.StrictMode>
-);`;
+);`
   }
   if (product === 'base') {
     return `import * as React from 'react';
@@ -46,7 +46,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   <React.StrictMode>
     <Demo />
   </React.StrictMode>
-);`;
+);`
   }
   return `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
@@ -59,8 +59,8 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
       <Demo />
     </StyledEngineProvider>
   </React.StrictMode>
-);`;
-};
+);`
+}
 
 export const getTsconfig = () => `{
   "compilerOptions": {
@@ -87,4 +87,4 @@ export const getTsconfig = () => `{
     "src"
   ]
 }
-`;
+`

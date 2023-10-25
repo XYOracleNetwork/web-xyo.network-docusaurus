@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-internal-modules */
 import { Paper } from '@mui/material'
 import * as mui from '@mui/material'
-import { Demo } from '@site/src/components/Demo'
+import { Demo, DemoCodeViewer } from '@site/src/components/Demo'
 import { ReactRunner } from '@site/src/components/Demo/ReactRunner'
 import { CodeVariantProvider } from '@site/src/components/Demo/utils'
 import { FlexRow } from '@xylabs/react-flexbox'
@@ -29,7 +29,7 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
   let tsxCode = ''
   let jsxCode = ''
   let previewCode = ''
-  let ext = 'jsx'
+  let ext = null
   try {
     tsxCode = require(`!!raw-loader!@site/docs/${code}/demo.tsx`).default ?? children ?? ''
     ext = 'tsx'
@@ -49,37 +49,52 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
     null
   }
 
+  console.log(`ext: ${ext}`)
+
   const previewCodeOrChildren = (children as string) ?? previewCode
 
   return (
     <CodeVariantProvider value={{ codeVariant: 'TS' }}>
-      <Paper>
-        <FlexRow padding={2}>
-          <ReactRunner
-            scope={{ import: { '@mui/material': mui, react: React }, process: {} }}
-            onError={(error) => console.error(JSON.stringify(error, null, 2))}
-            code={jsxCode}
+      {ext === null ? (
+        <DemoCodeViewer
+          code={previewCodeOrChildren}
+          language="sh"
+          copyButtonProps={{
+            'data-ga-event-action': 'copy-click',
+            'data-ga-event-category': true,
+            'data-ga-event-label': '',
+          }}
+        />
+      ) : (
+        <>
+          <Paper>
+            <FlexRow padding={2}>
+              <ReactRunner
+                scope={{ import: { '@mui/material': mui, react: React }, process: {} }}
+                onError={(error) => console.error(JSON.stringify(error, null, 2))}
+                code={jsxCode}
+              />
+            </FlexRow>
+          </Paper>
+          <Demo
+            demo={{
+              githubLocation: 'https://github.com/XYOracleNetwork',
+              jsx: Paper,
+              jsxPreview: previewCodeOrChildren,
+              language: 'en',
+              raw: jsxCode,
+              rawJS: jsxCode,
+              rawTS: tsxCode,
+              sourceLanguage: sourceLanguage,
+              title,
+              tsx: Paper,
+            }}
+            demoOptions={{ defaultCodeOpen: true, demo: 'demo.js' }}
+            githubLocation={`https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/tree/main/docs/${code}/demo.${ext}`}
+            deps={deps}
           />
-        </FlexRow>
-      </Paper>
-
-      <Demo
-        demo={{
-          githubLocation: 'https://github.com/XYOracleNetwork',
-          jsx: Paper,
-          jsxPreview: previewCodeOrChildren,
-          language: 'en',
-          raw: jsxCode,
-          rawJS: jsxCode,
-          rawTS: tsxCode,
-          sourceLanguage: sourceLanguage,
-          title,
-          tsx: Paper,
-        }}
-        demoOptions={{ defaultCodeOpen: true, demo: 'demo.js' }}
-        githubLocation={`https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/tree/main/docs/${code}/demo.${ext}`}
-        deps={deps}
-      />
+        </>
+      )}
     </CodeVariantProvider>
   )
 }

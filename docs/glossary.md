@@ -18,7 +18,7 @@ A digital or physical device that collects data of some sort. Sentinels structur
 
 - An NFC chip that counts phone scans every time you tap it to your phone
 - A smart-watch that records your heart rate
-- A thermomenter that collects real-world temperature data
+- A thermometer that collects real-world temperature data
 
 ## Bridge
 A Bridge transfers Bound Witness and payload data form Sentinels to an Archivist. In many cases, the same device that is running the Sentinel also acts as the Bridge. Some examples of Bridges might be:

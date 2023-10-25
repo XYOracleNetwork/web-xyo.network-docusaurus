@@ -118,7 +118,7 @@ const config = {
           alt: 'XYO Logo',
           src: 'img/logo.svg',
         },
-        title: 'XYO Platform',
+        title: 'XYO Platform (Pre-release Docs)',
       },
       prism: {
         darkTheme: darkCodeTheme,
