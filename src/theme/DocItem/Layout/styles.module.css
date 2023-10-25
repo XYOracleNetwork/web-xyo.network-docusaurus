@@ -5,10 +5,8 @@
 
 @media (min-width: 997px) {
   .docItemCol {
-    padding-left: 60px !important;
     padding-right: 60px !important;
     margin-right: auto !important;
-    margin-left: auto !important;
-    max-width: 1000px !important;
+    max-width: 1200px !important;
   }
 }

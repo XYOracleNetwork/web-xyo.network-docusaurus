@@ -31,8 +31,6 @@
     "@xyo-network/react-card": "^2.65.4",
     "@xyo-network/react-embed": "^2.65.4",
     "@xyo-network/react-plugins": "^2.65.4",
-    "@xyo-network/sdk-xyo-client-js": "^2.77.7",
-    "@xyo-network/sdk-xyo-react": "^2.65.4",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.0.0",
     "core-js": "^3.33.1",

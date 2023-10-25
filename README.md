@@ -1,41 +1,60 @@
-# Website
+[![logo][]](https://xyo.network)
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+# web-xyo.network-docusaurus
 
-### Installation
+[![main-build][]][main-build-link]
+[![codacy-badge][]][codacy-link]
+[![codeclimate-badge][]][codeclimate-link]
+[![snyk-badge][]][snyk-link]
+[![license-badge][]][license-link]
 
-```
-$ yarn
-```
 
-### Local Development
+> The XYO Foundation provides this documentation in our efforts to
+> advance the understanding of the XYO Protocol and its possible uses.
+> We continue to maintain this software in the interest of developer education.
 
-```
-$ yarn start
-```
+> View this documentation at [docs.xyo.network](https://docs.xyo.network)
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+## Table of Contents
+-   [Title](#web-xyo.network-docusaurus)
+-   [Table of Contents](#table-of-contents)
+-   [Description](#description)
+-   [Maintainers](#maintainers)
+-   [License](#license)
+-   [Credits](#credits)
 
-### Build
+## Description
 
-```
-$ yarn build
-```
+> Primary Documentation for using the XYO Protocol 2.0.
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+## Maintainers
 
-### Deployment
+-   [Arie Trouw](https://github.com/arietrouw) [(arietrouw.com)](https://arietrouw.com)
+-   [Matt Jones](https://github.com/jonesmac)
+-   [Joel Carter](https://github.com/JoelBCarter)
 
-Using SSH:
+## License
 
-```
-$ USE_SSH=true yarn deploy
-```
+> See the [LICENSE](https://raw.githubusercontent.com/XYOracleNetwork/web-xyo.network-docusaurus/main/LICENSE)
+> file for license details
 
-Not using SSH:
+## Credits
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
+[Made with 🔥 and ❄️ by XYO](https://xyo.network)
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+[logo]: https://cdn.xy.company/img/brand/XYO_full_colored.png
+
+[main-build]: https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/actions/workflows/build.yml/badge.svg
+[main-build-link]: https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/actions/workflows/build.yml
+
+[codacy-badge]: https://app.codacy.com/project/badge/Grade/ba1f344ae34e4bfe999331cf4e27b9f5
+[codacy-link]: https://www.codacy.com/gh/XYOracleNetwork/web-xyo.network-docusaurus/dashboard?utm_source=github.com&utm_medium=referral&utm_content=XYOracleNetwork/web-xyo.network-docusaurus&utm_campaign=Badge_Grade
+
+[codeclimate-badge]: https://api.codeclimate.com/v1/badges/0e76349c9541f3866948/maintainability
+[codeclimate-link]: https://codeclimate.com/github/XYOracleNetwork/web-xyo.network-docusaurus/maintainability
+
+[snyk-badge]: https://snyk.io/test/github/XYOracleNetwork/web-xyo.network-docusaurus/badge.svg?targetFile=package.json
+[snyk-link]: https://snyk.io/test/github/XYOracleNetwork/web-xyo.network-docusaurus?targetFile=package.json
+
+[license-badge]: https://img.shields.io/github/license/XYOracleNetwork/web-xyo.network-docusaurus
+[license-link]: https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/blob/main/LICENSE
