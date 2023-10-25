@@ -57,4 +57,4 @@
 [snyk-link]: https://snyk.io/test/github/XYOracleNetwork/web-xyo.network-docusaurus?targetFile=package.json
 
 [license-badge]: https://img.shields.io/github/license/XYOracleNetwork/sdk-xyo-client-js
-[license-link]: https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/main/LICENSE
+[license-link]: https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/blob/main/LICENSE
