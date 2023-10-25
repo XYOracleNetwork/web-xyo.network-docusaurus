@@ -28,6 +28,19 @@ const config = {
 
   onBrokenMarkdownLinks: 'warn',
 
+  plugins: [
+    [
+        "docusaurus-plugin-remote-content",
+        {
+            // options here
+            name: "readme-files", // used by CLI, must be path safe
+            sourceBaseUrl: "https://raw.githubusercontent.com/", // the base url for the markdown (gets prepended to all of the documents when fetching)
+            outDir: "docs", // the base directory to output to.
+            documents: ["XYOracleNetwork/sdk-xyo-client-swift/main/README.md", "XYOracleNetwork/sdk-xyo-client-android/main/README.md"], // the file names to download
+        },
+    ],
+  ],
+
   presets: [
     [
       'classic',
