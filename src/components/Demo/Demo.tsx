@@ -159,7 +159,7 @@ const Root = styled('div')(({ theme }) => ({
   },
 }))
 
-const DemoCodeViewer = styled(HighlightedCode)(({ theme }) => ({
+export const DemoCodeViewer = styled(HighlightedCode)(({ theme }) => ({
   '& pre': {
     borderRadius: 0,
     margin: 0,
