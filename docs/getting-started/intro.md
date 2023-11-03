@@ -25,16 +25,16 @@ Next, try uncommenting the following lines of code:
  _Tip: All Modules in "yourModules" need a comma between them. Keep the leading comma in the Archivist Module line, otherwise you'll receive a bug!_
 
 1. `Archivist` — An Archivist is where Bound Witness and Payload data is stored. A shared, hosted, or self-hosted archivist can be used. It is even possible to run an archivist on the same device as the Sentinel and Bridge.
-2. `Witness` — A Witness captures real-world data. Also known 
+2. `Witness` — A Witness captures real-world data.
 3. `Bridge` — A Bridge transfers Bound Witness and payload data form Sentinels to an Archivist. In many cases, the same device that is running the Sentinel also acts as the Bridge.
 
-<!-- A few other useful words to learn:
+A few other useful words to learn:
 
 [TODO - Glossary Definition Variables]
 
 1. `Sentinel` — [TODO]
 2. `Witness` — [TODO]
-3. `Bridge` — [TODO] -->
+3. `Bridge` — [TODO]
 
 Need a quick reminder on what's what? The [Glossary](/glossary) can help you out!
 

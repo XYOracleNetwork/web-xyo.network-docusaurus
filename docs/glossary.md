@@ -63,7 +63,3 @@ Modules encapsulate XYO components (Archivists, Diviners, Bridges, etc.). All Mo
 
 ## Bound Witness Blocks
 A series of blocks that contain the data collected by a Sentinel.
-
-## Proof of Origin
-
-## Proof of Origin Chain

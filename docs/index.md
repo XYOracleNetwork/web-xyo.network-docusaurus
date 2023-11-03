@@ -8,7 +8,7 @@ XYO is an open-source platform for creating and enhancing a software through dat
 
 Encompassing both a network and protocol, XYO can be used for aggregating, verifying, organizing, and utilizing decentralized data from any hardware node capable of running XYO-enabled software or firmware. 
 
-XYO’s defining premise is decentralized verification, allowing network devices to verify the data flowing into the network’s databases by acting as witnesses for one another, strengthening the veracity of data received. Simple, accessible organization then allows this data to be put to use quickly and efficiently.
+XYO’s defining premise is **decentralized verification**, allowing network devices to verify the data flowing into the network’s databases by acting as witnesses for one another, strengthening the veracity of data received. Simple, accessible organization then allows this data to be put to use quickly and efficiently.
 
 ## Examples of XYO
 XYO is capable of processing any kind of decentralized data which can be generated, including location, user input, device interactions, and heuristics of all types. XYO’s network is also fully blockchain-enabled, allowing both data aggregation and storage to be fully decentralized if desired, although centralized data storage is also easily accomplished.
