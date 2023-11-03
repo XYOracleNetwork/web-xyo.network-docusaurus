@@ -1,6 +1,5 @@
 import { useWindowSize } from '@docusaurus/theme-common'
 import { useDoc } from '@docusaurus/theme-common/internal'
-import { Typography } from '@mui/material'
 import DocBreadcrumbs from '@theme/DocBreadcrumbs'
 import DocItemContent from '@theme/DocItem/Content'
 import DocItemFooter from '@theme/DocItem/Footer'
@@ -36,7 +35,7 @@ export default function DocItemLayout({ children }) {
       <div className={clsx('col', 'arie', !docTOC.hidden && styles.docItemCol)}>
         <DocVersionBanner />
         <div className={styles.docItemContainer}>
-          <article>
+          <article style={{ paddingRight: '80px' }}>
             <DocBreadcrumbs />
             <DocVersionBadge />
             {docTOC.mobile}
