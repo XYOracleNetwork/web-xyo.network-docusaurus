@@ -49,6 +49,9 @@ The more Sentinels that can agree and include unique signatures on the Bound Wit
 - A smart-watch that records your heart rate
 - A thermometer that collects real-world temperature data
 
+#### Bound Witness Blocks
+A series of blocks that contain the data collected by a Sentinel.
+
 ### Bridge
 **A Bridge serves as a connection between different nodes.**
 
@@ -72,10 +75,7 @@ It is also possible to run an Archivist on the same device as the Sentinel and B
 
 A Diviner takes in data, transforms it, and delivers an answer or new form of that original data. You can think of them in the same way "Reduce", "Map", and "Filter" methods in Javascript transform the data they are applied to.
 
-For example, a "Summary" Diviner might work the same way a "Reduce" does — a diviner that takes in some amount of data, and transforms it it into a summary of that same data, like a sum or an average
-
-## Bound Witness Blocks
-A series of blocks that contain the data collected by a Sentinel.
+For example, a "Summary" Diviner might work the same way a "Reduce" does — a diviner that takes in some amount of data, and transforms it it into a summary of that same data, like a sum or an average.
 
 ## XYO Core Values
 

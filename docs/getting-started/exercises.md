@@ -16,6 +16,13 @@ className="code-sandbox-div"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
+
+<!-- ```tsx code=getting-started/resolve-module-demo deps=["mui","react", "@xyo-network"]
+<Button variant="text">Text3</Button>
+<Button variant="contained">Contained</Button>
+<Button variant="outlined">Outlined</Button>
+``` -->
+
 ## Query a Node
 Next, you can query an XYO Node.
 

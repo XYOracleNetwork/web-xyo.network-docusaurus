@@ -100,6 +100,14 @@ const config = {
                 href: 'https://twitter.com/OfficialXYO',
                 label: 'Twitter',
               },
+              {
+                href: 'https://facebook.com/OfficialXYO',
+                label: 'Facebook',
+              },
+              {
+                href: 'https://www.instagram.com/officialxyo',
+                label: 'Instagram',
+              },
             ],
             title: 'Community',
           },
