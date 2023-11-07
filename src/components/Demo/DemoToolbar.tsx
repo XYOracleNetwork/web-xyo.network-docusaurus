@@ -21,6 +21,7 @@ import { CODE_VARIANT } from './constants'
 import { DemoConfig, DemoOptions } from './Demo'
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from './mui-docs'
 import { createCodeSandboxReactApp, createStackBlitzReactApp } from './sandbox'
+// eslint-disable-next-line import/no-internal-modules
 import { DependenciesSet } from './sandbox/getDependencies'
 import { getCookie, useCodeVariant, useSetCodeVariant } from './utils'
 
@@ -337,7 +338,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
         <Fade in={codeOpen}>
           <ToggleButtonGroup sx={{ margin: '8px 0' }} exclusive value={renderedCodeVariant()} onChange={handleCodeLanguageClick}>
             <ToggleButton
-              sx={(theme) => ({
+              sx={(_theme) => ({
                 borderColor: 'grey.200',
                 borderRadius: 0.5,
                 padding: '5px 10px',
@@ -355,7 +356,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
               <JavaScriptIcon sx={{ color: '#3A750A !important', fontSize: 20 }} />
             </ToggleButton>
             <ToggleButton
-              sx={(theme) => ({
+              sx={(_theme) => ({
                 '&.Mui-disabled': {
                   opacity: 0.5,
                 },

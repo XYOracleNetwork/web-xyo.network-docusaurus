@@ -17,6 +17,7 @@ import { DemoSandbox } from './DemoSandbox'
 import { DemoToolbar } from './DemoToolbar'
 import { HighlightedCode } from './HighlightedCode'
 import { ReactRunner, ReactRunnerScope } from './ReactRunner'
+// eslint-disable-next-line import/no-internal-modules
 import { DependenciesSet } from './sandbox/getDependencies'
 import { useCodeVariant } from './utils'
 

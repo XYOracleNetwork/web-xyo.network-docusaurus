@@ -1,16 +1,14 @@
-import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
-import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded"
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded"
 import React, { useState } from "react";
-import { Box, Button, Card, CardContent, CardHeader } from "@mui/material";
-import { Payload } from "@xyo-network/payload-model";
-import { ArchivistCard } from "@xyo-network/react-archivist";
-import { XyoBowserSystemInfoWitness } from "@xyo-network/bowser-system-info-plugin";
-import { useSetupModules } from "./useSetupModules";
-import { modules } from "./lib";
+import { Box, Button, Card, CardContent, CardHeader } from "@mui/material"
+import { ArchivistCard } from "@xyo-network/react-archivist"
+import { useSetupModules } from "./useSetupModules"
+import { modules } from "./lib"
 
 export default function App() {
-  const { archivist, node } = useSetupModules();
-  const [all, setAll] = useState<Payload[]>();
+  const { archivist, node } = useSetupModules()
+  const [all, setAll] = useState()
 
   const clearArchivist = async () => {
     if (archivist) {
@@ -19,7 +17,7 @@ export default function App() {
     }
   };
 
-  const insertIntoArchvist = async (payload: Payload[]) => {
+  const insertIntoArchivist = async (payload) => {
     if (archivist) {
       await archivist.insert(payload);
       const all = await archivist.all();
@@ -34,8 +32,8 @@ export default function App() {
       const [systemInfoWitness] = await node.resolve({ name: [moduleName] });
 
       // Invoke the witness with .observe() to generate a payload containing the system info
-      const result = await (systemInfoWitness as XyoBowserSystemInfoWitness).observe();
-      await insertIntoArchvist(result);
+      const result = await (systemInfoWitness).observe();
+      await insertIntoArchivist(result);
     }
   };
 
