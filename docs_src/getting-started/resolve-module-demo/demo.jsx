@@ -1,8 +1,7 @@
-import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded"
-import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded"
+import { VisibilityRounded, DeleteRounded } from "@mui/icons-material"
 import React, { useState } from "react";
 import { Box, Button, Card, CardContent, CardHeader } from "@mui/material"
-import { ArchivistCard } from "@xyo-network/react-archivist"
+import { ArchivistCard } from "@xyo-network/sdk-xyo-react"
 import { useSetupModules } from "./useSetupModules"
 import { modules } from "./lib"
 
@@ -42,7 +41,7 @@ export default function App() {
       {module ? <ArchivistCard module={archivist} /> : null}
       <Box display="flex" gap="16px" justifyContent="space-between">
         <Button
-          startIcon={<VisibilityRoundedIcon />}
+          startIcon={<VisibilityRounded />}
           onClick={witnessSystemInfo}
           variant="contained"
         >
@@ -51,7 +50,7 @@ export default function App() {
         <Button
           color={"error"}
           onClick={clearArchivist}
-          startIcon={<DeleteRoundedIcon />}
+          startIcon={<DeleteRounded />}
           variant={"contained"}
         >
           Clear Archivist

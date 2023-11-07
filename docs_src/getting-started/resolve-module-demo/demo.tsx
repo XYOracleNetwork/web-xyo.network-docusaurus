@@ -1,13 +1,36 @@
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
-import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded'
+import { DeleteRounded, VisibilityRounded } from '@mui/icons-material'
 import { Box, Button, Card, CardContent, CardHeader } from '@mui/material'
-import { XyoBowserSystemInfoWitness } from '@xyo-network/bowser-system-info-plugin'
-import { Payload } from '@xyo-network/payload-model'
-import { ArchivistCard } from '@xyo-network/react-archivist'
-import React, { useState } from 'react'
+import { ArchivistInstance, Payload, XyoBowserSystemInfoWitness } from '@xyo-network/sdk-xyo-client-js'
+import { ArchivistCard, SampleNodeModules, useBuildSampleNode } from '@xyo-network/sdk-xyo-react'
+import React, { useEffect, useState } from 'react'
 
-import { modules } from './lib'
-import { useSetupModules } from './useSetupModules'
+export const modules: SampleNodeModules = {
+  MemoryArchivist: 'MemoryArchivist',
+  Node: 'SampleNode',
+  SystemInfoWitness: 'SystemInfoWitness',
+  // Bridge: "Bridge",
+}
+
+export const useSetupModules = () => {
+  const [archivist, setArchivist] = useState<ArchivistInstance>()
+  // Build our Sample Node with modules including our Archivist
+  const node = useBuildSampleNode(modules, 'https://beta.api.archivist.xyo.network')
+
+  // Retrieve our Archivist from the Sample Node
+  useEffect(() => {
+    const resolveArchivist = async () => {
+      try {
+        const [resolvedModule] = (await node?.resolve({ name: [modules.MemoryArchivist ?? ''] })) ?? []
+        if (resolvedModule) setArchivist(resolvedModule)
+      } catch (e) {
+        console.error('Error Resolving Archivist', e)
+      }
+    }
+    resolveArchivist()
+  }, [node])
+
+  return { archivist, node }
+}
 
 export default function App() {
   const { archivist, node } = useSetupModules()
@@ -44,10 +67,10 @@ export default function App() {
     <Box alignItems="stretch" gap="16px" display="flex" flexDirection="column">
       {module ? <ArchivistCard module={archivist} /> : null}
       <Box display="flex" gap="16px" justifyContent="space-between">
-        <Button startIcon={<VisibilityRoundedIcon />} onClick={witnessSystemInfo} variant="contained">
+        <Button startIcon={<VisibilityRounded />} onClick={witnessSystemInfo} variant="contained">
           Witness System Information
         </Button>
-        <Button color={'error'} onClick={clearArchivist} startIcon={<DeleteRoundedIcon />} variant={'contained'}>
+        <Button color={'error'} onClick={clearArchivist} startIcon={<DeleteRounded />} variant={'contained'}>
           Clear Archivist
         </Button>
       </Box>

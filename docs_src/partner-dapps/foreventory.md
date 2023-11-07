@@ -7,5 +7,3 @@ Learn more about sample dApps created by the XYO team
 ## Netflix Reports
 
 ## NFT Ratings
-
-

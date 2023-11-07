@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-internal-modules */
+import * as mui_icons from '@mui/icons-material'
 import { Paper } from '@mui/material'
 import * as mui from '@mui/material'
 import { Demo, DemoCodeViewer } from '@site/src/components/Demo'
 import { ReactRunner } from '@site/src/components/Demo/ReactRunner'
 import { CodeVariantProvider } from '@site/src/components/Demo/utils'
 import { FlexRow } from '@xylabs/react-flexbox'
+import * as xyoClient from '@xyo-network/sdk-xyo-client-js'
+import * as xyoReact from '@xyo-network/sdk-xyo-react'
 import React, { ReactNode } from 'react'
 
 interface DemoCodeBlockProps {
@@ -69,7 +72,16 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
           <Paper>
             <FlexRow padding={2}>
               <ReactRunner
-                scope={{ import: { '@mui/material': mui, react: React }, process: {} }}
+                scope={{
+                  import: {
+                    '@mui/icons-material': mui_icons,
+                    '@mui/material': mui,
+                    '@xyo-network/sdk-xyo-client-js': xyoClient,
+                    '@xyo-network/sdk-xyo-react': xyoReact,
+                    react: React,
+                  },
+                  process: {},
+                }}
                 onError={(error) => console.error(JSON.stringify(error, null, 2))}
                 code={jsxCode}
               />

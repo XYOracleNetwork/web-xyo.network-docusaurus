@@ -14,7 +14,6 @@ Get started by **exploring dApps that use XYO in your browser**.
 
 Use Chrome or another compatible browser to navigate to [explore.xyo.network](https://explore.xyo.network)
 
-
 ## Build a dApp using XYO
 
 Get started by **creating a dApp in Javascript/Typescript**.
@@ -28,7 +27,6 @@ Get started by **adding a feature to a React Website**.
 Get started by **adding a feature to an iOS Mobile App**.
 
 Get started by **adding a feature to an Android Mobile App**.
-
 
 ## Host your own XYO Node
 
