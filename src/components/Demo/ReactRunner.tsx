@@ -9,14 +9,14 @@ export interface ReactRunnerScope {
 export interface ReactRunnerProps {
   code: string
   onError: (error: string | null) => void
-  scope: ReactRunnerScope
+  scope?: ReactRunnerScope
 }
 
 // The docs https://github.com/nihgwu/react-runner
 export function ReactRunner(props: ReactRunnerProps) {
   const { code, scope: scopeProp, onError } = props
 
-  let scope = scopeProp
+  let scope: ReactRunnerScope | undefined = scopeProp
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -33,8 +33,9 @@ export function ReactRunner(props: ReactRunnerProps) {
       }
 
       return {
+        import: {},
+        process: scopeProp ? new Proxy(scopeProp.process, handler) : {},
         ...scopeProp,
-        process: new Proxy(scopeProp.process, handler),
       }
     }, [scopeProp])
   }

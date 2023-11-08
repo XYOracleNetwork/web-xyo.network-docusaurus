@@ -1,7 +1,7 @@
 import { addHiddenInput } from '../utils'
 import * as CRA from './CreateReactApp'
 import { getFileExtension } from './FileExtension'
-import { getDependencies } from './getDependencies'
+import { DependenciesSet, getDependencies } from './getDependencies'
 
 export const createStackBlitzReactApp = (
   demo: {
@@ -9,10 +9,10 @@ export const createStackBlitzReactApp = (
     githubLocation: string
     language: string
     product?: 'joy-ui' | 'base'
-    raw: string
+    raw?: string
     title: string
   },
-  deps,
+  deps?: DependenciesSet[],
 ) => {
   const ext = getFileExtension(demo.codeVariant)
   const { title, githubLocation: description } = demo

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { useWindowSize } from '@docusaurus/theme-common'
 // eslint-disable-next-line import/no-internal-modules
 import { useDoc } from '@docusaurus/theme-common/internal'

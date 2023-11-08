@@ -13,15 +13,9 @@ These demos will expand your understanding of the XYO Platform, and introduce yo
 The interactive CodeSandbox demo below allows you to select an [XYO Module](/glossary) from a dropdown, and resolve it to see information about it.
 
 ```tsx code=getting-started/button-demo deps=["xyo_react"]
-<Button variant="text">Text3</Button>
-<Button variant="contained">Contained</Button>
-<Button variant="outlined">Outlined</Button>
 ```
 
 ```tsx code=getting-started/resolve-module-demo deps=["xyo_react"]
-<Button variant="text">Text3</Button>
-<Button variant="contained">Contained</Button>
-<Button variant="outlined">Outlined</Button>
 ```
 
 ## Query a Node
