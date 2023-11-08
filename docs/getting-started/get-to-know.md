@@ -3,13 +3,14 @@ sidebar_position: 2
 ---
 
 # Get to Know XYO
+
 The following examples offer a preview at just how easy XYO can be. Explore a Node, learn some of the basic XYO vocabulary, and review some resources that can take you where you need to be.
 
 ## Your first node
 
 The following CodeSandbox demonstrates an XYO Node.
 
-A Node is a container that house Sentinels, Bridges, Archivists, and Diviners. (More on those, next!) 
+A Node is a container that house Sentinels, Bridges, Archivists, and Diviners. (More on those, next!)
 
 Right now, the `Node` is empty and has a custom name. Try editing `"YOUR-NODE-NAME"` and see what happens!
 
@@ -28,7 +29,7 @@ Next, try uncommenting the following lines of code:
 
 **Line 20:** `// Bridge: "BridgeToPublicXyoNode",`
 
- _Tip: All Modules in "yourModules" need a comma between them. Keep the leading comma in the Archivist Module line, otherwise you'll receive a bug!_
+_Tip: All Modules in "yourModules" need a comma between them. Keep the leading comma in the Archivist Module line, otherwise you'll receive a bug!_
 
 1. `Archivist` — An Archivist stores Bound Witness and Payload data. Learn more [here](/glossary#archivist).
 2. `Witness` — A Witness captures real-world data. Learn more [here](/glossary#witness).
@@ -43,12 +44,14 @@ A few other useful words to learn:
 
 Need a quick reminder on what's what? The [Glossary](/glossary) can help you out!
 
-
 ## Exercises
+
 We've created a few more [exercises](/getting-started/exercises) to teach you more about ways you can implement XYO.
 
 ## Demos
+
 Explore our demos on [xyo.network](https://xyo.network/dapp) or on our GitHub.
 
 ## Glossary
+
 Need a quick reminder on what's what? The [Glossary](/glossary) can help you out!

@@ -1,1 +1,1 @@
-export {InstallXyoOptions} from './installation'
+export { InstallXyoOptions } from './installation'

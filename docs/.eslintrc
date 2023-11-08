@@ -1,10 +1,16 @@
 {
   "root": true,
-  "ignorePatterns": ["config-overrides.js", "sidebars.js", "scripts-custom", "public", ".yarn", "node_modules", "build", "docusaurus.config.js", "*.d.ts"],
   "extends": [
-    "@xylabs/react"
+    "@xylabs/react-base"
   ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": null,
+    "sourceType": "module",
+    "tsconfigRootDir": null,
+  },
   "rules": {
+    "@typescript-eslint/no-floating-promises": ["off"],
     "react/prop-types": ["off"],
     "react/react-in-jsx-scope": ["off"],
     "import/no-internal-modules": [

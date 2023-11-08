@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography'
 import * as React from 'react'
 
 interface SingleCliTabProps {
-  tabTitle: string
   tabContent: string
+  tabTitle: string
 }
 
 interface CliTabsProps extends BoxProps {
@@ -77,8 +77,8 @@ const AntTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} /
 
 interface StyledTabsProps {
   children?: React.ReactNode
-  value: number
   onChange: (event: React.SyntheticEvent, newValue: number) => void
+  value: number
 }
 
 const StyledTabs = styled((props: StyledTabsProps) => (

@@ -9,6 +9,7 @@ import DocItemTOCDesktop from '@theme/DocItem/TOC/Desktop'
 import DocItemTOCMobile from '@theme/DocItem/TOC/Mobile'
 import DocVersionBadge from '@theme/DocVersionBadge'
 import DocVersionBanner from '@theme/DocVersionBanner'
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx'
 import React from 'react'
 
@@ -29,6 +30,7 @@ function useDocTOC() {
     mobile,
   }
 }
+// eslint-disable-next-line import/no-default-export
 export default function DocItemLayout({ children }) {
   const docTOC = useDocTOC()
   return (
