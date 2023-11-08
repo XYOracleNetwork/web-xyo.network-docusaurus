@@ -5,8 +5,6 @@ sidebar_position: 6
 # Glossary
 Looking for a quick reminder on definitions or usages for XYO technology? You're in the right place.
 
-(Glossary expansion coming soon! 🚧)
-
 <!-- [TODO] — Complete the Glossary -->
 <!-- [Maryann] — Add any words here you've seen questions about (or have a question about yourself!) -->
 
@@ -32,7 +30,8 @@ Types of Modules include:
 
 Node modules provide scoping, so you can easily create public and private collections of modules. With a Node, you can also design unique collections with very specific access inclusions and exclusion. This scoping is key to organization, as well as sovereignty for data and projects created with XYO.
 
-It is important to note that a Node module is not the same as a simple "node" in a network. A "node" may refer to a singular instance of something inside a larger, greater network. A Node module is specifically a collection of XYO modules.
+> :warning: **"Node" vs. "node"**: It is important to note that a Node module is not the same as a simple "node" in a network. A "node" may refer to a singular instance of something inside a larger, greater network. A Node module is specifically a collection of XYO modules.
+
 
 ### Sentinel
 **A Sentinel tells one or more modules what to do.**
@@ -73,9 +72,6 @@ It is also possible to run an Archivist on the same device as the Sentinel and B
 A Diviner takes in data, transforms it, and delivers an answer or new form of that original data. You can think of them in the same way "Reduce", "Map", and "Filter" methods in Javascript transform the data they are applied to.
 
 For example, a "Summary" Diviner might work the same way a "Reduce" does — a diviner that takes in some amount of data, and transforms it it into a summary of that same data, like a sum or an average
-
-## Bound Witness Blocks
-A series of blocks that contain the data collected by a Sentinel.
 
 ## XYO Core Values
 
