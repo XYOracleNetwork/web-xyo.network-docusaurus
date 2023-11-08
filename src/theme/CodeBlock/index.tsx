@@ -6,6 +6,8 @@ import { Demo, DemoCodeViewer, DemoProps } from '@site/src/components/Demo'
 import { ReactRunner } from '@site/src/components/Demo/ReactRunner'
 import { CodeVariantProvider } from '@site/src/components/Demo/utils'
 import { FlexRow } from '@xylabs/react-flexbox'
+import * as xyoSdk from '@xyo-network/sdk-xyo-client-js'
+import * as xyoReactSdk from '@xyo-network/sdk-xyo-react'
 import React, { FunctionComponent, ReactNode } from 'react'
 
 interface DemoCodeBlockProps {
@@ -74,6 +76,8 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
                   import: {
                     '@mui/icons-material': mui_icons,
                     '@mui/material': mui,
+                    '@xyo-network/sdk-xyo-client-js': xyoSdk,
+                    '@xyo-network/sdk-xyo-react': xyoReactSdk,
                     react: React,
                   },
                   process: {},
@@ -96,7 +100,7 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
               title,
               tsx: Paper as FunctionComponent<DemoProps>,
             }}
-            demoOptions={{ defaultCodeOpen: true, demo: 'demo.js' }}
+            demoOptions={{ defaultCodeOpen: false, demo: 'demo.js' }}
             githubLocation={`https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/tree/main/docs/${code}/demo.${ext}`}
             deps={deps}
           />

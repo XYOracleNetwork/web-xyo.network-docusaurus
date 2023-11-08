@@ -32,7 +32,7 @@ const reactDependencies: Record<string, string> = {
 }
 
 const xyoReactDependencies: Record<string, string> = {
-  '@xylabs/sdk-react-js': 'latest',
+  '@xylabs/sdk-react': 'latest',
   '@xyo-network/sdk-xyo-react': 'latest',
   ...xyoDependencies,
   ...reactDependencies,
@@ -64,7 +64,6 @@ const DevDependenciesSets: Record<DependenciesSet, Record<string, string>> = {
 }
 
 export const getDependencies = (sets: DependenciesSet[] = []) => {
-  console.log(`sets: ${JSON.stringify(sets)}`)
   const dependencies = {
     ...standardDependencies,
     ...sets
@@ -82,6 +81,6 @@ export const getDependencies = (sets: DependenciesSet[] = []) => {
         return { ...prev, ...value }
       }, {}),
   }
-  console.log(`getDeps: ${JSON.stringify({ dependencies, devDependencies })}`)
+
   return { dependencies, devDependencies }
 }

@@ -138,8 +138,6 @@ function useDemoElement({
     }
   }, [debouncedSetError])
 
-  console.log(`demoData.scope: ${demoData.scope}`)
-
   // Memoize to avoid rendering the demo more than it needs to be.
   // For example, avoid a render when the demo is hovered.
   const BundledComponent = React.useMemo(() => <demoData.Component />, [demoData])
@@ -238,7 +236,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
     demoOptions.bg = true
   }
 
-  const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false)
+  const [codeOpen, setCodeOpen] = React.useState(!!demoOptions.defaultCodeOpen || false)
   const shownOnce = React.useRef(false)
   if (codeOpen) {
     shownOnce.current = true
@@ -251,7 +249,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
     }
   }, [demoName])
 
-  const showPreview = !demoOptions.hideToolbar && demoOptions.defaultCodeOpen !== false && Boolean(demoData.jsxPreview)
+  const showPreview = !demoOptions.hideToolbar && Boolean(demoData.jsxPreview)
 
   const [demoKey, setDemoKey] = React.useReducer((key) => key + 1, 0)
 
@@ -264,6 +262,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
   const Wrapper = React.Fragment
 
   const isPreview = !codeOpen && showPreview
+
   const initialEditorCode = isPreview
     ? demoData.jsxPreview
     : // Prettier remove all the leading lines except for the last one, remove it as we don't
@@ -303,8 +302,6 @@ export const Demo: React.FC<DemoProps> = (props) => {
     liveDemoActive,
     setDebouncedError,
   })
-
-  console.log(`demoElement: ${JSON.stringify(demoElement.props, null, 2)}`)
 
   return (
     <Root>

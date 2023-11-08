@@ -44,6 +44,8 @@
     "@xyo-network/react-node-renderer": "^2.65.6",
     "@xyo-network/react-plugins": "^2.65.6",
     "@xyo-network/react-sample-node": "^2.65.6",
+    "@xyo-network/sdk-xyo-client-js": "^2.78.3",
+    "@xyo-network/sdk-xyo-react": "^2.65.6",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.0.0",
     "core-js": "^3.33.2",

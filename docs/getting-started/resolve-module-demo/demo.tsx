@@ -1,9 +1,8 @@
 import { DeleteRounded, VisibilityRounded } from '@mui/icons-material'
 import { Box, Button, Card, CardContent, CardHeader } from '@mui/material'
-import { ArchivistInstance } from '@xyo-network/archivist-model'
-import { Payload } from '@xyo-network/payload-model'
 import { ArchivistCard } from '@xyo-network/react-archivist'
-import { SampleNodeModules, useBuildSampleNode } from '@xyo-network/react-sample-node'
+import { ArchivistInstance, Payload } from '@xyo-network/sdk-xyo-client-js'
+import { SampleNodeModules, useBuildSampleNode } from '@xyo-network/sdk-xyo-react'
 import React, { useEffect, useState } from 'react'
 
 export const modules: SampleNodeModules = {
@@ -60,14 +59,14 @@ export default function App() {
       const [systemInfoWitness] = await node.resolve({ name: [moduleName] })
 
       // Invoke the witness with .observe() to generate a payload containing the system info
-      const result = await (systemInfoWitness as XyoBowserSystemInfoWitness).observe()
+      const result = await systemInfoWitness.observe()
       await insertIntoArchivist(result)
     }
   }
 
   return (
     <Box alignItems="stretch" gap="16px" display="flex" flexDirection="column">
-      {module ? <ArchivistCard module={archivist} /> : null}
+      {archivist ? <ArchivistCard module={archivist} /> : null}
       <Box display="flex" gap="16px" justifyContent="space-between">
         <Button startIcon={<VisibilityRounded />} onClick={witnessSystemInfo} variant="contained">
           Witness System Information
