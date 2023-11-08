@@ -54,6 +54,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/', // Serve the docs at the site's root
+          path: 'docs'
         },
         /*blog: {
           showReadingTime: true
@@ -99,6 +100,14 @@ const config = {
               {
                 href: 'https://twitter.com/OfficialXYO',
                 label: 'Twitter',
+              },
+              {
+                href: 'https://facebook.com/OfficialXYO',
+                label: 'Facebook',
+              },
+              {
+                href: 'https://www.instagram.com/officialxyo',
+                label: 'Instagram',
               },
             ],
             title: 'Community',

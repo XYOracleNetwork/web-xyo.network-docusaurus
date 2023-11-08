@@ -1,4 +1,5 @@
 import { useWindowSize } from '@docusaurus/theme-common'
+// eslint-disable-next-line import/no-internal-modules
 import { useDoc } from '@docusaurus/theme-common/internal'
 import DocBreadcrumbs from '@theme/DocBreadcrumbs'
 import DocItemContent from '@theme/DocItem/Content'

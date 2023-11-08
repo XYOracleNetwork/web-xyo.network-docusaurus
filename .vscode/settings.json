@@ -1,4 +1,5 @@
 {
+  "files.eol": "\n",
   "files.exclude": {
     "**/node_modules": false,
   },
@@ -66,6 +67,7 @@
     "jakejarvis",
     "Lifehash",
     "mapbox",
+    "muidocs",
     "muratiger",
     "npmjs",
     "npmrc",

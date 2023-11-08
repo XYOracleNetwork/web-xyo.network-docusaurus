@@ -2,8 +2,8 @@ import * as React from 'react'
 import { useRunner } from 'react-runner'
 
 export interface ReactRunnerScope {
-  import: Record<string, any>
-  process: Record<string, any>
+  import: Record<string, unknown>
+  process: Record<string, unknown>
 }
 
 export interface ReactRunnerProps {

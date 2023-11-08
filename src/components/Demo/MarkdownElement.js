@@ -1,5 +1,6 @@
 /* eslint-disable max-lines */
 import { alpha, darken, styled } from '@mui/material/styles'
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import * as React from 'react'
@@ -661,8 +662,11 @@ const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
 })
 
 MarkdownElement.propTypes = {
+  // eslint-disable-next-line import/no-named-as-default-member
   className: PropTypes.string,
+  // eslint-disable-next-line import/no-named-as-default-member
   renderedMarkdown: PropTypes.string,
 }
 
+// eslint-disable-next-line import/no-default-export
 export default MarkdownElement

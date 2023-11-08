@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-internal-modules */
+import * as mui_icons from '@mui/icons-material'
 import { Paper } from '@mui/material'
 import * as mui from '@mui/material'
 import { Demo, DemoCodeViewer } from '@site/src/components/Demo'
@@ -16,6 +17,7 @@ interface DemoCodeBlockProps {
 }
 
 const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { code, deps: rawDeps = '[]', className = '', children, title, ...otherProps } = props
 
   const deps = JSON.parse(rawDeps)
@@ -68,7 +70,14 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
           <Paper>
             <FlexRow padding={2}>
               <ReactRunner
-                scope={{ import: { '@mui/material': mui, react: React }, process: {} }}
+                scope={{
+                  import: {
+                    '@mui/icons-material': mui_icons,
+                    '@mui/material': mui,
+                    react: React,
+                  },
+                  process: {},
+                }}
                 onError={(error) => console.error(JSON.stringify(error, null, 2))}
                 code={jsxCode}
               />

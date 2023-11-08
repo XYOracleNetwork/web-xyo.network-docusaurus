@@ -8,7 +8,6 @@
 [![snyk-badge][]][snyk-link]
 [![license-badge][]][license-link]
 
-
 > The XYO Foundation provides this documentation in our efforts to
 > advance the understanding of the XYO Protocol and its possible uses.
 > We continue to maintain this software in the interest of developer education.

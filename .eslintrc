@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["config-overrides.js", "scripts-custom", "public", ".yarn", "node_modules", "build", "docusaurus.config.js"],
+  "ignorePatterns": ["config-overrides.js", "scripts-custom", "public", ".yarn", "node_modules", "build", "docusaurus.config.js", "*.d.ts"],
   "extends": [
     "@xylabs/react"
   ],
