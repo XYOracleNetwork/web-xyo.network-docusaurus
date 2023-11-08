@@ -70,7 +70,12 @@ const config = {
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: false,
+      },
       footer: {
         copyright: `Copyright © ${new Date().getFullYear()} XY Labs, Inc.`,
         links: [
@@ -122,7 +127,6 @@ const config = {
             title: 'More',
           },
         ],
-        style: 'dark',
       },
 
       glossary: {
@@ -132,6 +136,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/social-card.jpg',
       navbar: {
+        style: 'dark',
         items: [
           { label: 'Getting Started', position: 'left', to: 'getting-started/intro' },
           { label: 'SDKs', position: 'left', to: 'sdks/javascript' },
@@ -151,7 +156,7 @@ const config = {
         darkTheme: darkCodeTheme,
         theme: lightCodeTheme,
       },
-    }),
+    },
 
   title: 'XYO Platform',
 
