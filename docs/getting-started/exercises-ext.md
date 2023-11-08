@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# Exercises
+# Exercises (Extended)
 Now that you've learned a little more about the components of the XYO Network and how it fits together in the XYO Platform, it's time for some demos!
 
 These demos will expand your understanding of the XYO Platform, and introduce you to some new concepts.

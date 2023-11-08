@@ -5,8 +5,6 @@ sidebar_position: 6
 # Glossary
 Looking for a quick reminder on definitions or usages for XYO technology? You're in the right place.
 
-(Glossary expansion coming soon! 🚧)
-
 <!-- [TODO] — Complete the Glossary -->
 <!-- [Maryann] — Add any words here you've seen questions about (or have a question about yourself!) -->
 
@@ -32,7 +30,8 @@ Types of Modules include:
 
 Node modules provide scoping, so you can easily create public and private collections of modules. With a Node, you can also design unique collections with very specific access inclusions and exclusion. This scoping is key to organization, as well as sovereignty for data and projects created with XYO.
 
-It is important to note that a Node module is not the same as a simple "node" in a network. A "node" may refer to a singular instance of something inside a larger, greater network. A Node module is specifically a collection of XYO modules.
+> :warning: **"Node" vs. "node"**: It is important to note that a Node module is not the same as a simple "node" in a network. A "node" may refer to a singular instance of something inside a larger, greater network. A Node module is specifically a collection of XYO modules.
+
 
 ### Sentinel
 **A Sentinel tells one or more modules what to do.**

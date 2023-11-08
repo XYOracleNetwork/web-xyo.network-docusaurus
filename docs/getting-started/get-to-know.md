@@ -1,9 +1,9 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Intro
-Taking your first steps with XYO? Try out the following demo and read more about what XYO can do.
+# Get to Know XYO
+The following examples offer a preview at just how easy XYO can be. Explore a Node, learn some of the basic XYO vocabulary, and review some resources that can take you where you need to be.
 
 ## Your first node
 
@@ -22,19 +22,24 @@ className="code-sandbox-div"
    
 Next, try uncommenting the following lines of code:
 
+**Line 14:** `// ,MemoryArchivist: "StorageForSystemInfoWitnessData",`
+
+**Line 17:** `// SystemInfoWitness: "WitnessCurrentSystemInformation",`
+
+**Line 20:** `// Bridge: "BridgeToPublicXyoNode",`
+
  _Tip: All Modules in "yourModules" need a comma between them. Keep the leading comma in the Archivist Module line, otherwise you'll receive a bug!_
 
-1. `Archivist` — An Archivist is where Bound Witness and Payload data is stored. A shared, hosted, or self-hosted archivist can be used. It is even possible to run an archivist on the same device as the Sentinel and Bridge.
-2. `Witness` — A Witness captures real-world data.
-3. `Bridge` — A Bridge transfers Bound Witness and payload data form Sentinels to an Archivist. In many cases, the same device that is running the Sentinel also acts as the Bridge.
+1. `Archivist` — An Archivist stores Bound Witness and Payload data. Learn more [here](/glossary#archivist).
+2. `Witness` — A Witness captures real-world data. Learn more [here](/glossary#witness).
+3. `Bridge` — A Bridge serves as a connection between different nodes. Learn more [here](/glossary#bridge).
 
 A few other useful words to learn:
 
 [TODO - Glossary Definition Variables]
 
 1. `Sentinel` — [TODO]
-2. `Witness` — [TODO]
-3. `Bridge` — [TODO]
+2. `Diviner` — [TODO]
 
 Need a quick reminder on what's what? The [Glossary](/glossary) can help you out!
 

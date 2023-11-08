@@ -4,7 +4,7 @@ slug: /
 ---
 # What is XYO?
 ## Introduction
-XYO is an open-source platform for creating and enhancing a software through data-based **sovereignty**, **provenance**, and **permanence**.
+XYO is an open-source platform for creating and enhancing a software through data-based [**sovereignty**](/glossary#sovereignty), [**provenance**](/glossary#provenance), and [**permanence**](/glossary#permanence).
 
 Encompassing both a network and protocol, XYO can be used for aggregating, verifying, organizing, and utilizing decentralized data from any hardware node capable of running XYO-enabled software or firmware. 
 
@@ -16,8 +16,6 @@ XYO is designed to be easy to implement, with several SDKs now available and an 
 
 ## Advantages of XYO
 XYO’s features include:
-- **Optional Blockchain:** Whether you want to add a few decentralized plugins or completely re-vamp your project, XYO allows you to add just as much decentralization as you want. All XYO Modules have [sovereign](/glossary#sovereignty) ledgers, improving performance
-- **Optional Blockchain:** Built-in data validation, helping to protect your data from both errors and attacks.
-- **Optional Blockchain:** Optional, fully integrated blockchain functionality.
-- **Optional Blockchain:** An easy-to-use, human-readable, JSON-based data structure for storage and organization.
-- 
+- **Blockchain Protection:** Built-in data validation, helping to protect your data from both errors and attacks.
+- **Optional Decentralization:** Whether you want to add a few decentralized plugins or completely re-vamp your project, XYO allows you to add just as much decentralization as you want. All XYO Modules have [sovereign](/glossary#sovereignty) ledgers, improving performance, ease of application, and transaction speed.
+- **Data Clarity:** XYO provides an easy-to-use, human-readable, JSON-based data structure for storage and organization. Prioritizing a data structure as JSON means more compatibility across technologies.
