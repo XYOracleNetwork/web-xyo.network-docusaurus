@@ -54,7 +54,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/', // Serve the docs at the site's root
-          path: 'docs_src'
+          path: 'docs'
         },
         /*blog: {
           showReadingTime: true

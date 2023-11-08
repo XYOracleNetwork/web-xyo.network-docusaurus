@@ -33,19 +33,19 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
   let previewCode = ''
   let ext = null
   try {
-    tsxCode = require(`!!raw-loader!@site/docs_src/${code}/demo.tsx`).default ?? children ?? ''
+    tsxCode = require(`!!raw-loader!@site/docs/${code}/demo.tsx`).default ?? children ?? ''
     ext = 'tsx'
   } catch (_ex) {
     null
   }
   try {
-    jsxCode = require(`!!raw-loader!@site/docs_src/${code}/demo.jsx`).default ?? children ?? ''
+    jsxCode = require(`!!raw-loader!@site/docs/${code}/demo.jsx`).default ?? children ?? ''
     ext = 'jsx'
   } catch (_ex) {
     null
   }
   try {
-    previewCode = require(`!!raw-loader!@site/docs_src/${code}/demo.tsx.preview`).default ?? children ?? ''
+    previewCode = require(`!!raw-loader!@site/docs/${code}/demo.tsx.preview`).default ?? children ?? ''
     ext = 'tsx.preview'
   } catch (_ex) {
     null
@@ -97,7 +97,7 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
               tsx: Paper,
             }}
             demoOptions={{ defaultCodeOpen: true, demo: 'demo.js' }}
-            githubLocation={`https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/tree/main/docs_src/${code}/demo.${ext}`}
+            githubLocation={`https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/tree/main/docs/${code}/demo.${ext}`}
             deps={deps}
           />
         </>
