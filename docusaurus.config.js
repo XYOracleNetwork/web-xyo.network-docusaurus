@@ -37,6 +37,7 @@ const config = {
             sourceBaseUrl: "https://raw.githubusercontent.com/", // the base url for the markdown (gets prepended to all of the documents when fetching)
             outDir: "external_markdown", // the base directory to output to.
             documents: [
+              "XYOracleNetwork/plugins/main/README.md",
               "XYOracleNetwork/sdk-xyo-client-swift/main/README.md",
               "XYOracleNetwork/sdk-xyo-client-android/main/README.md",
               "XYOracleNetwork/sdk-xyo-client-js/main/README.md",

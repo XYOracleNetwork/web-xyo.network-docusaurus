@@ -7,7 +7,6 @@ import { ReactRunner } from '@site/src/components/Demo/ReactRunner'
 import { CodeVariantProvider } from '@site/src/components/Demo/utils'
 import { FlexRow } from '@xylabs/react-flexbox'
 import * as xyoSdk from '@xyo-network/sdk-xyo-client-js'
-import * as xyoReactSdk from '@xyo-network/sdk-xyo-react'
 import React, { FunctionComponent, ReactNode } from 'react'
 
 interface DemoCodeBlockProps {
@@ -77,7 +76,6 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
                     '@mui/icons-material': mui_icons,
                     '@mui/material': mui,
                     '@xyo-network/sdk-xyo-client-js': xyoSdk,
-                    '@xyo-network/sdk-xyo-react': xyoReactSdk,
                     react: React,
                   },
                   process: {},
