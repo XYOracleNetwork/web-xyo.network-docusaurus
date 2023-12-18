@@ -1,8 +1,8 @@
 ---
-sidebar_position: 5
+sidebar_position: 3
 ---
 
-# Host your own XYO Node
+# Build a dApp using XYO
 
 Let's discover **XYO Platform in less than 5 minutes**.
 
@@ -18,7 +18,7 @@ Use Chrome or another compatible browser to navigate to [explore.xyo.network](ht
 
 Get started by **creating a dApp in Javascript/Typescript**.
 
-## Add XYO to an existing project
+## Add XYO features to an existing dApp or Application
 
 Get started by **adding a feature to a NodeJS Application**.
 

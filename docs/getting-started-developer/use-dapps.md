@@ -1,8 +1,8 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
-# Build a dApp using XYO
+# Use XYO dApps
 
 Let's discover **XYO Platform in less than 5 minutes**.
 
