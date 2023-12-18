@@ -30,20 +30,27 @@ const config = {
 
   plugins: [
     [
-        "docusaurus-plugin-remote-content",
-        {
-            // options here
-            name: "readme-files", // used by CLI, must be path safe
-            sourceBaseUrl: "https://raw.githubusercontent.com/", // the base url for the markdown (gets prepended to all of the documents when fetching)
-            outDir: "external_markdown", // the base directory to output to.
-            documents: [
-              "XYOracleNetwork/plugins/main/README.md",
-              "XYOracleNetwork/sdk-xyo-client-swift/main/README.md",
-              "XYOracleNetwork/sdk-xyo-client-android/main/README.md",
-              "XYOracleNetwork/sdk-xyo-client-js/main/README.md",
-              "XYOracleNetwork/sdk-xyo-react-js/main/README.md"
-            ], // the file names to download
-        },
+      'docusaurus-plugin-remote-content',
+      {
+        // the base directory to output to.
+        documents: [
+          'XYOracleNetwork/plugins/main/README.md',
+          'XYOracleNetwork/sdk-xyo-client-swift/main/README.md',
+          'XYOracleNetwork/sdk-xyo-client-android/main/README.md',
+          'XYOracleNetwork/sdk-xyo-client-js/main/README.md',
+          'XYOracleNetwork/sdk-xyo-react-js/main/README.md',
+          'XYOracleNetwork/plugins/main/README.md',
+          'XYOracleNetwork/clients/main/README.md',
+        ],
+
+        // options here
+        name: 'readme-files',
+
+        // the base url for the markdown (gets prepended to all of the documents when fetching)
+        outDir: 'external_markdown',
+        // used by CLI, must be path safe
+        sourceBaseUrl: 'https://raw.githubusercontent.com/', // the file names to download
+      },
     ],
   ],
 
@@ -53,9 +60,11 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          // Serve the docs at the site's root
+          path: 'docs',
+
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
-          routeBasePath: '/', // Serve the docs at the site's root
-          path: 'docs'
         },
         /*blog: {
           showReadingTime: true
@@ -137,7 +146,6 @@ const config = {
       // Replace with your project's social card
       image: 'img/social-card.jpg',
       navbar: {
-        style: 'dark',
         items: [
           { label: 'Getting Started', position: 'left', to: 'getting-started/intro' },
           { label: 'SDKs', position: 'left', to: 'sdks/javascript' },
@@ -151,6 +159,7 @@ const config = {
           alt: 'XYO Logo',
           src: 'img/logo.svg',
         },
+        style: 'dark',
         title: 'XYO Platform (Pre-release Docs)',
       },
       prism: {
