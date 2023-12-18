@@ -1,7 +1,7 @@
 import { DeleteRounded, VisibilityRounded } from '@mui/icons-material'
 import { Box, Button, Card, CardContent, CardHeader } from '@mui/material'
-import { ArchivistCard } from '@xyo-network/sdk-xyo-client-js'
-import { useBuildSampleNode } from '@xyo-network/sdk-xyo-react'
+import { ArchivistCard } from '@xyo-network/react-archivist'
+import { useBuildSampleNode } from '@xyo-network/react-node-renderer'
 import React, { useEffect, useState } from 'react'
 
 export const modules = {
