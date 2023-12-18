@@ -48,6 +48,7 @@
     "@xyo-network/react-sample-node": "^2.67.4",
     "@xyo-network/sdk-xyo-client-js": "^2.84.7",
     "@xyo-network/sdk-xyo-react": "^2.67.4",
+    "bufferutil": "^4.0.8",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.0.0",
     "core-js": "^3.34.0",
@@ -65,7 +66,8 @@
     "react-simple-code-editor": "^0.13.1",
     "stream-browserify": "^3.0.0",
     "styled-components": "^6.1.1",
-    "stylis-plugin-rtl": "^2.1.1"
+    "stylis-plugin-rtl": "^2.1.1",
+    "utf-8-validate": "^6.0.3"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.0.1",

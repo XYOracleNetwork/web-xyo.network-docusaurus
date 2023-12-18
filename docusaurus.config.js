@@ -92,7 +92,7 @@ const config = {
             items: [
               {
                 label: 'Getting Started',
-                to: '/getting-started/intro',
+                to: '/getting-started-user/quickstart',
               },
               {
                 label: 'SDKs',
@@ -146,7 +146,7 @@ const config = {
       image: 'img/social-card.jpg',
       navbar: {
         items: [
-          { label: 'Getting Started', position: 'left', to: 'getting-started/intro' },
+          { label: 'Getting Started', position: 'left', to: 'getting-started-user/quickstart' },
           { label: 'SDKs', position: 'left', to: 'sdks/javascript' },
           {
             href: 'https://github.com/XYOracleNetwork',

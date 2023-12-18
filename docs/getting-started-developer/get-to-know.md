@@ -44,9 +44,9 @@ A few other useful words to learn:
 
 Need a quick reminder on what's what? The [Glossary](/glossary) can help you out!
 
-## Exercises
+## Concepts
 
-We've created a few more [exercises](/getting-started/exercises) to teach you more about ways you can implement XYO.
+We've created a few more [exercises](/getting-started-developer/concepts) to teach you more about ways you can implement XYO.
 
 ## Demos
 
