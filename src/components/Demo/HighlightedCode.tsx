@@ -6,7 +6,7 @@ import MarkdownElement from './MarkdownElement'
 import { prismHighlight } from './prism'
 import { useCodeCopy } from './utils'
 
-interface HighlightedCodeProps extends React.HTMLProps<'div'> {
+export interface HighlightedCodeProps extends React.HTMLProps<'div'> {
   MarkdownComponent?: React.ElementType
   code: string
   copyButtonHidden?: boolean

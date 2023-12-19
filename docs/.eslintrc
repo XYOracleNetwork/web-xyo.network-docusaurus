@@ -1,0 +1,68 @@
+{
+  "root": true,
+  "extends": [
+    "@xylabs/react-base"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": null,
+    "sourceType": "module",
+    "tsconfigRootDir": null,
+  },
+  "rules": {
+    "@typescript-eslint/no-floating-promises": ["off"],
+    "react/prop-types": ["off"],
+    "react/react-in-jsx-scope": ["off"],
+    "import/no-internal-modules": [
+      "warn", {
+        "allow": [
+          "**/*.jpg",
+          "**/*.png",
+          "**/*.svg",
+          "**/*.gif",
+          "**/*.webp",
+          "react-icons/*",
+          "firebase/*",
+          "react-share/**/*",
+          "lodash/*",
+          "@mui/**/*",
+          "react-player/*",
+          "filepond/**/*",
+          "filepond-plugin-image-preview/**/*"
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.md", "**/*.mdx"],
+      "processor": "markdown/markdown",
+      "plugins": ["markdown"],
+      "rules": {
+        "md/remark": [
+          "off",
+          {
+            "plugins": ["preset-lint-markdown-style-guide", "frontmatter", ["lint-list-item-indent", "tab-size"]],
+          }
+        ],
+        "prettier/prettier": [
+          "off"
+        ]
+      }
+    },
+    {
+      "files": ["**/*.md/*.tsx"],
+      "rules": {
+
+      }
+    }
+  ],
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

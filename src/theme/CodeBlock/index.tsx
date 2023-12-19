@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-internal-modules */
+import * as mui_icons from '@mui/icons-material'
 import { Paper } from '@mui/material'
 import * as mui from '@mui/material'
-import { Demo, DemoCodeViewer } from '@site/src/components/Demo'
+import { Demo, DemoCodeViewer, DemoProps } from '@site/src/components/Demo'
 import { ReactRunner } from '@site/src/components/Demo/ReactRunner'
 import { CodeVariantProvider } from '@site/src/components/Demo/utils'
 import { FlexRow } from '@xylabs/react-flexbox'
-import React, { ReactNode } from 'react'
+import * as protocol from '@xyo-network/protocol'
+import React, { FunctionComponent, ReactNode } from 'react'
 
 interface DemoCodeBlockProps {
   children: ReactNode
@@ -16,14 +18,15 @@ interface DemoCodeBlockProps {
 }
 
 const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { code, deps: rawDeps = '[]', className = '', children, title, ...otherProps } = props
 
   const deps = JSON.parse(rawDeps)
 
   const sourceLanguage = className
-    .split(' ')
-    .find((value) => value.startsWith('language-'))
-    .split('-')
+    ?.split(' ')
+    ?.find((value) => value.startsWith('language-'))
+    ?.split('-')
     .pop()
 
   let tsxCode = ''
@@ -49,7 +52,7 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
     null
   }
 
-  const previewCodeOrChildren = (children as string) ?? previewCode
+  const previewCodeOrChildren = previewCode ?? (children as string)
 
   return (
     <CodeVariantProvider value={{ codeVariant: 'TS' }}>
@@ -68,7 +71,15 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
           <Paper>
             <FlexRow padding={2}>
               <ReactRunner
-                scope={{ import: { '@mui/material': mui, react: React }, process: {} }}
+                scope={{
+                  import: {
+                    '@mui/icons-material': mui_icons,
+                    '@mui/material': mui,
+                    '@xyo-network/protocol': protocol,
+                    react: React,
+                  },
+                  process: {},
+                }}
                 onError={(error) => console.error(JSON.stringify(error, null, 2))}
                 code={jsxCode}
               />
@@ -77,7 +88,7 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
           <Demo
             demo={{
               githubLocation: 'https://github.com/XYOracleNetwork',
-              jsx: Paper,
+              jsx: Paper as FunctionComponent<DemoProps>,
               jsxPreview: previewCodeOrChildren,
               language: 'en',
               raw: jsxCode,
@@ -85,9 +96,9 @@ const DemoCodeBlock: React.FC<DemoCodeBlockProps> = (props) => {
               rawTS: tsxCode,
               sourceLanguage: sourceLanguage,
               title,
-              tsx: Paper,
+              tsx: Paper as FunctionComponent<DemoProps>,
             }}
-            demoOptions={{ defaultCodeOpen: true, demo: 'demo.js' }}
+            demoOptions={{ defaultCodeOpen: false, demo: 'demo.js' }}
             githubLocation={`https://github.com/XYOracleNetwork/web-xyo.network-docusaurus/tree/main/docs/${code}/demo.${ext}`}
             deps={deps}
           />

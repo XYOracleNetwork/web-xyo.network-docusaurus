@@ -1,45 +1,97 @@
 ---
-sidebar_position: 6
+sidebar_position: 8
 ---
 
 # Glossary
-Looking for a quick reminder on definitions or usages for XYO technology? You're in the right place.
 
-(Glossary expansion coming soon! 🚧)
+Looking for a quick reminder on definitions or usages for XYO technology? You're in the right place.
 
 <!-- [TODO] — Complete the Glossary -->
 <!-- [Maryann] — Add any words here you've seen questions about (or have a question about yourself!) -->
 
-## Node
-A container that house Sentinels, Bridges, Archivists, and Diviners. It is a Module which also contains Modules. Nodes act as a Module Namespace ensuring uniqueness within a subset of the XYO Network.
+## The Basics
 
-## Sentinel
-A digital or physical device that collects data of some sort. Sentinels structure the data they collect into a series of Bound Witness Blocks.  This is called a Proof of Origin Chain. Some examples of Sentinels might be:
+### Module
+
+A Module is an account or wallet with a sovereign ledger and the ability to build and sign Bound Witnesses.
+Modules encapsulate XYO components (Archivists, Diviners, Bridges, etc.). All Modules have their own Bound Witness ledger, which allows them to remain sovereign and provide valuable and verifiable audit trails for data. Modules add to this Bound Witness ledger with a new signature when they are called via a query (remotely, in most cases). After being called, Modules build a Bound Witness and sign it, including the signature in the response.
+
+Types of Modules include:
+
+- Node
+- Sentinel
+- Bridge
+- Archivist
+- Diviner
+
+## Module Types
+
+### Node
+
+**A Node is a collection of modules.**
+
+Node modules provide scoping, so you can easily create public and private collections of modules. With a Node, you can also design unique collections with very specific access inclusions and exclusion. This scoping is key to organization, as well as sovereignty for data and projects created with XYO.
+
+> :warning: **"Node" vs. "node"**: It is important to note that a Node module is not the same as a simple "node" in a network. A "node" may refer to a singular instance of something inside a larger, greater network. A Node module is specifically a collection of XYO modules.
+
+### Sentinel
+
+**A Sentinel tells one or more modules what to do.**
+
+Similar to a conductor or a Zapier "Zap", the Sentinel contains instructions for other modules to complete. These tasks are often specialized steps that lead to a greater, overall task.
+
+Most importantly, Sentinels do a lot of heavy lifting when it comes to the cryptographic design of XYO. A Sentinel can provide a final signature for a bundle of completed tasks, and it can instruct other modules to sign off on independently completed tasks. Each of these signatures creates a Bound Witnesses.
+
+The more Sentinels that can agree and include unique signatures on the Bound Witnessed data, the better we can verify the audit trail for that data.
+
+Some examples of Sentinels might be:
 
 - An NFC chip that counts phone scans every time you tap it to your phone
 - A smart-watch that records your heart rate
 - A thermometer that collects real-world temperature data
 
-## Bridge
-A Bridge transfers Bound Witness and payload data form Sentinels to an Archivist. In many cases, the same device that is running the Sentinel also acts as the Bridge. Some examples of Bridges might be:
+#### Bound Witness Blocks
+
+A series of blocks that contain the data collected by a Sentinel.
+
+### Bridge
+
+**A Bridge serves as a connection between different nodes.**
+
+A Bridge is most often used when traversing a technology connecting remote modules. An example of this may be a Bridge connecting a local module running on your computer and a remote module that requires HTTP access. Another example may be when crossing a Bluetooth connection between two separate nodes.
+
+At its core, a Bridge transfers Bound Witness and payload data from Sentinels to an Archivist. In many cases, the same device that is running the Sentinel also acts as the Bridge.Some examples of Bridges might be:
 
 - A computer
 - A smartphone
 - A Raspberry Pi
 
-## Archivist
-An Archivist is where Bound Witness and Payload data is stored. A shared, hosted, or self-hosted archivist can be used. It is even possible to run an archivist on the same device as the Sentinel and Bridge.
+### Archivist
 
-## Diviner
-A Diviner is used to view data and information that is stored in one or more Archivists.
+**An Archivist is where Bound Witness and Payload data is stored.**
 
+At its core, an Archivist is a module designed to store things. Archivists can be shared, hosted, or self-hosted, similar to a database.
 
-## Module
-A Module is an account or wallet with autonomous functionality and can be thought of as somewhat analogous to smart contracts.  Modules encapsulate the components of the XYO Network (Archivists, Diviners, Bridges, etc.) while providing a standardized way to enable discoverability, communication, and security.  Modules have a defined set of query payloads that they take action on and provide a cryptographically signed response.
+It is also possible to run an Archivist on the same device as the Sentinel and Bridge. This allows a developer to simplify their XYO system, and for example, store payloads on the same device where payloads are sent to remote modules (by a Bridge) or where actions are orchestrated and signed (by a Sentinel).
 
-## Bound Witness Blocks
-A series of blocks that contain the data collected by a Sentinel.
+### Diviner
 
-## Proof of Origin
+**A Diviner is a module that transforms data.**
 
-## Proof of Origin Chain
+A Diviner takes in data, transforms it, and delivers an answer or new form of that original data. You can think of them in the same way "Reduce", "Map", and "Filter" methods in Javascript transform the data they are applied to.
+
+For example, a "Summary" Diviner might work the same way a "Reduce" does — a diviner that takes in some amount of data, and transforms it it into a summary of that same data, like a sum or an average.
+
+## XYO Core Values
+
+### Sovereignty
+
+Data Sovereignty is the right to own, control, and store data you create.
+
+### Provenance
+
+Provenance is the origin or earliest known history of something. XYO incorporates provenance as a key feature of XYO technology through data provenance. is knowing where data was created, where it came from, who made it.
+
+### Permanence
+
+Data Permanence emphasizes the need for trusted, long-term storage, organization, and access. XYO promotes data permanence because it so heavily influences data's use, reliability, and ultimately, value.

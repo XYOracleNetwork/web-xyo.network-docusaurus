@@ -21,6 +21,7 @@ import { CODE_VARIANT } from './constants'
 import { DemoConfig, DemoOptions } from './Demo'
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from './mui-docs'
 import { createCodeSandboxReactApp, createStackBlitzReactApp } from './sandbox'
+// eslint-disable-next-line import/no-internal-modules
 import { DependenciesSet } from './sandbox/getDependencies'
 import { getCookie, useCodeVariant, useSetCodeVariant } from './utils'
 
@@ -94,13 +95,11 @@ const alwaysTrue = () => true
  */
 
 interface ToolbarOptions {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  controlRefs?: React.Ref<any>[]
   defaultActiveIndex?: number
   isFocusableControl?: (index: number) => boolean
 }
 
-function useToolbar(controlRefs, options: ToolbarOptions = {}) {
+function useToolbar(controlRefs?: React.Ref<HTMLButtonElement>[], options: ToolbarOptions = {}) {
   const { defaultActiveIndex = 0, isFocusableControl = alwaysTrue } = options
   const [activeControlIndex, setActiveControlIndex] = React.useState(defaultActiveIndex)
 
@@ -116,17 +115,19 @@ function useToolbar(controlRefs, options: ToolbarOptions = {}) {
   }, [defaultActiveIndex, isFocusableControl])
 
   // controlRefs.findIndex(controlRef => controlRef.current = element)
-  function findControlIndex(element) {
+  function findControlIndex(element: Element) {
     let controlIndex = -1
-    controlRefs.forEach((controlRef, index) => {
-      if (controlRef.current === element) {
-        controlIndex = index
+    controlRefs?.forEach((controlRef, index) => {
+      if (controlRef !== null && typeof controlRef === 'object') {
+        if (controlRef.current === element) {
+          controlIndex = index
+        }
       }
     })
     return controlIndex
   }
 
-  function handleControlFocus(event) {
+  function handleControlFocus(event: React.FocusEvent) {
     const nextActiveControlIndex = findControlIndex(event.target)
     if (nextActiveControlIndex !== -1) {
       setActiveControlIndex(nextActiveControlIndex)
@@ -137,19 +138,21 @@ function useToolbar(controlRefs, options: ToolbarOptions = {}) {
 
   const { direction } = useTheme()
 
-  function handleToolbarKeyDown(event) {
+  function handleToolbarKeyDown(event: React.KeyboardEvent) {
     // We handle toolbars where controls can be hidden temporarily.
     // When a control is hidden we can't move focus to it and have to exclude
     // it from the order.
     let currentFocusableControlIndex = -1
-    const focusableControls = []
-    controlRefs.forEach((controlRef, index) => {
-      const { current: control } = controlRef
-      if (index === activeControlIndex) {
-        currentFocusableControlIndex = focusableControls.length
-      }
-      if (control !== null && isFocusableControl(index)) {
-        focusableControls.push(control)
+    const focusableControls: HTMLElement[] = []
+    controlRefs?.forEach((controlRef, index) => {
+      if (controlRef !== null && typeof controlRef === 'object') {
+        const control = controlRef.current
+        if (index === activeControlIndex) {
+          currentFocusableControlIndex = focusableControls.length
+        }
+        if (control !== null && isFocusableControl(index)) {
+          focusableControls.push(control)
+        }
       }
     })
 
@@ -180,10 +183,10 @@ function useToolbar(controlRefs, options: ToolbarOptions = {}) {
     }
   }
 
-  function getControlProps(index) {
+  function getControlProps(index: number) {
     return {
       onFocus: handleControlFocus,
-      ref: controlRefs[index],
+      ref: controlRefs?.[index],
       tabIndex: index === activeControlIndex ? 0 : -1,
     }
   }
@@ -238,8 +241,6 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
   const setCodeVariant = useSetCodeVariant()
   const codeVariant = useCodeVariant()
 
-  console.log(`deps3: ${JSON.stringify(deps)}`)
-
   const hasTSVariant = demo.rawTS
   const renderedCodeVariant = (): CODE_VARIANT => {
     if (codeVariant === 'TS' && hasTSVariant) {
@@ -248,14 +249,14 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
     return 'JS'
   }
 
-  const handleCodeLanguageClick = (event, clickedCodeVariant: CODE_VARIANT) => {
+  const handleCodeLanguageClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, clickedCodeVariant: CODE_VARIANT) => {
     if (clickedCodeVariant !== null && codeVariant !== clickedCodeVariant) {
       setCodeVariant(clickedCodeVariant)
     }
   }
 
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const handleMoreClick = (event) => {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
+  const handleMoreClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     setAnchorEl(event.currentTarget)
   }
   const handleMoreClose = () => {
@@ -263,14 +264,14 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
   }
 
   const [snackbarOpen, setSnackbarOpen] = React.useState(false)
-  const [snackbarMessage, setSnackbarMessage] = React.useState(undefined)
+  const [snackbarMessage, setSnackbarMessage] = React.useState<string>()
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false)
   }
   const handleCopyClick = async () => {
     try {
-      await copy(demoData.raw)
+      await copy(demoData.raw ?? 'No Code')
       setSnackbarMessage('The source code has been copied to your clipboard.')
       setSnackbarOpen(true)
     } finally {
@@ -278,7 +279,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
     }
   }
 
-  const createHandleCodeSourceLink = (anchor) => async () => {
+  const createHandleCodeSourceLink = (anchor: string) => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`)
       setSnackbarMessage('Link to the source code has been copied to your clipboard.')
@@ -311,7 +312,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
     showCodeLabel = showPreview ? 'Show the full source' : 'Show the source'
   }
 
-  const controlRefs = [
+  const controlRefs: React.MutableRefObject<HTMLButtonElement | null>[] = [
     React.useRef(null),
     React.useRef(null),
     React.useRef(null),
@@ -323,13 +324,13 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
     React.useRef(null),
   ]
   // if the code is not open we hide the first two language controls
-  const isFocusableControl = React.useCallback((index) => (codeOpen ? true : index >= 2), [codeOpen])
+  const isFocusableControl = React.useCallback((index: number) => (codeOpen ? true : index >= 2), [codeOpen])
   const { getControlProps, toolbarProps } = useToolbar(controlRefs, {
     defaultActiveIndex: 2,
     isFocusableControl,
   })
 
-  const devMenuItems = []
+  const devMenuItems: string[] = []
 
   return (
     <React.Fragment>
@@ -337,7 +338,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
         <Fade in={codeOpen}>
           <ToggleButtonGroup sx={{ margin: '8px 0' }} exclusive value={renderedCodeVariant()} onChange={handleCodeLanguageClick}>
             <ToggleButton
-              sx={(theme) => ({
+              sx={(_theme) => ({
                 borderColor: 'grey.200',
                 borderRadius: 0.5,
                 padding: '5px 10px',
@@ -355,7 +356,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
               <JavaScriptIcon sx={{ color: '#3A750A !important', fontSize: 20 }} />
             </ToggleButton>
             <ToggleButton
-              sx={(theme) => ({
+              sx={(_theme) => ({
                 '&.Mui-disabled': {
                   opacity: 0.5,
                 },
@@ -382,7 +383,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
           <ToggleCodeTooltip showSourceHint={showSourceHint} PopperProps={{ disablePortal: true }} title={showCodeLabel} placement="bottom">
             <IconButton
               size="large"
-              aria-controls={openDemoSource ? demoSourceId : null}
+              aria-controls={openDemoSource ? demoSourceId : undefined}
               data-ga-event-category="demo"
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="expand"

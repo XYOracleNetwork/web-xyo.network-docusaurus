@@ -199,7 +199,6 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 
       return undefined
     },
-
     palette: {
       divider: mode === 'dark' ? alpha(blue[100], 0.08) : grey[100],
       mode,

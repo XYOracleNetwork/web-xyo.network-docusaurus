@@ -1,7 +1,7 @@
 import { addHiddenInput } from '../utils'
 import * as CRA from './CreateReactApp'
 import { getFileExtension } from './FileExtension'
-import { getDependencies } from './getDependencies'
+import { DependenciesSet, getDependencies } from './getDependencies'
 
 export const createStackBlitzReactApp = (
   demo: {
@@ -9,10 +9,10 @@ export const createStackBlitzReactApp = (
     githubLocation: string
     language: string
     product?: 'joy-ui' | 'base'
-    raw: string
+    raw?: string
     title: string
   },
-  deps,
+  deps?: DependenciesSet[],
 ) => {
   const ext = getFileExtension(demo.codeVariant)
   const { title, githubLocation: description } = demo
@@ -28,6 +28,22 @@ export const createStackBlitzReactApp = (
 
   const { dependencies, devDependencies } = getDependencies(deps)
 
+  files['package.json'] = JSON.stringify(
+    {
+      dependencies,
+      description,
+      devDependencies,
+      ...(demo.codeVariant === 'TS' && {
+        main: 'index.tsx',
+        scripts: {
+          start: 'react-scripts start',
+        },
+      }),
+    },
+    null,
+    2,
+  )
+
   return {
     dependencies,
     description,
@@ -40,15 +56,14 @@ export const createStackBlitzReactApp = (
       form.method = 'POST'
       form.target = '_blank'
       form.action = `https://stackblitz.com/run?file=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`
+      Object.entries(files).forEach(([key, value]) => {
+        addHiddenInput(form, `project[files][${key}]`, value)
+      })
       addHiddenInput(form, 'project[template]', 'create-react-app')
       addHiddenInput(form, 'project[title]', title)
       addHiddenInput(form, 'project[description]', `# ${title}\n${description}`)
       addHiddenInput(form, 'project[dependencies]', JSON.stringify(dependencies))
       addHiddenInput(form, 'project[devDependencies]', JSON.stringify(devDependencies))
-      Object.keys(files).forEach((key) => {
-        const value = files[key]
-        addHiddenInput(form, `project[files][${key}]`, value)
-      })
       document.body.appendChild(form)
       form.submit()
       document.body.removeChild(form)

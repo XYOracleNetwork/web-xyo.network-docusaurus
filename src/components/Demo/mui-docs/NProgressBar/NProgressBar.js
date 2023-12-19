@@ -88,5 +88,6 @@ export function NProgressBar(props) {
 }
 
 NProgressBar.propTypes = {
+  // eslint-disable-next-line import/no-named-as-default-member
   children: PropTypes.node,
 }

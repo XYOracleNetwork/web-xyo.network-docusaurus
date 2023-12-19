@@ -1,4 +1,6 @@
+/* eslint-disable import/no-unresolved */
 import { useWindowSize } from '@docusaurus/theme-common'
+// eslint-disable-next-line import/no-internal-modules
 import { useDoc } from '@docusaurus/theme-common/internal'
 import DocBreadcrumbs from '@theme/DocBreadcrumbs'
 import DocItemContent from '@theme/DocItem/Content'
@@ -8,6 +10,7 @@ import DocItemTOCDesktop from '@theme/DocItem/TOC/Desktop'
 import DocItemTOCMobile from '@theme/DocItem/TOC/Mobile'
 import DocVersionBadge from '@theme/DocVersionBadge'
 import DocVersionBanner from '@theme/DocVersionBanner'
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx'
 import React from 'react'
 
@@ -28,6 +31,7 @@ function useDocTOC() {
     mobile,
   }
 }
+// eslint-disable-next-line import/no-default-export
 export default function DocItemLayout({ children }) {
   const docTOC = useDocTOC()
   return (
@@ -35,7 +39,7 @@ export default function DocItemLayout({ children }) {
       <div className={clsx('col', 'arie', !docTOC.hidden && styles.docItemCol)}>
         <DocVersionBanner />
         <div className={styles.docItemContainer}>
-          <article>
+          <article style={{ paddingRight: '80px' }}>
             <DocBreadcrumbs />
             <DocVersionBadge />
             {docTOC.mobile}

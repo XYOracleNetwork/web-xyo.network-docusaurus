@@ -1,8 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github')
-const darkCodeTheme = require('prism-react-renderer/themes/dracula')
+const { themes } = require('prism-react-renderer')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -30,19 +29,27 @@ const config = {
 
   plugins: [
     [
-        "docusaurus-plugin-remote-content",
-        {
-            // options here
-            name: "readme-files", // used by CLI, must be path safe
-            sourceBaseUrl: "https://raw.githubusercontent.com/", // the base url for the markdown (gets prepended to all of the documents when fetching)
-            outDir: "external_markdown", // the base directory to output to.
-            documents: [
-              "XYOracleNetwork/sdk-xyo-client-swift/main/README.md",
-              "XYOracleNetwork/sdk-xyo-client-android/main/README.md",
-              "XYOracleNetwork/sdk-xyo-client-js/main/README.md",
-              "XYOracleNetwork/sdk-xyo-react-js/main/README.md"
-            ], // the file names to download
-        },
+      'docusaurus-plugin-remote-content',
+      {
+        // the base directory to output to.
+        documents: [
+          'XYOracleNetwork/plugins/main/README.md',
+          'XYOracleNetwork/sdk-xyo-client-swift/main/README.md',
+          'XYOracleNetwork/sdk-xyo-client-android/main/README.md',
+          'XYOracleNetwork/sdk-xyo-client-js/main/README.md',
+          'XYOracleNetwork/sdk-xyo-react-js/main/README.md',
+          'XYOracleNetwork/plugins/main/README.md',
+          'XYOracleNetwork/clients/main/README.md',
+        ],
+
+        // options here
+        name: 'readme-files',
+
+        // the base url for the markdown (gets prepended to all of the documents when fetching)
+        outDir: 'external_markdown',
+        // used by CLI, must be path safe
+        sourceBaseUrl: 'https://raw.githubusercontent.com/', // the file names to download
+      },
     ],
   ],
 
@@ -52,8 +59,11 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          // Serve the docs at the site's root
+          path: 'docs',
+
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
-          routeBasePath: '/', // Serve the docs at the site's root
         },
         /*blog: {
           showReadingTime: true
@@ -69,7 +79,12 @@ const config = {
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: false,
+      },
       footer: {
         copyright: `Copyright © ${new Date().getFullYear()} XY Labs, Inc.`,
         links: [
@@ -77,7 +92,7 @@ const config = {
             items: [
               {
                 label: 'Getting Started',
-                to: '/getting-started/intro',
+                to: '/getting-started-user/quickstart',
               },
               {
                 label: 'SDKs',
@@ -100,6 +115,14 @@ const config = {
                 href: 'https://twitter.com/OfficialXYO',
                 label: 'Twitter',
               },
+              {
+                href: 'https://facebook.com/OfficialXYO',
+                label: 'Facebook',
+              },
+              {
+                href: 'https://www.instagram.com/officialxyo',
+                label: 'Instagram',
+              },
             ],
             title: 'Community',
           },
@@ -113,7 +136,6 @@ const config = {
             title: 'More',
           },
         ],
-        style: 'dark',
       },
 
       glossary: {
@@ -124,7 +146,7 @@ const config = {
       image: 'img/social-card.jpg',
       navbar: {
         items: [
-          { label: 'Getting Started', position: 'left', to: 'getting-started/intro' },
+          { label: 'Getting Started', position: 'left', to: 'getting-started-user/quickstart' },
           { label: 'SDKs', position: 'left', to: 'sdks/javascript' },
           {
             href: 'https://github.com/XYOracleNetwork',
@@ -136,13 +158,14 @@ const config = {
           alt: 'XYO Logo',
           src: 'img/logo.svg',
         },
+        style: 'dark',
         title: 'XYO Platform (Pre-release Docs)',
       },
       prism: {
-        darkTheme: darkCodeTheme,
-        theme: lightCodeTheme,
+        darkTheme: themes.dracula,
+        theme: themes.github,
       },
-    }),
+    },
 
   title: 'XYO Platform',
 

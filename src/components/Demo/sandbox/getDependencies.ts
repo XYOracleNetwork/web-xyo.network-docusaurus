@@ -3,6 +3,7 @@ const standardDependencies: Record<string, string> = {}
 const typescriptDependencies: Record<string, string> = {}
 
 const xyoDependencies: Record<string, string> = {
+  '@xylabs/crypto': 'latest',
   '@xylabs/sdk-js': 'latest',
   '@xyo-network/sdk-xyo-client-js': 'latest',
 }
@@ -21,6 +22,7 @@ const typescriptDevDependencies: Record<string, string> = {
 const muiDependencies: Record<string, string> = {
   '@emotion/react': 'latest',
   '@emotion/styled': 'latest',
+  '@mui/icons-material': 'latest',
   '@mui/material': 'latest',
 }
 
@@ -30,13 +32,15 @@ const reactDependencies: Record<string, string> = {
 }
 
 const xyoReactDependencies: Record<string, string> = {
-  '@xylabs/sdk-react-js': 'latest',
-  '@xyo-network/sdk-xyo-react-js': 'latest',
+  '@xylabs/sdk-react': 'latest',
+  '@xyo-network/sdk-xyo-react': 'latest',
+  ...xyoDependencies,
   ...reactDependencies,
   ...muiDependencies,
 }
 
 const xyoReactDevDependencies: Record<string, string> = {
+  ...xyoDevDependencies,
   ...reactDevDependencies,
   ...muiDevDependencies,
 }
@@ -60,7 +64,6 @@ const DevDependenciesSets: Record<DependenciesSet, Record<string, string>> = {
 }
 
 export const getDependencies = (sets: DependenciesSet[] = []) => {
-  console.log(`sets: ${JSON.stringify(sets)}`)
   const dependencies = {
     ...standardDependencies,
     ...sets
@@ -78,6 +81,6 @@ export const getDependencies = (sets: DependenciesSet[] = []) => {
         return { ...prev, ...value }
       }, {}),
   }
-  console.log(`getDeps: ${JSON.stringify({ dependencies, devDependencies })}`)
+
   return { dependencies, devDependencies }
 }

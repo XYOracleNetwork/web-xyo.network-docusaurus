@@ -5,6 +5,8 @@
  */
 
 /* You can override the default Infima variables here. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500;9..40,700&display=swap');
+
 :root {
   --ifm-color-primary: #463DC6;
   --ifm-color-primary-dark: #342CA0;
@@ -15,7 +17,8 @@
   --ifm-color-primary-lightest: rgb(216, 216, 254);
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --doc-sidebar-width: 200px !important;
+  --doc-sidebar-width: 300px !important;
+  --ifm-font-family-base: 'DM Sans';
 }
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme=‘dark’] {
@@ -27,7 +30,7 @@
   --ifm-color-primary-lighter: #F5EEFE;
   --ifm-color-primary-lightest: #FFFFFF;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-  --doc-sidebar-width: 200px !important;
+  --doc-sidebar-width: 300px !important;
 }
 .h1 {
 font-size: 36px;

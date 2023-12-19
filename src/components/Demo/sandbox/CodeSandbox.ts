@@ -43,7 +43,7 @@ export const createCodeSandboxReactApp = (
     githubLocation: string
     language: string
     product?: 'joy-ui' | 'base'
-    raw: string
+    raw?: string
     title: string
   },
   deps?: DependenciesSet[],
@@ -68,7 +68,7 @@ export const createCodeSandboxReactApp = (
     }),
   }
 
-  const { dependencies, devDependencies } = getDependencies(demo.codeVariant === 'TS' ? [...deps, 'typescript'] : [...deps])
+  const { dependencies, devDependencies } = getDependencies(demo.codeVariant === 'TS' ? [...(deps ?? []), 'typescript'] : [...(deps ?? [])])
 
   files['package.json'] = {
     content: {
@@ -94,7 +94,7 @@ export const createCodeSandboxReactApp = (
      * @description should start with `/`, e.g. `/demo.tsx`. If the extension is not provided,
      * it will be appended based on the code variant.
      */
-    openSandbox: (initialFile?: string) => openSandbox({ codeVariant: demo.codeVariant, files, initialFile }),
+    openSandbox: (initialFile?: string) => (initialFile ? openSandbox({ codeVariant: demo.codeVariant, files, initialFile }) : null),
 
     title,
   }

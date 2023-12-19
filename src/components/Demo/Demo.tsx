@@ -17,6 +17,7 @@ import { DemoSandbox } from './DemoSandbox'
 import { DemoToolbar } from './DemoToolbar'
 import { HighlightedCode } from './HighlightedCode'
 import { ReactRunner, ReactRunnerScope } from './ReactRunner'
+// eslint-disable-next-line import/no-internal-modules
 import { DependenciesSet } from './sandbox/getDependencies'
 import { useCodeVariant } from './utils'
 
@@ -63,16 +64,16 @@ export interface DemoConfig {
   codeVariant: 'JS' | 'TS'
   gaLabel?: string
   githubLocation: string
-  jsx?: React.FC
+  jsx?: React.FC<DemoProps>
   jsxPreview: string
   language: string
-  raw: string
+  raw?: string
   rawJS?: string
   rawTS?: string
   scope?: ReactRunnerScope
   sourceLanguage?: string
   title: string
-  tsx?: React.FC
+  tsx?: React.FC<DemoProps>
 }
 
 function useDemoData(
@@ -83,10 +84,9 @@ function useDemoData(
   const userLanguage = 'en'
 
   return React.useMemo<DemoConfig>(() => {
-    let product
     const name = 'XYO Network'
 
-    return {
+    const result: DemoConfig = {
       jsxPreview: demo.jsxPreview,
       scope: demo.scope,
       ...(codeVariant === 'TS' && demo.rawTS
@@ -106,9 +106,9 @@ function useDemoData(
             sourceLanguage: demo.sourceLanguage ?? 'javascript',
           }),
       language: userLanguage,
-      product,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
     }
+    return result
   }, [codeVariant, demo, githubLocation, userLanguage])
 }
 
@@ -118,7 +118,18 @@ interface EditorCode {
   value: string
 }
 
-function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActive }) {
+function useDemoElement({
+  demoData,
+  editorCode,
+  liveDemoActive,
+  setDebouncedError,
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  demoData: DemoConfig & { Component?: any }
+  editorCode: EditorCode
+  liveDemoActive: boolean
+  setDebouncedError: React.Dispatch<React.SetStateAction<string | null>>
+}) {
   const debouncedSetError = React.useMemo(() => debounce(setDebouncedError, 300), [setDebouncedError])
 
   React.useEffect(() => {
@@ -127,8 +138,6 @@ function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActiv
     }
   }, [debouncedSetError])
 
-  console.log(`demoData.scope: ${demoData.scope}`)
-
   // Memoize to avoid rendering the demo more than it needs to be.
   // For example, avoid a render when the demo is hovered.
   const BundledComponent = React.useMemo(() => <demoData.Component />, [demoData])
@@ -136,7 +145,7 @@ function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActiv
     () => (
       <ReactRunner
         scope={demoData.scope}
-        onError={debouncedSetError}
+        onError={(error) => debouncedSetError(error)}
         code={
           editorCode.isPreview ? trimLeadingSpaces(demoData.raw).replace(trimLeadingSpaces(demoData.jsxPreview), editorCode.value) : editorCode.value
         }
@@ -213,7 +222,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
   const demoData = useDemoData(codeVariant, demo, githubLocation)
 
   const [demoHovered, setDemoHovered] = React.useState(false)
-  const handleDemoHover = (event) => {
+  const handleDemoHover: React.MouseEventHandler<HTMLDivElement> = (event) => {
     setDemoHovered(event.type === 'mouseenter')
   }
 
@@ -227,7 +236,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
     demoOptions.bg = true
   }
 
-  const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false)
+  const [codeOpen, setCodeOpen] = React.useState(!!demoOptions.defaultCodeOpen || false)
   const shownOnce = React.useRef(false)
   if (codeOpen) {
     shownOnce.current = true
@@ -240,7 +249,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
     }
   }, [demoName])
 
-  const showPreview = !demoOptions.hideToolbar && demoOptions.defaultCodeOpen !== false && Boolean(demoData.jsxPreview)
+  const showPreview = !demoOptions.hideToolbar && Boolean(demoData.jsxPreview)
 
   const [demoKey, setDemoKey] = React.useReducer((key) => key + 1, 0)
 
@@ -253,11 +262,12 @@ export const Demo: React.FC<DemoProps> = (props) => {
   const Wrapper = React.Fragment
 
   const isPreview = !codeOpen && showPreview
+
   const initialEditorCode = isPreview
     ? demoData.jsxPreview
     : // Prettier remove all the leading lines except for the last one, remove it as we don't
       // need it in the live edit view.
-      demoData.raw?.replace(/\n$/, '')
+      demoData.raw?.replace(/\n$/, '') ?? 'No Code'
 
   const [editorCode, setEditorCode] = React.useState<EditorCode>({
     initialEditorCode,
@@ -282,7 +292,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
     })
   }, [initialEditorCode, isPreview])
 
-  const [debouncedError, setDebouncedError] = React.useState(null)
+  const [debouncedError, setDebouncedError] = React.useState<string | null>(null)
 
   const [liveDemoActive, setLiveDemoActive] = React.useState(false)
 
@@ -292,8 +302,6 @@ export const Demo: React.FC<DemoProps> = (props) => {
     liveDemoActive,
     setDebouncedError,
   })
-
-  console.log(`demoElement: ${JSON.stringify(demoElement.props, null, 2)}`)
 
   return (
     <Root>
@@ -344,7 +352,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
             <DemoCodeViewer
               code={editorCode.value}
               id={demoSourceId}
-              language={demoData.sourceLanguage}
+              language={demoData.sourceLanguage ?? 'js'}
               copyButtonProps={{
                 'data-ga-event-action': 'copy-click',
                 'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
@@ -366,7 +374,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
                 setLiveDemoActive(true)
               }}
               id={demoSourceId}
-              language={demoData.sourceLanguage}
+              language={demoData.sourceLanguage ?? 'js'}
               copyButtonProps={{
                 'data-ga-event-action': 'copy-click',
                 'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
