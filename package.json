@@ -76,7 +76,6 @@
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
     "@xylabs/eslint-config": "^3.2.24",
-    "@xylabs/eslint-config-base": "^3.2.24",
     "@xylabs/eslint-config-react": "^3.2.24",
     "@xylabs/eslint-config-react-base": "^3.2.24",
     "@xylabs/ts-scripts-react-yarn3": "^3.2.24",
