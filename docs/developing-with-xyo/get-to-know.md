@@ -46,7 +46,7 @@ Need a quick reminder on what's what? The [Glossary](/glossary) can help you out
 
 ## Concepts
 
-We've created a few more [exercises](/getting-started-developer/concepts) to teach you more about ways you can implement XYO.
+We've created a few more [exercises](/developing-with-xyo/concepts) to teach you more about ways you can implement XYO.
 
 ## Demos
 

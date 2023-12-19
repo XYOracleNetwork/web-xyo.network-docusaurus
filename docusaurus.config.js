@@ -92,11 +92,11 @@ const config = {
             items: [
               {
                 label: 'Getting Started',
-                to: '/getting-started-user/quickstart',
+                to: '/getting-started',
               },
               {
                 label: 'SDKs',
-                to: '/sdks/javascript',
+                to: '/sdks',
               },
             ],
             title: 'Docs',
@@ -146,8 +146,10 @@ const config = {
       image: 'img/social-card.jpg',
       navbar: {
         items: [
-          { label: 'Getting Started', position: 'left', to: 'getting-started-user/quickstart' },
-          { label: 'SDKs', position: 'left', to: 'sdks/javascript' },
+          { label: 'Getting Started', position: 'left', to: '/getting-started' },
+          { label: 'Host', position: 'left', to: '/hosting-an-xyo-node' },
+          { label: 'Develop', position: 'left', to: '/developing-with-xyo' },
+          { label: 'SDKs', position: 'left', to: '/sdks' },
           {
             href: 'https://github.com/XYOracleNetwork',
             label: 'GitHub',
