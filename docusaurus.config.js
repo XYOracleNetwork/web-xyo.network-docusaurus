@@ -143,7 +143,7 @@ const config = {
           'An Archivist is where Bound Witness and Payload data is stored. A shared, hosted, or self-hosted archivist can be used. It is even possible to run an archivist on the same device as the Sentinel and Bridge.',
       },
       // Replace with your project's social card
-      image: 'img/social-card.jpg',
+      image: 'img/social-card.png',
       navbar: {
         items: [
           { label: 'Getting Started', position: 'left', to: '/getting-started' },
