@@ -1,10 +1,8 @@
-// @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
+import type * as Preset from '@docusaurus/preset-classic'
+import type { Config } from '@docusaurus/types'
+import { themes } from 'prism-react-renderer'
 
-const { themes } = require('prism-react-renderer')
-
-/** @type {import('@docusaurus/types').Config} */
-const config = {
+const config: Config = {
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -57,7 +55,7 @@ const config = {
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
           // Serve the docs at the site's root
           path: 'docs',
@@ -71,7 +69,7 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
-      }),
+      },
     ],
   ],
 
@@ -96,7 +94,7 @@ const config = {
               },
               {
                 label: 'SDKs',
-                to: '/sdks',
+                to: '/developing-with-xyo/sdks/',
               },
             ],
             title: 'Docs',
@@ -147,9 +145,9 @@ const config = {
       navbar: {
         items: [
           { label: 'Getting Started', position: 'left', to: '/getting-started' },
-          { label: 'Host', position: 'left', to: '/hosting-an-xyo-node' },
+          // { label: 'Host', position: 'left', to: '/hosting-an-xyo-node' },
           { label: 'Develop', position: 'left', to: '/developing-with-xyo' },
-          { label: 'SDKs', position: 'left', to: '/sdks' },
+          { label: 'SDKs', position: 'left', to: '/developing-with-xyo/sdks/' },
           {
             href: 'https://github.com/XYOracleNetwork',
             label: 'GitHub',
@@ -167,7 +165,7 @@ const config = {
         darkTheme: themes.dracula,
         theme: themes.github,
       },
-    },
+    } satisfies Preset.ThemeConfig,
 
   title: 'XYO Platform',
 

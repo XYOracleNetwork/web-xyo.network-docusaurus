@@ -9,6 +9,7 @@ import { CliTabs } from './cli-tabs'
 
 interface TabPanelProps {
   children?: React.ReactNode
+  disabled?: boolean
   index: number
   value: number
 }
@@ -33,7 +34,7 @@ function a11yProps(index: number) {
     id: `simple-tab-${index}`,
   }
 }
-export const InstallXyoOptions: React.FC = (props) => {
+export const InstallXyoOptions: React.FC = () => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -44,10 +45,12 @@ export const InstallXyoOptions: React.FC = (props) => {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Javascript" {...a11yProps(0)} />
-          <Tab label="React" {...a11yProps(1)} />
-          <Tab label="Android/Kotlin/Java" {...a11yProps(2)} />
-          <Tab label="Swift/iOS/OSX" {...a11yProps(3)} />
+          <Tab label="Core" {...a11yProps(0)} />
+          <Tab label="Plugins" {...a11yProps(1)} />
+          <Tab label="Clients" {...a11yProps(2)} />
+          <Tab label="React" {...a11yProps(3)} />
+          <Tab label="Android/Kotlin/Java" {...a11yProps(4)} disabled={true} />
+          <Tab label="Swift/iOS/OSX" {...a11yProps(5)} disabled={true} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -61,12 +64,28 @@ export const InstallXyoOptions: React.FC = (props) => {
       <TabPanel value={value} index={1}>
         <CliTabs
           tabs={[
+            { tabContent: 'npm i --save @xyo-network/plugins', tabTitle: 'npm' },
+            { tabContent: 'yarn add @xyo-network/plugins', tabTitle: 'yarn' },
+          ]}
+        />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <CliTabs
+          tabs={[
+            { tabContent: 'npm i --save @xyo-network/clients', tabTitle: 'npm' },
+            { tabContent: 'yarn add @xyo-network/clients', tabTitle: 'yarn' },
+          ]}
+        />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <CliTabs
+          tabs={[
             { tabContent: 'npm i --save @xyo-network/sdk-xyo-react', tabTitle: 'npm' },
             { tabContent: 'yarn add @xyo-network/sdk-xyo-react', tabTitle: 'yarn' },
           ]}
         />
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={4}>
         <Typography variant="body1">
           You can find the instructions for the XYO Android SDK{' '}
           <Link href="https://jitpack.io/#xyoraclenetwork/sdk-xyo-client-android" target="_blank">
@@ -75,7 +94,7 @@ export const InstallXyoOptions: React.FC = (props) => {
           .
         </Typography>
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      <TabPanel value={value} index={5}>
         <Typography variant="body1">
           You can find the instructions for the XYO Android SDK <Link href="/sdks/swift">here</Link>.
         </Typography>
