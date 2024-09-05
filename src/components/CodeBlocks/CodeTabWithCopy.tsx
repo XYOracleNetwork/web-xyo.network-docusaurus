@@ -1,5 +1,8 @@
-import { alpha, Paper, styled, useTheme } from '@mui/material'
-import Box, { BoxProps } from '@mui/material/Box'
+import {
+  alpha, Paper, styled, useTheme,
+} from '@mui/material'
+import type { BoxProps } from '@mui/material/Box'
+import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
 import Typography from '@mui/material/Typography'
@@ -21,7 +24,9 @@ interface TabPanelProps {
 }
 
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
+  const {
+    children, value, index, ...other
+  } = props
 
   return (
     <div role="tabpanel" hidden={value !== index} id={`simple-tabpanel-${index}`} aria-labelledby={`simple-tab-${index}`} {...other}>
@@ -35,29 +40,23 @@ function TabPanel(props: TabPanelProps) {
 }
 
 const AntTabs = styled(Tabs)({
-  '& .MuiTabs-indicator': {
-    backgroundColor: '#1890ff',
-  },
-  borderBottom: '1px solid #e8e8e8',
+  '& .MuiTabs-indicator': { backgroundColor: '#1890ff' },
+  'borderBottom': '1px solid #e8e8e8',
 })
 
 const AntTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} />)(({ theme }) => ({
-  '&.Mui-focusVisible': {
-    backgroundColor: '#d1eaff',
-  },
+  '&.Mui-focusVisible': { backgroundColor: '#d1eaff' },
   '&.Mui-selected': {
     color: '#1890ff',
     fontWeight: theme.typography.fontWeightMedium,
   },
-  [theme.breakpoints.up('sm')]: {
-    minWidth: 0,
-  },
+  [theme.breakpoints.up('sm')]: { minWidth: 0 },
   '&:hover': {
     color: '#40a9ff',
     opacity: 1,
   },
-  color: 'rgba(0, 0, 0, 0.85)',
-  fontFamily: [
+  'color': 'rgba(0, 0, 0, 0.85)',
+  'fontFamily': [
     '-apple-system',
     'BlinkMacSystemFont',
     '"Segoe UI"',
@@ -69,10 +68,10 @@ const AntTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} /
     '"Segoe UI Emoji"',
     '"Segoe UI Symbol"',
   ].join(','),
-  fontWeight: theme.typography.fontWeightRegular,
-  marginRight: theme.spacing(1),
-  minWidth: 0,
-  textTransform: 'none',
+  'fontWeight': theme.typography.fontWeightRegular,
+  'marginRight': theme.spacing(1),
+  'minWidth': 0,
+  'textTransform': 'none',
 }))
 
 interface StyledTabsProps {
@@ -101,23 +100,19 @@ interface StyledTabProps {
 }
 
 const StyledTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} />)(({ theme }) => ({
-  '&.Mui-focusVisible': {
-    backgroundColor: 'rgba(100, 95, 228, 0.32)',
-  },
-  '&.Mui-selected': {
-    color: '#fff',
-  },
-  color: 'rgba(255, 255, 255, 0.7)',
-  fontSize: theme.typography.pxToRem(15),
-  fontWeight: theme.typography.fontWeightBold,
-  marginRight: theme.spacing(1),
-  textTransform: 'none',
+  '&.Mui-focusVisible': { backgroundColor: 'rgba(100, 95, 228, 0.32)' },
+  '&.Mui-selected': { color: '#fff' },
+  'color': 'rgba(255, 255, 255, 0.7)',
+  'fontSize': theme.typography.pxToRem(15),
+  'fontWeight': theme.typography.fontWeightBold,
+  'marginRight': theme.spacing(1),
+  'textTransform': 'none',
 }))
 
 function a11yProps(index: number) {
   return {
     'aria-controls': `simple-tabpanel-${index}`,
-    id: `simple-tab-${index}`,
+    'id': `simple-tab-${index}`,
   }
 }
 export const CodeTabWithCopy: React.FC<CliTabsProps> = ({ tabs, ...props }) => {
@@ -129,8 +124,14 @@ export const CodeTabWithCopy: React.FC<CliTabsProps> = ({ tabs, ...props }) => {
 
   return (
     <Box sx={{ width: '100%' }} {...props}>
-      <Paper sx={{ bgcolor: '#252529', borderRadius: '10px', color: '#ffffff' }}>
-        <Box style={{ backgroundColor: alpha('#ffffff', 0.1), borderBottom: 2, borderColor: 'lightgray', borderRadius: '10px 10px 0px 0px' }}>
+      <Paper sx={{
+        bgcolor: '#252529', borderRadius: '10px', color: '#ffffff',
+      }}
+      >
+        <Box style={{
+          backgroundColor: alpha('#ffffff', 0.1), borderBottom: 2, borderColor: 'lightgray', borderRadius: '10px 10px 0px 0px',
+        }}
+        >
           <StyledTabs value={value} onChange={handleChange} aria-label="basic tabs example">
             {tabs.map((item, index) => {
               return <StyledTab key={`${index}-tab`} label={item.tabTitle} {...a11yProps(index)} />

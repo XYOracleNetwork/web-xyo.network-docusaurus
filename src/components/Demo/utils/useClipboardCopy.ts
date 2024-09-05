@@ -23,7 +23,7 @@ export const useClipboardCopy = () => {
         }
       }, 1200)
       await clipboardCopy(text)
-    } catch (error) {
+    } catch {
       // ignore error
     }
   }

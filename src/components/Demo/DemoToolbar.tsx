@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak'
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded'
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded'
@@ -13,17 +12,20 @@ import { styled, useTheme } from '@mui/material/styles'
 import SvgIcon from '@mui/material/SvgIcon'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
-import Tooltip, { TooltipProps } from '@mui/material/Tooltip'
+import type { TooltipProps } from '@mui/material/Tooltip'
+import Tooltip from '@mui/material/Tooltip'
 import copy from 'clipboard-copy'
 import * as React from 'react'
 
-import { CODE_VARIANT } from './constants'
-import { DemoConfig, DemoOptions } from './Demo'
+import type { CODE_VARIANT } from './constants'
+import type { DemoConfig, DemoOptions } from './Demo'
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from './mui-docs'
 import { createCodeSandboxReactApp, createStackBlitzReactApp } from './sandbox'
 // eslint-disable-next-line import/no-internal-modules
-import { DependenciesSet } from './sandbox/getDependencies'
-import { getCookie, useCodeVariant, useSetCodeVariant } from './utils'
+import type { DependenciesSet } from './sandbox/getDependencies'
+import {
+  getCookie, useCodeVariant, useSetCodeVariant,
+} from './utils'
 
 const Root = styled('div')(({ theme }) => [
   {
@@ -31,38 +33,28 @@ const Root = styled('div')(({ theme }) => [
       color: (theme.vars || theme).palette.grey[800],
       fontSize: 17,
     },
-    /*[theme.breakpoints.up('sm')]: {*/
-    display: 'flex',
-    height: theme.spacing(8),
-    top: 0,
-    ...(theme.direction === 'rtl' && {
-      left: theme.spacing(1),
-    }),
-    ...(theme.direction !== 'rtl' && {
-      right: theme.spacing(1),
-    }),
-    /*},*/
-    alignItems: 'center',
-    /*display: 'none',*/
-    justifyContent: 'space-between',
+    /* [theme.breakpoints.up('sm')]: { */
+    'display': 'flex',
+    'height': theme.spacing(8),
+    'top': 0,
+    ...(theme.direction === 'rtl' && { left: theme.spacing(1) }),
+    ...(theme.direction !== 'rtl' && { right: theme.spacing(1) }),
+    /* }, */
+    'alignItems': 'center',
+    /* display: 'none', */
+    'justifyContent': 'space-between',
   },
-  /*theme.applyDarkStyles({
+  /* theme.applyDarkStyles({
     '& .MuiSvgIcon-root': {
       color: (theme.vars || theme).palette.grey[400],
     },
-  }),*/
+  }), */
 ])
 
 const DemoTooltip: React.FC<TooltipProps> = (props) => {
   return (
     <Tooltip
-      componentsProps={{
-        popper: {
-          sx: {
-            zIndex: (theme) => theme.zIndex.appBar - 1,
-          },
-        },
-      }}
+      componentsProps={{ popper: { sx: { zIndex: theme => theme.zIndex.appBar - 1 } } }}
       {...props}
     />
   )
@@ -73,7 +65,7 @@ interface ToggleCodeTooltipProps extends TooltipProps {
 }
 
 const ToggleCodeTooltip: React.FC<ToggleCodeTooltipProps> = ({ showSourceHint, ...props }) => {
-  const atLeastSmallViewport = true //useMediaQuery((theme) => true /*theme.breakpoints.up('sm')*/)
+  const atLeastSmallViewport = true // useMediaQuery((theme) => true /*theme.breakpoints.up('sm')*/)
   const [open, setOpen] = React.useState(false)
 
   return (
@@ -82,7 +74,7 @@ const ToggleCodeTooltip: React.FC<ToggleCodeTooltipProps> = ({ showSourceHint, .
 }
 
 export function DemoToolbarFallback() {
-  return <Root aria-busy aria-label={'demo source'} role="toolbar" />
+  return <Root aria-busy aria-label="demo source" role="toolbar" />
 }
 
 const alwaysTrue = () => true
@@ -117,13 +109,11 @@ function useToolbar(controlRefs?: React.Ref<HTMLButtonElement>[], options: Toolb
   // controlRefs.findIndex(controlRef => controlRef.current = element)
   function findControlIndex(element: Element) {
     let controlIndex = -1
-    controlRefs?.forEach((controlRef, index) => {
-      if (controlRef !== null && typeof controlRef === 'object') {
-        if (controlRef.current === element) {
-          controlIndex = index
-        }
+    if (controlRefs) for (const [index, controlRef] of controlRefs.entries()) {
+      if (controlRef !== null && typeof controlRef === 'object' && controlRef.current === element) {
+        controlIndex = index
       }
-    })
+    }
     return controlIndex
   }
 
@@ -144,7 +134,7 @@ function useToolbar(controlRefs?: React.Ref<HTMLButtonElement>[], options: Toolb
     // it from the order.
     let currentFocusableControlIndex = -1
     const focusableControls: HTMLElement[] = []
-    controlRefs?.forEach((controlRef, index) => {
+    if (controlRefs) for (const [index, controlRef] of controlRefs.entries()) {
       if (controlRef !== null && typeof controlRef === 'object') {
         const control = controlRef.current
         if (index === activeControlIndex) {
@@ -154,27 +144,32 @@ function useToolbar(controlRefs?: React.Ref<HTMLButtonElement>[], options: Toolb
           focusableControls.push(control)
         }
       }
-    })
+    }
 
     const prevControlKey = direction === 'ltr' ? 'ArrowLeft' : 'ArrowRight'
     const nextControlKey = direction === 'ltr' ? 'ArrowRight' : 'ArrowLeft'
 
     let nextFocusableIndex = -1
     switch (event.key) {
-      case prevControlKey:
+      case prevControlKey: {
         nextFocusableIndex = (currentFocusableControlIndex - 1 + focusableControls.length) % focusableControls.length
         break
-      case nextControlKey:
+      }
+      case nextControlKey: {
         nextFocusableIndex = (currentFocusableControlIndex + 1) % focusableControls.length
         break
-      case 'Home':
+      }
+      case 'Home': {
         nextFocusableIndex = 0
         break
-      case 'End':
+      }
+      case 'End': {
         nextFocusableIndex = focusableControls.length - 1
         break
-      default:
+      }
+      default: {
         break
+      }
     }
 
     if (nextFocusableIndex !== -1) {
@@ -294,6 +289,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
     setSourceHintSeen(!!getCookie('sourceHintSeen'))
   }, [])
   const handleCodeOpenClick = () => {
+    // eslint-disable-next-line unicorn/no-document-cookie
     document.cookie = 'sourceHintSeen=true;path=/;max-age=31536000'
     onCodeOpenChange()
     setSourceHintSeen(true)
@@ -334,20 +330,20 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
 
   return (
     <React.Fragment>
-      <Root aria-label={'demo source'} {...toolbarProps}>
+      <Root aria-label="demo source" {...toolbarProps}>
         <Fade in={codeOpen}>
           <ToggleButtonGroup sx={{ margin: '8px 0' }} exclusive value={renderedCodeVariant()} onChange={handleCodeLanguageClick}>
             <ToggleButton
-              sx={(_theme) => ({
+              sx={_theme => ({
                 borderColor: 'grey.200',
                 borderRadius: 0.5,
                 padding: '5px 10px',
-                /*...theme.applyDarkStyles({
+                /* ...theme.applyDarkStyles({
                   borderColor: 'primaryDark.700',
-                }),*/
+                }), */
               })}
-              value={'JS'}
-              aria-label={'Show JavaScript source'}
+              value="JS"
+              aria-label="Show JavaScript source"
               data-ga-event-category="demo"
               data-ga-event-action="source-js"
               data-ga-event-label={demo.gaLabel}
@@ -356,20 +352,18 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
               <JavaScriptIcon sx={{ color: '#3A750A !important', fontSize: 20 }} />
             </ToggleButton>
             <ToggleButton
-              sx={(_theme) => ({
-                '&.Mui-disabled': {
-                  opacity: 0.5,
-                },
-                borderColor: 'grey.200',
-                borderRadius: 0.5,
-                padding: '5px 10px',
-                /*...theme.applyDarkStyles({
+              sx={_theme => ({
+                '&.Mui-disabled': { opacity: 0.5 },
+                'borderColor': 'grey.200',
+                'borderRadius': 0.5,
+                'padding': '5px 10px',
+                /* ...theme.applyDarkStyles({
                   borderColor: 'primaryDark.700',
-                }),*/
+                }), */
               })}
-              value={'TS'}
+              value="TS"
               disabled={!hasTSVariant}
-              aria-label={'Show TypeScript source'}
+              aria-label="Show TypeScript source"
               data-ga-event-category="demo"
               data-ga-event-action="source-ts"
               data-ga-event-label={demo.gaLabel}
@@ -394,39 +388,41 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
               <CodeRoundedIcon />
             </IconButton>
           </ToggleCodeTooltip>
-          {demoOptions.hideEditButton ? null : (
-            <React.Fragment>
-              <DemoTooltip title={'Edit in CodeSandbox'} placement="bottom">
-                <IconButton
-                  size="large"
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demo.gaLabel}
-                  data-ga-event-action="codesandbox"
-                  onClick={() => createCodeSandboxReactApp(demoData, deps).openSandbox('/demo')}
-                  {...getControlProps(3)}
-                >
-                  <SvgIcon viewBox="0 0 1024 1024">
-                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                  </SvgIcon>
-                </IconButton>
-              </DemoTooltip>
-              <DemoTooltip title={'Edit in StackBlitz'} placement="bottom">
-                <IconButton
-                  size="large"
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demo.gaLabel}
-                  data-ga-event-action="stackblitz"
-                  onClick={() => createStackBlitzReactApp(demoData, deps).openSandbox('demo')}
-                  {...getControlProps(4)}
-                >
-                  <SvgIcon viewBox="0 0 19 28">
-                    <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
-                  </SvgIcon>
-                </IconButton>
-              </DemoTooltip>
-            </React.Fragment>
-          )}
-          <DemoTooltip title={'Copy the source'} placement="bottom">
+          {demoOptions.hideEditButton
+            ? null
+            : (
+                <React.Fragment>
+                  <DemoTooltip title="Edit in CodeSandbox" placement="bottom">
+                    <IconButton
+                      size="large"
+                      data-ga-event-category="demo"
+                      data-ga-event-label={demo.gaLabel}
+                      data-ga-event-action="codesandbox"
+                      onClick={() => createCodeSandboxReactApp(demoData, deps).openSandbox('/demo')}
+                      {...getControlProps(3)}
+                    >
+                      <SvgIcon viewBox="0 0 1024 1024">
+                        <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                      </SvgIcon>
+                    </IconButton>
+                  </DemoTooltip>
+                  <DemoTooltip title="Edit in StackBlitz" placement="bottom">
+                    <IconButton
+                      size="large"
+                      data-ga-event-category="demo"
+                      data-ga-event-label={demo.gaLabel}
+                      data-ga-event-action="stackblitz"
+                      onClick={() => createStackBlitzReactApp(demoData, deps).openSandbox('demo')}
+                      {...getControlProps(4)}
+                    >
+                      <SvgIcon viewBox="0 0 19 28">
+                        <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+                      </SvgIcon>
+                    </IconButton>
+                  </DemoTooltip>
+                </React.Fragment>
+              )}
+          <DemoTooltip title="Copy the source" placement="bottom">
             <IconButton
               size="large"
               data-ga-event-category="demo"
@@ -438,7 +434,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
               <ContentCopyRoundedIcon />
             </IconButton>
           </DemoTooltip>
-          <DemoTooltip title={'Reset focus to test keyboard navigation'} placement="bottom">
+          <DemoTooltip title="Reset focus to test keyboard navigation" placement="bottom">
             <IconButton
               size="large"
               data-ga-event-category="demo"
@@ -450,7 +446,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
               <ResetFocusIcon />
             </IconButton>
           </DemoTooltip>
-          <DemoTooltip title={'Reset demo'} placement="bottom">
+          <DemoTooltip title="Reset demo" placement="bottom">
             <IconButton
               size="large"
               aria-controls={demoId}
@@ -466,7 +462,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
           <IconButton
             size="large"
             onClick={handleMoreClick}
-            aria-label={'See more'}
+            aria-label="See more"
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
             aria-haspopup="true"
             {...getControlProps(8)}
@@ -499,7 +495,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
           rel="noopener nofollow"
           onClick={handleMoreClose}
         >
-          {'View the source on GitHub'}
+          View the source on GitHub
         </MenuItem>
         <MenuItem
           data-ga-event-category="demo"
@@ -507,7 +503,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
           data-ga-event-action="copy-js-source-link"
           onClick={createHandleCodeSourceLink(`${demoName}.js`)}
         >
-          {'Copy link to JavaScript source'}
+          Copy link to JavaScript source
         </MenuItem>
         <MenuItem
           data-ga-event-category="demo"
@@ -515,7 +511,7 @@ export const DemoToolbar: React.FC<DemoToolbarProps> = (props) => {
           data-ga-event-action="copy-ts-source-link"
           onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
         >
-          {'Copy link to TypeScript source'}
+          Copy link to TypeScript source
         </MenuItem>
         {devMenuItems}
       </Menu>

@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "esnext"
   },
 
   "extends": "@docusaurus/tsconfig"

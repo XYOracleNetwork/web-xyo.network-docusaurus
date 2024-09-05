@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable complexity */
 /* eslint-disable max-statements */
 import { NoSsr } from '@mui/base'
@@ -7,18 +6,19 @@ import IconButton from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles'
 import { debounce } from '@mui/material/utils'
 import { unstable_useId as useId } from '@mui/utils'
-import { WithChildren } from '@xylabs/react-shared'
+import type { WithChildren } from '@xylabs/react-shared'
 import * as React from 'react'
 
-import { CODE_VARIANT } from './constants'
+import type { CODE_VARIANT } from './constants'
 import { DemoEditor } from './DemoEditor'
 import { DemoEditorError } from './DemoEditorError'
 import { DemoSandbox } from './DemoSandbox'
 import { DemoToolbar } from './DemoToolbar'
 import { HighlightedCode } from './HighlightedCode'
-import { ReactRunner, ReactRunnerScope } from './ReactRunner'
-// eslint-disable-next-line import/no-internal-modules
-import { DependenciesSet } from './sandbox/getDependencies'
+import type { ReactRunnerScope } from './ReactRunner'
+import { ReactRunner } from './ReactRunner'
+// eslint-disable-next-line import-x/no-internal-modules
+import type { DependenciesSet } from './sandbox/getDependencies'
 import { useCodeVariant } from './utils'
 
 export interface DemoOptions {
@@ -37,7 +37,7 @@ export interface DemoOptions {
  * @param {string} input
  */
 function trimLeadingSpaces(input = '') {
-  return input.replace(/^\s+/gm, '')
+  return input.replaceAll(/^\s+/gm, '')
 }
 
 // Sync with styles from DemoToolbar
@@ -53,7 +53,7 @@ const DemoToolbarFallbackRoot = styled('div')(({ theme }) => {
 })
 
 export function DemoToolbarFallback() {
-  return <DemoToolbarFallbackRoot aria-busy aria-label={'demo source'} role="toolbar" />
+  return <DemoToolbarFallbackRoot aria-busy aria-label="demo source" role="toolbar" />
 }
 
 function getDemoName(location: string) {
@@ -145,7 +145,7 @@ function useDemoElement({
     () => (
       <ReactRunner
         scope={demoData.scope}
-        onError={(error) => debouncedSetError(error)}
+        onError={error => debouncedSetError(error)}
         code={
           editorCode.isPreview ? trimLeadingSpaces(demoData.raw).replace(trimLeadingSpaces(demoData.jsxPreview), editorCode.value) : editorCode.value
         }
@@ -174,9 +174,7 @@ export const DemoCodeViewer = styled(HighlightedCode)(({ theme }) => ({
     margin: 0,
     maxHeight: 'min(68vh, 1000px)',
     maxWidth: 'initial',
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: theme.shape.borderRadius,
-    },
+    [theme.breakpoints.up('sm')]: { borderRadius: theme.shape.borderRadius },
   },
 }))
 
@@ -202,7 +200,9 @@ export interface DemoProps {
 }
 
 export const Demo: React.FC<DemoProps> = (props) => {
-  const { demo, demoOptions, deps = [], githubLocation } = props
+  const {
+    demo, demoOptions, deps = [], githubLocation,
+  } = props
 
   if (!demoOptions.demo.endsWith('.js') && demoOptions.hideToolbar !== true) {
     throw new Error(
@@ -251,7 +251,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
 
   const showPreview = !demoOptions.hideToolbar && Boolean(demoData.jsxPreview)
 
-  const [demoKey, setDemoKey] = React.useReducer((key) => key + 1, 0)
+  const [demoKey, setDemoKey] = React.useReducer(key => key + 1, 0)
 
   const demoId = `demo-${useId()}`
   const demoSourceId = `demoSource-${useId()}`
@@ -265,9 +265,7 @@ export const Demo: React.FC<DemoProps> = (props) => {
 
   const initialEditorCode = isPreview
     ? demoData.jsxPreview
-    : // Prettier remove all the leading lines except for the last one, remove it as we don't
-      // need it in the live edit view.
-      demoData.raw?.replace(/\n$/, '') ?? 'No Code'
+    : demoData.raw?.replace(/\n$/, '') ?? 'No Code'
 
   const [editorCode, setEditorCode] = React.useState<EditorCode>({
     initialEditorCode,
@@ -309,81 +307,85 @@ export const Demo: React.FC<DemoProps> = (props) => {
       <Paper id={demoId} onMouseEnter={handleDemoHover} onMouseLeave={handleDemoHover}>
         <Wrapper>
           <InitialFocus
-            aria-label={'A generic container that is programmatically focused to test keyboard navigation of our components.'}
+            aria-label="A generic container that is programmatically focused to test keyboard navigation of our components."
             action={initialFocusRef}
             tabIndex={-1}
           />
         </Wrapper>
-        <DemoSandbox key={demoKey} /*style={demoSandboxedStyle}*/ iframe={demoOptions.iframe} name={demoName} onResetDemoClick={resetDemo}>
+        <DemoSandbox key={demoKey} /* style={demoSandboxedStyle} */ iframe={demoOptions.iframe} name={demoName} onResetDemoClick={resetDemo}>
           {demoElement}
         </DemoSandbox>
       </Paper>
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
       <Wrapper>
-        {demoOptions.hideToolbar ? null : (
-          <NoSsr defer fallback={<DemoToolbarFallback />}>
-            <React.Suspense fallback={<DemoToolbarFallback />}>
-              <DemoToolbar
-                codeOpen={codeOpen}
-                demo={demo}
-                demoData={demoData}
-                demoHovered={demoHovered}
-                demoId={demoId}
-                demoName={demoName}
-                demoOptions={demoOptions}
-                demoSourceId={demoSourceId}
-                initialFocusRef={initialFocusRef}
-                onCodeOpenChange={() => {
-                  setCodeOpen((open) => !open)
-                }}
-                onResetDemoClick={resetDemo}
-                openDemoSource={openDemoSource}
-                showPreview={showPreview}
-                deps={deps}
-              />
-            </React.Suspense>
-          </NoSsr>
-        )}
+        {demoOptions.hideToolbar
+          ? null
+          : (
+              <NoSsr defer fallback={<DemoToolbarFallback />}>
+                <React.Suspense fallback={<DemoToolbarFallback />}>
+                  <DemoToolbar
+                    codeOpen={codeOpen}
+                    demo={demo}
+                    demoData={demoData}
+                    demoHovered={demoHovered}
+                    demoId={demoId}
+                    demoName={demoName}
+                    demoOptions={demoOptions}
+                    demoSourceId={demoSourceId}
+                    initialFocusRef={initialFocusRef}
+                    onCodeOpenChange={() => {
+                      setCodeOpen(open => !open)
+                    }}
+                    onResetDemoClick={resetDemo}
+                    openDemoSource={openDemoSource}
+                    showPreview={showPreview}
+                    deps={deps}
+                  />
+                </React.Suspense>
+              </NoSsr>
+            )}
         <Collapse in={openDemoSource} unmountOnExit>
           {/* A limitation from https://github.com/nihgwu/react-runner,
             we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-          {demoOptions.disableLiveEdit ? (
-            <DemoCodeViewer
-              code={editorCode.value}
-              id={demoSourceId}
-              language={demoData.sourceLanguage ?? 'js'}
-              copyButtonProps={{
-                'data-ga-event-action': 'copy-click',
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-              }}
-            />
-          ) : (
-            <DemoEditor
-              // Mount a new text editor when the preview mode change to reset the undo/redo history.
-              key={editorCode.isPreview ? 'preview' : 'not-preview'}
-              value={editorCode.value}
-              onChange={(value) => {
-                setEditorCode({
-                  ...editorCode,
-                  value,
-                })
-              }}
-              onFocus={() => {
-                setLiveDemoActive(true)
-              }}
-              id={demoSourceId}
-              language={demoData.sourceLanguage ?? 'js'}
-              copyButtonProps={{
-                'data-ga-event-action': 'copy-click',
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-              }}
-            >
-              <DemoEditorError>{debouncedError}</DemoEditorError>
-            </DemoEditor>
-          )}
+          {demoOptions.disableLiveEdit
+            ? (
+                <DemoCodeViewer
+                  code={editorCode.value}
+                  id={demoSourceId}
+                  language={demoData.sourceLanguage ?? 'js'}
+                  copyButtonProps={{
+                    'data-ga-event-action': 'copy-click',
+                    'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                    'data-ga-event-label': demo.gaLabel,
+                  }}
+                />
+              )
+            : (
+                <DemoEditor
+                  // Mount a new text editor when the preview mode change to reset the undo/redo history.
+                  key={editorCode.isPreview ? 'preview' : 'not-preview'}
+                  value={editorCode.value}
+                  onChange={(value) => {
+                    setEditorCode({
+                      ...editorCode,
+                      value,
+                    })
+                  }}
+                  onFocus={() => {
+                    setLiveDemoActive(true)
+                  }}
+                  id={demoSourceId}
+                  language={demoData.sourceLanguage ?? 'js'}
+                  copyButtonProps={{
+                    'data-ga-event-action': 'copy-click',
+                    'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                    'data-ga-event-label': demo.gaLabel,
+                  }}
+                >
+                  <DemoEditorError>{debouncedError}</DemoEditorError>
+                </DemoEditor>
+              )}
         </Collapse>
       </Wrapper>
     </Root>

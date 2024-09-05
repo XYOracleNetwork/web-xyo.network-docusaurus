@@ -5,7 +5,9 @@ import MarkdownElement from './MarkdownElement'
 
 // eslint-disable-next-line import/no-default-export
 export default function DemosDocs(props) {
-  const { WrapperComponent: Wrapper, wrapperProps, rendered = [], ...rest } = props
+  const {
+    WrapperComponent: Wrapper, wrapperProps, rendered = [], ...rest
+  } = props
   return (
     <React.Fragment key="demos-docs">
       {rendered.map((renderedMarkdownOrDemo, index) => {

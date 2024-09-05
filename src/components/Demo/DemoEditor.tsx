@@ -13,19 +13,13 @@ import { useCodeCopy } from './utils'
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
   {
     '& .scrollContainer': {
-      '&:focus-within': {
-        boxShadow: `0 0 0 2px ${theme.palette.primary.main}`,
-      },
-      '&:hover': {
-        boxShadow: `0 0 0 3px ${theme.palette.primary.light}`,
-      },
-      backgroundColor: blueDark[800],
-      colorScheme: 'dark',
-      maxHeight: 'min(68vh, 1000px)',
-      overflow: 'auto',
-      [theme.breakpoints.up('sm')]: {
-        borderRadius: theme.shape.borderRadius,
-      },
+      '&:focus-within': { boxShadow: `0 0 0 2px ${theme.palette.primary.main}` },
+      '&:hover': { boxShadow: `0 0 0 3px ${theme.palette.primary.light}` },
+      'backgroundColor': blueDark[800],
+      'colorScheme': 'dark',
+      'maxHeight': 'min(68vh, 1000px)',
+      'overflow': 'auto',
+      [theme.breakpoints.up('sm')]: { borderRadius: theme.shape.borderRadius },
     },
     '& pre': {
       maxHeight: 'initial',
@@ -43,17 +37,15 @@ const StyledSimpleCodeEditor = styled(SimpleCodeEditor)(({ theme }) => ({
     // Override inline-style
     whiteSpace: 'pre !important',
   },
-  '& textarea': {
-    outline: 0,
-  },
-  WebkitFontSmoothing: 'subpixel-antialiased',
-  color: '#f8f8f2',
+  '& textarea': { outline: 0 },
+  'WebkitFontSmoothing': 'subpixel-antialiased',
+  'color': '#f8f8f2',
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  direction: 'ltr /*! @noflip */' as any,
-  float: 'left',
-  fontSize: theme.typography.pxToRem(13),
-  fontWeight: 400,
-  minWidth: '100%',
+  'direction': 'ltr /*! @noflip */' as any,
+  'float': 'left',
+  'fontSize': theme.typography.pxToRem(13),
+  'fontWeight': 400,
+  'minWidth': '100%',
 }))
 
 export interface DemoEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -67,11 +59,15 @@ export interface DemoEditorProps extends Omit<React.HTMLAttributes<HTMLDivElemen
 }
 
 export const DemoEditor = (props: DemoEditorProps) => {
-  const { language, value, onChange, copyButtonProps, children, id, ...other } = props
+  const {
+    language, value, onChange, copyButtonProps, children, id, ...other
+  } = props
   const contextTheme = useTheme()
   const wrapperRef = React.useRef<HTMLElement | null>(null)
   const enterRef = React.useRef<HTMLElement | null>(null)
-  const { onBlur, onFocus, onMouseEnter, onMouseLeave } = useCodeCopy()
+  const {
+    onBlur, onFocus, onMouseEnter, onMouseLeave,
+  } = useCodeCopy()
 
   React.useEffect(() => {
     const element = wrapperRef.current?.querySelector('textarea')
@@ -108,7 +104,7 @@ export const DemoEditor = (props: DemoEditorProps) => {
         onMouseLeave={onMouseLeave}
         onMouseEnter={onMouseEnter}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onFocus={(event) => onFocus(event as any)}
+        onFocus={event => onFocus(event as any)}
       >
         <div className="scrollContainer">
           <StyledSimpleCodeEditor
@@ -126,29 +122,27 @@ export const DemoEditor = (props: DemoEditorProps) => {
           ref={enterRef}
           aria-live="polite"
           tabIndex={0}
-          sx={(theme) => ({
+          sx={theme => ({
             '&:not(:focus)': {
               opacity: 0,
               pointerEvents: 'none',
               top: 0,
             },
-            backgroundColor: blueDark[600],
-            border: '1px solid',
-            borderColor: blue[400],
-            borderRadius: '4px',
-            color: blueDark[50],
-            fontSize: theme.typography.pxToRem(13),
-            left: '50%',
-            outline: 0,
-            padding: theme.spacing(0.5, 1),
-            position: 'absolute',
-            top: theme.spacing(1),
-            transform: 'translateX(-50%)',
-            transition: 'all 0.3s',
+            'backgroundColor': blueDark[600],
+            'border': '1px solid',
+            'borderColor': blue[400],
+            'borderRadius': '4px',
+            'color': blueDark[50],
+            'fontSize': theme.typography.pxToRem(13),
+            'left': '50%',
+            'outline': 0,
+            'padding': theme.spacing(0.5, 1),
+            'position': 'absolute',
+            'top': theme.spacing(1),
+            'transform': 'translateX(-50%)',
+            'transition': 'all 0.3s',
           })}
-          dangerouslySetInnerHTML={{
-            __html: 'Press <kbd>Enter</kbd> to start editing',
-          }}
+          dangerouslySetInnerHTML={{ __html: 'Press <kbd>Enter</kbd> to start editing' }}
         />
         <NoSsr>
           <CodeCopyButton {...copyButtonProps} code={value} />

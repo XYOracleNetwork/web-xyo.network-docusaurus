@@ -10,7 +10,7 @@ export const CodeCopyButton = (props: CodeCopyButtonProps) => {
   const { code, ...other } = props
   const { copy, isCopied } = useClipboardCopy()
   // This component is designed to be wrapped in NoSsr
-  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0
+  const macOS = window.navigator.platform.toUpperCase().includes('MAC')
   const key = macOS ? '⌘' : 'Ctrl + '
 
   return (
@@ -25,9 +25,14 @@ export const CodeCopyButton = (props: CodeCopyButtonProps) => {
       }}
     >
       {/* material-ui/no-hardcoded-labels */}
-      {isCopied ? 'Copied' : 'Copy'}&nbsp;
+      {isCopied ? 'Copied' : 'Copy'}
+&nbsp;
       <span className="MuiCode-copyKeypress">
-        <span>(or</span> {key}C<span>)</span>
+        <span>(or</span>
+        {' '}
+        {key}
+        C
+        <span>)</span>
       </span>
     </button>
   )

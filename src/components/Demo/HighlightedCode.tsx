@@ -16,12 +16,16 @@ export interface HighlightedCodeProps extends React.HTMLProps<'div'> {
 }
 
 export const HighlightedCode = React.forwardRef<HTMLDivElement, HighlightedCodeProps>((props, ref) => {
-  const { copyButtonHidden = false, copyButtonProps, code, language, MarkdownComponent = MarkdownElement } = props
+  const {
+    copyButtonHidden = false, copyButtonProps, code, language, MarkdownComponent = MarkdownElement,
+  } = props
 
   const renderedCode = React.useMemo(() => {
     return prismHighlight(code.trim(), language)
   }, [code, language])
-  const { onBlur, onFocus, onMouseEnter, onMouseLeave } = useCodeCopy()
+  const {
+    onBlur, onFocus, onMouseEnter, onMouseLeave,
+  } = useCodeCopy()
 
   return (
     <MarkdownComponent ref={ref}>
@@ -29,22 +33,24 @@ export const HighlightedCode = React.forwardRef<HTMLDivElement, HighlightedCodeP
         className="MuiCode-root"
         onBlur={onBlur}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onFocus={(event) => onFocus(event as any)}
+        onFocus={event => onFocus(event as any)}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
         <pre>
           <code
             className={`language-${language}`}
-            // eslint-disable-next-line react/no-danger
+
             dangerouslySetInnerHTML={{ __html: renderedCode }}
           />
         </pre>
-        {copyButtonHidden ? null : (
-          <NoSsr>
-            <CodeCopyButton code={code} {...copyButtonProps} />
-          </NoSsr>
-        )}
+        {copyButtonHidden
+          ? null
+          : (
+              <NoSsr>
+                <CodeCopyButton code={code} {...copyButtonProps} />
+              </NoSsr>
+            )}
       </div>
     </MarkdownComponent>
   )

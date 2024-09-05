@@ -1,9 +1,7 @@
 import copy from 'clipboard-copy'
 import * as React from 'react'
 
-const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivElement | null>>({
-  current: null,
-})
+const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivElement | null>>({ current: null })
 
 /**
  * How to use: spread the handlers to the .MuiCode-root
@@ -42,16 +40,16 @@ function InitCodeCopy() {
   React.useEffect(() => {
     let key = 'Ctrl + '
     if (typeof window !== 'undefined') {
-      const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0
+      const macOS = window.navigator.platform.toUpperCase().includes('MAC')
       if (macOS) {
         key = '⌘'
       }
     }
-    const codeRoots = document.getElementsByClassName('MuiCode-root') as HTMLCollectionOf<HTMLDivElement>
+    const codeRoots = document.querySelectorAll('.MuiCode-root') as NodeListOf<HTMLDivElement>
 
     if (codeRoots !== null) {
       const listeners: Array<() => void> = []
-      Array.from(codeRoots).forEach((elm) => {
+      for (const elm of codeRoots) {
         const handleMouseEnter = () => {
           rootNode.current = elm
         }
@@ -100,8 +98,7 @@ function InitCodeCopy() {
             if (pre.textContent) {
               await copy(pre.textContent)
             }
-            // eslint-disable-next-line no-empty
-          } catch (error) {}
+          } catch {}
         }
 
         const btn = elm.querySelector('.MuiCode-copy') as HTMLButtonElement | null
@@ -109,22 +106,22 @@ function InitCodeCopy() {
           const keyNode = btn.childNodes[1]?.childNodes[1]
           if (!keyNode) {
             // skip the logic if the btn is not generated from the markdown.
-            return
+            continue
           }
           keyNode.textContent = keyNode?.textContent?.replace('$key', key) || null
           btn.addEventListener('click', handleClick)
           listeners.push(() => btn.removeEventListener('click', handleClick))
         }
-      })
+      }
 
       return () => {
-        listeners.forEach((removeEventListener) => {
+        for (const removeEventListener of listeners) {
           removeEventListener()
-        })
+        }
       }
     }
 
-    return undefined
+    return
   }, [rootNode])
   return null
 }
@@ -164,7 +161,7 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
       // event.code === 'KeyC' is not enough as event.code assume a QWERTY keyboard layout which would
       // be wrong with a Dvorak keyboard (as if pressing J).
       const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey
-      if (String.fromCharCode(event.keyCode) !== 'C' || !isModifierKeyPressed) {
+      if (event.key !== 'C' || !isModifierKeyPressed) {
         return
       }
       if (!rootNode.current) {
@@ -174,7 +171,7 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
       if (!copyBtn) {
         return
       }
-      const initialEventAction = copyBtn.getAttribute('data-ga-event-action')
+      const initialEventAction = copyBtn.dataset.gaEventAction
       // update the 'data-ga-event-action' on the button to track keyboard interaction
       copyBtn.dataset.gaEventAction = initialEventAction?.replace('click', 'keyboard') || 'copy-keyboard'
       copyBtn.click() // let the GA setup in GoogleAnalytics.js do the job

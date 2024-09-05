@@ -3,5 +3,5 @@ export const addHiddenInput = (form: HTMLFormElement, name: string, value: strin
   input.type = 'hidden'
   input.name = name
   input.value = value
-  form.appendChild(input)
+  form.append(input)
 }

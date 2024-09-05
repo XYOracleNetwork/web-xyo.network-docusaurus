@@ -1,4 +1,5 @@
-import Alert, { AlertProps } from '@mui/material/Alert'
+import type { AlertProps } from '@mui/material/Alert'
+import Alert from '@mui/material/Alert'
 
 export const DemoEditorError = (props: AlertProps) => {
   if (!props.children) {
@@ -21,12 +22,12 @@ export const DemoEditorError = (props: AlertProps) => {
           fontSize: 12,
           py: 0,
         },
-        left: '50%',
-        position: 'absolute',
-        px: '6px',
-        py: '2px',
-        top: 0,
-        transform: 'translateX(-50%) translateY(-50%)',
+        'left': '50%',
+        'position': 'absolute',
+        'px': '6px',
+        'py': '2px',
+        'top': 0,
+        'transform': 'translateX(-50%) translateY(-50%)',
       }}
       {...props}
     />

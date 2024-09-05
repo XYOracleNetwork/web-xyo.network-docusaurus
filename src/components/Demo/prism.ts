@@ -1,6 +1,7 @@
 /* eslint-disable import/no-named-as-default-member */
 /* eslint-disable simple-import-sort/imports */
-import Prism, { Grammar } from 'prismjs'
+import type { Grammar } from 'prismjs'
+import Prism from 'prismjs'
 
 /* eslint-disable import/no-internal-modules */
 import 'prismjs/components/prism-css'
@@ -17,26 +18,31 @@ import 'prismjs/themes/prism-okaidia.css'
 export const prismHighlight = (code: string, language: string) => {
   let prismLanguage: Grammar
   switch (language) {
-    case 'ts':
+    case 'ts': {
       prismLanguage = Prism.languages.typescript
       break
+    }
 
-    case 'tsx':
+    case 'tsx': {
       prismLanguage = Prism.languages.tsx
       break
+    }
 
     case 'js':
-    case 'sh':
+    case 'sh': {
       prismLanguage = Prism.languages.javascript
       break
+    }
 
-    case 'jsx':
+    case 'jsx': {
       prismLanguage = Prism.languages.jsx
       break
+    }
 
-    default:
+    default: {
       prismLanguage = Prism.languages[language]
       break
+    }
   }
 
   if (!prismLanguage) {

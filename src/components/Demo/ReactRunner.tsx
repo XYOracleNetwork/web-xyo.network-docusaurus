@@ -14,7 +14,9 @@ export interface ReactRunnerProps {
 
 // The docs https://github.com/nihgwu/react-runner
 export function ReactRunner(props: ReactRunnerProps) {
-  const { code, scope: scopeProp, onError } = props
+  const {
+    code, scope: scopeProp, onError,
+  } = props
 
   let scope: ReactRunnerScope | undefined = scopeProp
 

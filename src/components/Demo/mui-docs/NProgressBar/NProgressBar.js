@@ -38,20 +38,18 @@ export function NProgressBar(props) {
     <NoSsr>
       {props.children}
       <GlobalStyles
-        styles={(theme) => ({
+        styles={theme => ({
           '#nprogress': {
-            backgroundColor: (theme.vars || theme).palette.primary[200],
-            direction: 'ltr',
-            height: 2,
-            left: 0,
-            pointerEvents: 'none',
-            position: 'fixed',
-            right: 0,
-            top: 0,
-            zIndex: (theme.vars || theme).zIndex.tooltip,
-            ...theme.applyDarkStyles({
-              backgroundColor: (theme.vars || theme).palette.primary[700],
-            }),
+            'backgroundColor': (theme.vars || theme).palette.primary[200],
+            'direction': 'ltr',
+            'height': 2,
+            'left': 0,
+            'pointerEvents': 'none',
+            'position': 'fixed',
+            'right': 0,
+            'top': 0,
+            'zIndex': (theme.vars || theme).zIndex.tooltip,
+            ...theme.applyDarkStyles({ backgroundColor: (theme.vars || theme).palette.primary[700] }),
             '& .nprogress-bar': {
               backgroundColor: (theme.vars || theme).palette.primary.main,
               height: 2,

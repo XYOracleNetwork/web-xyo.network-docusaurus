@@ -1,15 +1,16 @@
 import { compressToBase64 } from 'lz-string'
 
-import { CODE_VARIANT } from '../constants'
+import type { CODE_VARIANT } from '../constants'
 import { addHiddenInput } from '../utils'
 import * as CRA from './CreateReactApp'
 import { getFileExtension } from './FileExtension'
-import { DependenciesSet, getDependencies } from './getDependencies'
+import type { DependenciesSet } from './getDependencies'
+import { getDependencies } from './getDependencies'
 
 function compress(object: unknown) {
   return compressToBase64(JSON.stringify(object))
-    .replace(/\+/g, '-') // Convert '+' to '-'
-    .replace(/\//g, '_') // Convert '/' to '_'
+    .replaceAll('+', '-') // Convert '+' to '-'
+    .replaceAll('/', '_') // Convert '/' to '_'
     .replace(/=+$/, '') // Remove ending '='
 }
 
@@ -22,7 +23,7 @@ function openSandbox({
   files: Record<string, object>
   initialFile: string
 }) {
-  const extension = codeVariant === 'TS' ? '.tsx' : '.js'
+  const extension = codeVariant === 'TS' ? '.tsx' : '.ts'
   const parameters = compress({ files })
 
   // ref: https://codesandbox.io/docs/api/#define-api
@@ -31,10 +32,10 @@ function openSandbox({
   form.target = '_blank'
   form.action = 'https://codesandbox.io/api/v1/sandboxes/define'
   addHiddenInput(form, 'parameters', parameters)
-  addHiddenInput(form, 'query', `file=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`)
-  document.body.appendChild(form)
+  addHiddenInput(form, 'query', `file=${initialFile}${/(\.tsx|\.ts|\.js)$/.test(initialFile) ? '' : extension}`)
+  document.body.append(form)
   form.submit()
-  document.body.removeChild(form)
+  form.remove()
 }
 
 export const createCodeSandboxReactApp = (
@@ -52,20 +53,10 @@ export const createCodeSandboxReactApp = (
   const { title, githubLocation: description } = demo
 
   const files: Record<string, object> = {
-    'public/index.html': {
-      content: CRA.getHtml(demo),
-    },
-    [`index.${ext}`]: {
-      content: CRA.getRootIndex(demo.product),
-    },
-    [`demo.${ext}`]: {
-      content: demo.raw,
-    },
-    ...(demo.codeVariant === 'TS' && {
-      'tsconfig.json': {
-        content: CRA.getTsconfig(),
-      },
-    }),
+    'public/index.html': { content: CRA.getHtml(demo) },
+    [`index.${ext}`]: { content: CRA.getRootIndex(demo.product) },
+    [`demo.${ext}`]: { content: demo.raw },
+    ...(demo.codeVariant === 'TS' && { 'tsconfig.json': { content: CRA.getTsconfig() } }),
   }
 
   const { dependencies, devDependencies } = getDependencies(demo.codeVariant === 'TS' ? [...(deps ?? []), 'typescript'] : [...(deps ?? [])])
@@ -77,9 +68,7 @@ export const createCodeSandboxReactApp = (
       devDependencies,
       ...(demo.codeVariant === 'TS' && {
         main: 'index.tsx',
-        scripts: {
-          start: 'react-scripts start',
-        },
+        scripts: { start: 'react-scripts start' },
       }),
     },
   }
@@ -94,7 +83,11 @@ export const createCodeSandboxReactApp = (
      * @description should start with `/`, e.g. `/demo.tsx`. If the extension is not provided,
      * it will be appended based on the code variant.
      */
-    openSandbox: (initialFile?: string) => (initialFile ? openSandbox({ codeVariant: demo.codeVariant, files, initialFile }) : null),
+    openSandbox: (initialFile?: string) => (initialFile
+      ? openSandbox({
+        codeVariant: demo.codeVariant, files, initialFile,
+      })
+      : null),
 
     title,
   }

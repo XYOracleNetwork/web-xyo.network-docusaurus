@@ -53,11 +53,8 @@ const FramedDemo: React.FC<FramedDemoProps> = (props) => {
       <StyleSheetManager target={document.head} stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}>
         <CacheProvider value={cache}>
           {Array.isArray(children)
-            ? children.map((child) =>
-                React.cloneElement(child, {
-                  window: getWindow,
-                }),
-              )
+            ? children.map(child =>
+              React.cloneElement(child, { window: getWindow }))
             : children}
         </CacheProvider>
       </StyleSheetManager>
@@ -78,7 +75,9 @@ export interface DemoIframeProps extends React.DetailedHTMLProps<React.IframeHTM
 }
 
 const DemoIframe: React.FC<DemoIframeProps> = (props) => {
-  const { children, name, ...other } = props
+  const {
+    children, name, ...other
+  } = props
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
    */
@@ -106,7 +105,7 @@ const DemoIframe: React.FC<DemoIframeProps> = (props) => {
   return (
     <React.Fragment>
       <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
-      {iframeLoaded !== false ? ReactDOM.createPortal(<FramedDemo document={document}>{children}</FramedDemo>, document.body) : null}
+      {iframeLoaded === false ? null : ReactDOM.createPortal(<FramedDemo document={document}>{children}</FramedDemo>, document.body)}
     </React.Fragment>
   )
 }
@@ -122,15 +121,19 @@ export interface DemoSandboxProps extends React.HTMLProps<'div'> {
  * to an `iframe` if `iframe={true}`.
  */
 export const DemoSandbox: React.FC<DemoSandboxProps> = (props) => {
-  const { children: childrenProp, iframe = false, name, onResetDemoClick, ...other } = props
+  const {
+    children: childrenProp, iframe = false, name, onResetDemoClick, ...other
+  } = props
   const sandboxProps = iframe ? { name, ...other } : {}
 
   // `childrenProp` needs to be a child of `Sandbox` since the iframe implementation rely on `cloneElement`.
-  const children = iframe ? (
-    <DemoIframe name={name} {...sandboxProps}>
-      {childrenProp}
-    </DemoIframe>
-  ) : null
+  const children = iframe
+    ? (
+        <DemoIframe name={name} {...sandboxProps}>
+          {childrenProp}
+        </DemoIframe>
+      )
+    : null
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick}>

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import { CODE_VARIANT } from '../constants'
+import type { CODE_VARIANT } from '../constants'
 import { getCookie } from './getCookie'
 
 interface CodeVariantContextProps {
@@ -32,10 +32,10 @@ export const CodeVariantProvider = (props: React.ProviderProps<object>) => {
   const [codeVariant, setCodeVariant] = React.useState<CODE_VARIANT>('TS')
 
   const navigatedCodeVariant = React.useMemo(() => {
-    const navigatedCodeVariantMatch = typeof window !== 'undefined' ? window.location.hash.match(/\.(js|tsx)$/) : null
+    const navigatedCodeVariantMatch = typeof window === 'undefined' ? null : window.location.hash.match(/\.(js|tsx)$/)
 
     if (navigatedCodeVariantMatch === null) {
-      return undefined
+      return
     }
 
     return navigatedCodeVariantMatch[1] === 'tsx' ? 'TS' : 'JS'
@@ -43,7 +43,7 @@ export const CodeVariantProvider = (props: React.ProviderProps<object>) => {
 
   const persistedCodeVariant = React.useMemo(() => {
     if (typeof window === 'undefined') {
-      return undefined
+      return
     }
     return getCookie('codeVariant') as CODE_VARIANT
   }, [])
@@ -63,16 +63,15 @@ export const CodeVariantProvider = (props: React.ProviderProps<object>) => {
   }, [codeVariant])
 
   const contextValue = React.useMemo(() => {
-    return { codeVariant, noSsrCodeVariant, setCodeVariant }
+    return {
+      codeVariant, noSsrCodeVariant, setCodeVariant,
+    }
   }, [codeVariant, noSsrCodeVariant])
 
   return <CodeVariantContext.Provider value={contextValue}>{children}</CodeVariantContext.Provider>
 }
 
-CodeVariantProvider.propTypes = {
-  // eslint-disable-next-line import/no-named-as-default-member
-  children: PropTypes.node.isRequired,
-}
+CodeVariantProvider.propTypes = { children: PropTypes.node.isRequired }
 
 export function useCodeVariant() {
   return React.useContext(CodeVariantContext).codeVariant

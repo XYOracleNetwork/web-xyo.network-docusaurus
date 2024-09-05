@@ -15,9 +15,7 @@ const muiDevDependencies: Record<string, string> = {}
 
 const standardDevDependencies: Record<string, string> = {}
 
-const typescriptDevDependencies: Record<string, string> = {
-  typescript: 'latest',
-}
+const typescriptDevDependencies: Record<string, string> = { typescript: 'latest' }
 
 const muiDependencies: Record<string, string> = {
   '@emotion/react': 'latest',
@@ -27,7 +25,7 @@ const muiDependencies: Record<string, string> = {
 }
 
 const reactDependencies: Record<string, string> = {
-  react: 'latest',
+  'react': 'latest',
   'react-dom': 'latest',
 }
 
@@ -67,7 +65,7 @@ export const getDependencies = (sets: DependenciesSet[] = []) => {
   const dependencies = {
     ...standardDependencies,
     ...sets
-      .map((set) => DependenciesSets[set])
+      .map(set => DependenciesSets[set])
       .reduce((prev, value) => {
         return { ...prev, ...value }
       }, {}),
@@ -76,7 +74,7 @@ export const getDependencies = (sets: DependenciesSet[] = []) => {
   const devDependencies = {
     ...standardDevDependencies,
     ...sets
-      .map((set) => DevDependenciesSets[set])
+      .map(set => DevDependenciesSets[set])
       .reduce((prev, value) => {
         return { ...prev, ...value }
       }, {}),

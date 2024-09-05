@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
-import { WithChildren } from '@xylabs/react-shared'
+import type { WithChildren } from '@xylabs/react-shared'
 import * as React from 'react'
 
 /**
@@ -27,16 +27,16 @@ export type DemoErrorBoundaryProps = WithChildren<{
 }>
 
 export class DemoErrorBoundary extends React.Component<DemoErrorBoundaryProps> {
-  state = {
-    error: null,
-  }
+  state = { error: null }
 
   static getDerivedStateFromError(error) {
     return { error }
   }
 
   render() {
-    const { children, name, onResetDemoClick } = this.props
+    const {
+      children, name, onResetDemoClick,
+    } = this.props
     const { error } = this.state
 
     if (error) {
@@ -69,10 +69,12 @@ export class DemoErrorBoundary extends React.Component<DemoErrorBoundaryProps> {
             This demo had a runtime error!
           </Typography>
           <Typography>
-            We would appreciate it if you{' '}
+            We would appreciate it if you
+            {' '}
             <Link href={issueLink} rel="noreferrer" target="_blank">
               report this error
-            </Link>{' '}
+            </Link>
+            {' '}
             directly in our issue tracker. You will be provided with a prefilled description that includes valuable information about this error.
           </Typography>
           <pre style={{ whiteSpace: 'pre-wrap' }}>{error.toString()}</pre>

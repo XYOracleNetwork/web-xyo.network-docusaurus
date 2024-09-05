@@ -63,12 +63,10 @@ const config: Config = {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
         },
-        /*blog: {
+        /* blog: {
           showReadingTime: true
-        },*/
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
+        }, */
+        theme: { customCss: require.resolve('./src/css/custom.css') },
       },
     ],
   ],
@@ -101,10 +99,10 @@ const config: Config = {
           },
           {
             items: [
-              /*{
+              /* {
                 label: 'Stack Overflow',
                 href: 'https://stackoverflow.com/questions/tagged/xyo',
-              },*/
+              }, */
               {
                 href: 'https://discord.gg/officialxyo',
                 label: 'Discord',
@@ -144,10 +142,16 @@ const config: Config = {
       image: 'img/social-card.png',
       navbar: {
         items: [
-          { label: 'Getting Started', position: 'left', to: '/getting-started' },
+          {
+            label: 'Getting Started', position: 'left', to: '/getting-started',
+          },
           // { label: 'Host', position: 'left', to: '/hosting-an-xyo-node' },
-          { label: 'Develop', position: 'left', to: '/developing-with-xyo' },
-          { label: 'SDKs', position: 'left', to: '/developing-with-xyo/sdks/' },
+          {
+            label: 'Develop', position: 'left', to: '/developing-with-xyo',
+          },
+          {
+            label: 'SDKs', position: 'left', to: '/developing-with-xyo/sdks/',
+          },
           {
             href: 'https://github.com/XYOracleNetwork',
             label: 'GitHub',
