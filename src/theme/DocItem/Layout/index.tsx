@@ -1,6 +1,5 @@
+import { useDoc } from '@docusaurus/plugin-content-docs/client'
 import { useWindowSize } from '@docusaurus/theme-common'
-
-import { useDoc } from '@docusaurus/theme-common/internal'
 import DocBreadcrumbs from '@theme/DocBreadcrumbs'
 import DocItemContent from '@theme/DocItem/Content'
 import DocItemFooter from '@theme/DocItem/Footer'
@@ -9,7 +8,6 @@ import DocItemTOCDesktop from '@theme/DocItem/TOC/Desktop'
 import DocItemTOCMobile from '@theme/DocItem/TOC/Mobile'
 import DocVersionBadge from '@theme/DocVersionBadge'
 import DocVersionBanner from '@theme/DocVersionBanner'
-
 import clsx from 'clsx'
 import React from 'react'
 
